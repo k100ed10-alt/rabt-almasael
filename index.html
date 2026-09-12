@@ -3,7 +3,7 @@
 <title>رابط المسائل</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f3eee4;--navy:#163056;--line:#e6dcc8;--gold:#c9a227}
+:root{--bg:#f3eee4;--navy:#163056;--line:#e6dcc8}
 *{box-sizing:border-box;margin:0;padding:0}body{background:var(--bg);font-family:Cairo,Tahoma,sans-serif;color:#1c2d4a}
 button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 .login{min-height:100dvh;display:grid;place-items:center;padding:20px}
@@ -28,25 +28,35 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 .id{margin:0;border:0;border-top:1px dashed #efe4cc;border-radius:0;background:#fffcf6}.id>summary{padding:11px 16px;font-size:14px;color:#2c4a73}
 .qlist{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 12px 14px}
 .qnum{min-height:42px;border:1px solid #eadfc6;background:#fff;border-radius:12px;font-weight:800;color:var(--navy)}
-.qnum.on{background:var(--navy);color:#fff}
 .empty{padding:12px 16px;color:#7a8494;font-size:13px}
-.qwrap{grid-column:1/-1}
-.qcard{background:#fffdf8;border:1px solid #e8d7a8;border-radius:18px;padding:14px 14px 12px;box-shadow:0 6px 18px rgba(22,48,86,.06)}
+.pop{position:fixed;inset:0;background:rgba(22,48,86,.28);display:grid;place-items:center;padding:16px;z-index:50}
+.qcard{width:min(390px,100%);background:#fffdf8;border:1px solid #e8d7a8;border-radius:22px;padding:16px 14px 14px;box-shadow:0 16px 40px rgba(22,48,86,.18)}
 .qcard.gold{border-color:#e4c56a;background:#fffaf0}
 .qhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.kindtag{font-size:11px;font-weight:800;border-radius:999px;padding:4px 9px}
+.kindtag{font-size:12px;font-weight:800;border-radius:999px;padding:5px 10px}
 .kindtag.n{background:#f8efcf;color:#8a6a10}.kindtag.t{background:#e8f6ee;color:#2f8a5b}
-.qtxt{text-align:center;font-weight:800;font-size:16px;line-height:1.85;color:var(--navy);padding:6px 4px 12px;border-bottom:1px solid #efe3c4;margin-bottom:10px}
+.x{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:#fff}
+.qtxt{text-align:center;font-weight:800;font-size:16px;line-height:1.85;color:var(--navy);padding:8px 4px 12px;border-bottom:1px solid #efe3c4;margin-bottom:10px}
 .slots{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.slot{min-height:40px;border:1px solid #eadfc6;background:#fff;border-radius:12px;font-weight:800;font-size:13px;color:#2c4a73}
-.slot.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-.slotbox{margin-top:10px;background:#f7f1e4;border-radius:12px;padding:10px 12px;font-size:14px;font-weight:700;line-height:1.8;color:#1c2d4a}
-.slotbox b{color:var(--navy)}
+.slot{min-height:44px;border-radius:14px;font-weight:800;font-size:13px;border:1.5px solid transparent}
+.s-idea{background:#fff3c4;color:#7a5b08;border-color:#f0d36a}
+.s-given{background:#d9f3e8;color:#1f7a56;border-color:#9ed9bf}
+.s-steps{background:#dce8fb;color:#1d4f9a;border-color:#9bb8e8}
+.s-req{background:#fde2c8;color:#9a4b12;border-color:#f0b27a}
+.s-idea.on{background:#e0b423;color:#fff}
+.s-given.on{background:#2f8a5b;color:#fff}
+.s-steps.on{background:#2563eb;color:#fff}
+.s-req.on{background:#163056;color:#fff}
+.slotbox{margin-top:10px;border-radius:14px;padding:12px;font-size:14px;font-weight:700;line-height:1.8}
+.slotbox.idea{background:#fff6d8;color:#7a5b08}
+.slotbox.given{background:#e7f6ee;color:#1f7a56}
+.slotbox.steps{background:#eaf2ff;color:#1d4f9a}
+.slotbox.req{background:#f7f1e4;color:#163056}
 .nav{position:fixed;bottom:0;right:0;left:0;background:#fbf8f1;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 6px calc(8px + env(safe-area-inset-bottom))}
 .nav button{border:0;background:0;font-weight:800;color:#5b6a80;padding:8px}.nav button.on{color:var(--navy)}
 .mask{position:fixed;inset:0;background:rgba(20,30,48,.4);display:grid;place-items:end;z-index:40}
 .sheet{width:100%;max-height:90dvh;overflow:auto;background:#fffcf7;border-radius:22px 22px 0 0;padding:16px}
-.row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.x{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff}
+.row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .foot{display:flex;justify-content:space-between;margin-top:12px}.foot button{height:42px;padding:0 18px;border:0;border-radius:12px;font-weight:800}.gray{background:#ece9e1}
 .toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 16px;border-radius:999px;z-index:60;font-weight:800}.view{display:none}.view.on{display:block}
 </style></head><body>
@@ -69,6 +79,7 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 <div id="view-problems" class="view"><div id="allCards"></div></div>
 <div id="view-ideas" class="view"><div id="ideaCards"></div></div>
 </section>
+<div class="pop hidden" id="pop"><div class="qcard" id="popCard"></div></div>
 <div class="mask hidden" id="addM"><div class="sheet"><div class="row"><h3>إضافة</h3><button class="x" data-close="addM">×</button></div>
 <textarea class="area" id="ptxt"></textarea>
 <div class="field"><label>النوع</label><select id="ptype"><option value="idea">فكرة جديدة</option><option value="tanwee">تنويع</option></select></div>
@@ -95,27 +106,30 @@ function openM(id){$('#'+id).classList.remove('hidden')} function closeM(id){$('
 function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),1500)}
 function stats(items){$('#nAll').textContent=toAr(items.length);$('#nNew').textContent=toAr(items.filter(x=>x.type==='idea').length);$('#nTan').textContent=toAr(items.filter(x=>x.type==='tanwee').length);$('#nIdea').textContent=toAr([...new Set(items.map(x=>x.idea).filter(Boolean))].length);$('#nBadge').textContent=toAr(items.length)}
 function givenOf(p){return p.text||'—'}
-function cardHTML(p){
+function showQ(p){
   const neu=p.type==='idea';
-  return '<div class="qcard '+(neu?'gold':'')+'">'
-    +'<div class="qhead"><span class="kindtag '+(neu?'n':'t')+'">'+(neu?'★ فكرة جديدة':'تنويع')+'</span><small>سؤال '+p.ex+' — '+p.letter+'</small></div>'
+  const card=$('#popCard');
+  card.className='qcard'+(neu?' gold':'');
+  card.innerHTML='<div class="qhead"><span class="kindtag '+(neu?'n':'t')+'">'+(neu?'★ فكرة جديدة':'تنويع')+'</span><div style="display:flex;gap:8px;align-items:center"><small>سؤال '+p.ex+' — '+p.letter+'</small><button class="x" id="popX">×</button></div></div>'
     +'<div class="qtxt">'+p.text+'</div>'
     +'<div class="slots">'
-    +'<button type="button" class="slot" data-k="idea">الفكرة</button>'
-    +'<button type="button" class="slot" data-k="given">المعطيات</button>'
-    +'<button type="button" class="slot" data-k="steps">الخطوات</button>'
-    +'<button type="button" class="slot" data-k="req">المطلوب</button>'
-    +'</div><div class="slotbox hidden" id="box-'+p.id+'"></div></div>';
-}
-function bindCard(wrap,p){
-  const box=wrap.querySelector('.slotbox');
-  const map={idea:'<b>الفكرة</b><br>'+(p.idea||'—'),given:'<b>المعطيات</b><br>'+givenOf(p),steps:'<b>الخطوات</b><br>'+(p.steps||'—'),req:'<b>المطلوب</b><br>'+(p.required||p.text||'—')};
-  wrap.querySelectorAll('.slot').forEach(s=>s.onclick=()=>{
+    +'<button type="button" class="slot s-idea" data-k="idea">الفكرة</button>'
+    +'<button type="button" class="slot s-given" data-k="given">المعطيات</button>'
+    +'<button type="button" class="slot s-steps" data-k="steps">الخطوات</button>'
+    +'<button type="button" class="slot s-req" data-k="req">المطلوب</button>'
+    +'</div><div class="slotbox hidden" id="slotBox"></div>';
+  const map={idea:[p.idea||'—','idea'],given:[givenOf(p),'given'],steps:[p.steps||'—','steps'],req:[p.required||'—','req']};
+  const titles={idea:'الفكرة',given:'المعطيات',steps:'الخطوات',req:'المطلوب'};
+  const box=$('#slotBox');
+  card.querySelectorAll('.slot').forEach(s=>s.onclick=()=>{
     const on=s.classList.contains('on');
-    wrap.querySelectorAll('.slot').forEach(x=>x.classList.remove('on'));
+    card.querySelectorAll('.slot').forEach(x=>x.classList.remove('on'));
     if(on){box.classList.add('hidden');return}
-    s.classList.add('on'); box.classList.remove('hidden'); box.innerHTML=map[s.dataset.k];
+    s.classList.add('on'); box.classList.remove('hidden');
+    const k=s.dataset.k; box.className='slotbox '+map[k][1]; box.innerHTML='<b>'+titles[k]+'</b><br>'+map[k][0];
   });
+  $('#popX').onclick=()=>$('#pop').classList.add('hidden');
+  $('#pop').classList.remove('hidden');
 }
 function render(){
  const items=load(); stats(items);
@@ -127,25 +141,15 @@ function render(){
   else {
    const ideas=new Map(); arr.forEach(p=>{const k=p.idea||'بدون فكرة'; if(!ideas.has(k)) ideas.set(k,[]); ideas.get(k).push(p)});
    ideas.forEach((qs,idea)=>{
-    html+='<details class="acc id"><summary><span>'+idea+'</span><span class="badge">'+toAr(qs.length)+'</span></summary><div class="qlist" data-box="1">';
+    html+='<details class="acc id"><summary><span>'+idea+'</span><span class="badge">'+toAr(qs.length)+'</span></summary><div class="qlist">';
     qs.forEach(p=>{html+='<button type="button" class="qnum" data-id="'+p.id+'">سؤال '+p.ex+' — '+p.letter+'</button>';});
-    html+='<div class="qwrap" id="w-'+qs[0].id+'"></div></div></details>';
+    html+='</div></details>';
    });
   }
   html+='</details>';
  });
  html+='</details>'; $('#homeCards').innerHTML=html;
- $$('#homeCards .qnum').forEach(b=>b.onclick=()=>{
-   const p=load().find(x=>String(x.id)===b.dataset.id); if(!p)return;
-   const list=b.parentElement;
-   list.querySelectorAll('.qnum').forEach(x=>x.classList.remove('on'));
-   b.classList.add('on');
-   let wrap=list.querySelector('.qwrap');
-   if(!wrap){wrap=document.createElement('div');wrap.className='qwrap';list.appendChild(wrap)}
-   wrap.innerHTML=cardHTML(p);
-   bindCard(wrap,p);
-   wrap.scrollIntoView({behavior:'smooth',block:'nearest'});
- });
+ $$('#homeCards .qnum').forEach(b=>b.onclick=()=>{const p=load().find(x=>String(x.id)===b.dataset.id); if(p) showQ(p)});
 }
 $('#loginBtn').onclick=()=>{if(!(en($('#sid').value.trim())==='1001'&&en($('#pin').value.trim())==='1234')){$('#err').style.display='block';return}$('#login').classList.add('hidden');$('#app').classList.remove('hidden');render()};
 $('#pin').addEventListener('keydown',e=>{if(e.key==='Enter')$('#loginBtn').click()});
@@ -153,5 +157,6 @@ $('#out').onclick=()=>{$('#app').classList.add('hidden');$('#login').classList.r
 $$('nav [data-view]').forEach(b=>b.onclick=()=>{$$('nav [data-view]').forEach(x=>x.classList.remove('on'));b.classList.add('on');$$('.view').forEach(v=>v.classList.remove('on'));$('#view-'+(b.dataset.view==='compare'?'home':b.dataset.view)).classList.add('on')});
 $('#btnAdd').onclick=()=>openM('addM');
 $$('[data-close]').forEach(b=>b.onclick=()=>closeM(b.dataset.close));
+$('#pop').onclick=e=>{if(e.target.id==='pop')$('#pop').classList.add('hidden')};
 $('#save').onclick=()=>{const text=$('#ptxt').value.trim();if(!text){toast('اكتب النص');return}const a=load();a.push({id:'u'+Date.now(),ex:'+',letter:'',text,type:$('#ptype').value,idea:$('#pidea').value.trim()||'فكرة مضافة',steps:$('#psteps').value.trim(),required:'مضاف',lesson:'1-1'});saveAll(a);closeM('addM');render();toast('أُضيفت')};
 </script></body></html>
