@@ -9,21 +9,21 @@
 :root{--bg:#f3eee4;--navy:#163056;--ink:#1c2d4a;--soft:#5b6a80;--line:#e6dcc8}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--bg);color:var(--ink);font-family:Cairo,Tahoma,sans-serif;direction:rtl}
-button,input,textarea{font-family:inherit}.hidden{display:none!important}
+button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 .login{min-height:100dvh;display:grid;place-items:center;padding:20px}
 .box{width:min(420px,100%);background:#fffcf6;border:1px solid var(--line);border-radius:24px;padding:28px 22px;text-align:center}
 .logo{width:56px;height:56px;margin:0 auto 12px;border-radius:14px;background:#123047;color:#7ad7c7;display:grid;place-items:center;font-size:22px}
 .box h1{font-size:28px;color:var(--navy)}.box p{color:var(--soft);font-size:14px;margin:8px 0 18px;line-height:1.7}
 .field{text-align:right;margin-bottom:12px}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
-.field input{width:100%;height:48px;border:1px solid #e2d7bf;border-radius:12px;padding:0 12px;font-size:16px}
+.field input,.field select{width:100%;height:48px;border:1px solid #e2d7bf;border-radius:12px;padding:0 12px;font-size:16px;background:#fff}
 .go{width:100%;height:50px;border:0;border-radius:12px;background:var(--navy);color:#fff;font-weight:800;font-size:17px}
 .hint{margin-top:12px;background:#f7f1e4;border-radius:10px;padding:10px;font-size:13px;color:var(--soft)}
 .err{display:none;color:#b42318;font-weight:700;margin-top:8px}
 .app{min-height:100dvh;padding:12px 12px 88px}
 .top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
-.brand{display:flex;align-items:center;gap:8px;min-width:0}.brand .logo{width:40px;height:40px;margin:0;font-size:16px;flex-shrink:0}
-.brand h2{font-size:18px;line-height:1.2;color:var(--navy)}.brand small{display:block;font-size:11px;color:var(--soft)}
-.actions{display:flex;gap:6px;flex-shrink:0}.actions button{height:34px;border:0;border-radius:999px;padding:0 10px;font-weight:800;font-size:12px}
+.brand{display:flex;align-items:center;gap:8px}.brand .logo{width:40px;height:40px;margin:0;font-size:16px}
+.brand h2{font-size:18px;color:var(--navy)}.brand small{display:block;font-size:11px;color:var(--soft)}
+.actions{display:flex;gap:6px}.actions button{height:34px;border:0;border-radius:999px;padding:0 10px;font-weight:800;font-size:12px}
 .b1{background:#fff;border:1px solid var(--line)!important}.b2{background:var(--navy);color:#fff}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
 .stat{background:#fff;border:1px solid #eee4d0;border-radius:16px;padding:12px;display:flex;align-items:center;justify-content:space-between;min-height:72px}
@@ -32,16 +32,16 @@ button,input,textarea{font-family:inherit}.hidden{display:none!important}
 .filters{display:flex;gap:6px;overflow:auto;padding-bottom:8px;margin-bottom:10px}
 .search{flex:0 0 200px;height:38px;background:#fff;border:1px solid var(--line);border-radius:999px;display:flex;align-items:center;padding:0 12px;gap:6px}
 .search input{border:0;outline:0;width:100%;background:transparent;font-size:13px}
-.chip{height:38px;white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:0 12px;font-weight:700;font-size:12px}
-.chip.on{background:var(--navy);color:#fff}
+.chip{height:38px;white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:0 12px;font-weight:700;font-size:12px}.chip.on{background:var(--navy);color:#fff}
 .hrow{display:flex;align-items:center;justify-content:space-between;margin:8px 0}
-.badge{background:var(--navy);color:#fff;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:12px}
+.badge{background:var(--navy);color:#fff;min-width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:12px;padding:0 6px}
 .cards{display:grid;gap:10px}.card{background:#fff;border:1px solid #eee4d0;border-radius:18px;padding:14px}
 .card.gold{border-color:#e4d39a}.tag{display:inline-block;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;margin-bottom:8px}
 .tg{background:#e8f6ee;color:#2f8a5b}.ty{background:#f8efcf;color:#9a7a12}
 .q{text-align:center;font-weight:800;font-size:16px;line-height:1.8;margin:8px 0 12px}
 .btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}.btns button{height:40px;border:0;border-radius:12px;font-weight:800}
 .gray{background:#ece9e1}.blue{background:#2563eb;color:#fff}.green{background:#22a06b;color:#fff}
+.empty{text-align:center;color:var(--soft);padding:28px 12px;background:#fff;border:1px dashed var(--line);border-radius:16px}
 .nav{position:fixed;bottom:0;right:0;left:0;background:#fbf8f1;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 6px calc(8px + env(safe-area-inset-bottom));z-index:20}
 .nav button{border:0;background:transparent;font-weight:800;font-size:12px;color:var(--soft);padding:8px}.nav button.on{color:var(--navy)}
 .mask{position:fixed;inset:0;background:rgba(20,30,48,.4);display:grid;place-items:end;z-index:40}
@@ -50,7 +50,6 @@ button,input,textarea{font-family:inherit}.hidden{display:none!important}
 .x{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff}
 .area{width:100%;min-height:90px;border:1px solid #eadfc6;border-radius:12px;padding:10px;margin:8px 0}
 .drop{border:1.5px dashed #d7c9a6;border-radius:12px;padding:16px;text-align:center;background:#fff;margin-bottom:10px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.mini{background:#fff;border:1px solid #eadfc6;border-radius:12px;padding:10px;font-size:13px}
 .foot{display:flex;justify-content:space-between;margin-top:12px}.foot button{height:42px;padding:0 18px;border:0;border-radius:12px;font-weight:800}
 .banner{background:#f3e3b3;border-radius:12px;padding:10px;text-align:center;font-weight:800;color:#6d5410;margin:8px 0}
 table{width:100%;border-collapse:collapse}th{background:var(--navy);color:#fff;padding:10px;font-size:13px}td{padding:10px;text-align:center;font-size:13px;border-bottom:1px solid #f0e6d0}
@@ -58,72 +57,75 @@ table{width:100%;border-collapse:collapse}th{background:var(--navy);color:#fff;p
 .toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 16px;border-radius:999px;z-index:60;font-weight:700}
 .view{display:none}.view.on{display:block}
 @media(min-width:900px){.app{display:grid;grid-template-columns:230px 1fr;padding:0}.nav{position:sticky;top:0;height:100dvh;flex-direction:column;align-items:stretch;padding:16px 12px;border-top:0;border-left:1px solid var(--line)}.mainwrap{padding:20px 28px}.stats{grid-template-columns:repeat(4,1fr)}.cards{grid-template-columns:1fr 1fr}.mask{place-items:center}.sheet{width:min(820px,94vw);border-radius:22px}}
-</style>
-</head>
+</style></head>
 <body>
-<section class="login" id="login">
-<div class="box"><div class="logo">⟩</div><h1>رابط المسائل</h1><p>يميز الأفكار الجديدة في مسائل الرياضيات عن الحلول القديمة</p>
+<section class="login" id="login"><div class="box"><div class="logo">⟩</div><h1>رابط المسائل</h1><p>يميز الأفكار الجديدة في مسائل الرياضيات عن الحلول القديمة</p>
 <div class="field"><label>رقم الطالب</label><input id="sid" inputmode="numeric" placeholder="مثال: ١٠٠١"></div>
-<div class="field"><label>الرقم السري</label><input id="pin" type="password" inputmode="numeric" placeholder="••••"></div>
-<button class="go" id="loginBtn">دخول</button>
-<div class="err" id="err">رقم الطالب أو الرقم السري غير صحيح</div>
-<div class="hint">حساب تجريبي: ١٠٠١ / ١٢٣٤</div></div></section>
+<div class="field"><label>الرقم السري</label><input id="pin" type="password" inputmode="numeric"></div>
+<button class="go" id="loginBtn">دخول</button><div class="err" id="err">رقم غير صحيح</div><div class="hint">حساب تجريبي: ١٠٠١ / ١٢٣٤</div></div></section>
 <section class="app hidden" id="app">
-<nav class="nav" id="nav">
-<button class="on" data-view="home">الرئيسية</button>
-<button data-view="problems">المسائل</button>
-<button data-view="ideas">الأفكار</button>
-<button data-view="compare">المقارنة</button>
-<button id="out">خروج</button></nav>
+<nav class="nav" id="nav"><button class="on" data-view="home">الرئيسية</button><button data-view="problems">المسائل</button><button data-view="ideas">الأفكار</button><button data-view="compare">المقارنة</button><button id="out">خروج</button></nav>
 <div class="mainwrap">
 <div class="top"><div class="brand"><div class="logo">⟩</div><div><h2>رابط المسائل</h2><small>يميز الأفكار الجديدة عن الحلول القديمة</small></div></div>
 <div class="actions"><button class="b1" id="btnSearch">بحث</button><button class="b2" id="btnAdd">إضافة</button></div></div>
 <div id="view-home" class="view on">
 <div class="stats">
-<div class="stat"><div><b>١٦</b><span>تنويع</span></div><div class="ico g">▤</div></div>
-<div class="stat"><div><b>٨</b><span>جديدة</span></div><div class="ico y">★</div></div>
-<div class="stat"><div><b>٥</b><span>أفكار</span></div><div class="ico l">💡</div></div>
-<div class="stat"><div><b>٢٤</b><span>مسائل</span></div><div class="ico bl">📋</div></div></div>
-<div class="filters"><div class="search">⌕ <input id="q" placeholder="ابحث عن مسألة أو فكرة..."></div>
-<button class="chip" id="btnCmp">المقارنة</button><button class="chip">حسب المطلوب</button><button class="chip">حسب الخطوات</button><button class="chip">كل المسائل</button><button class="chip on">حسب الفكرة</button></div>
-<div class="hrow"><strong>تحويل راديان ↔ درجة</strong><span class="badge">٦</span></div>
-<div class="cards">
-<article class="card"><span class="tag tg">تنويع</span><p class="q">إذا كان π/٦ = راديان، أوجد قياسه بالدرجة.</p><div class="btns"><button class="gray" data-open="give">المعطيات</button><button class="green" data-open="steps">الخطوات</button></div></article>
-<article class="card gold"><span class="tag ty">فكرة جديدة ★</span><p class="q">حوّل ٥π/٦ من راديان إلى درجة.</p><div class="btns"><button class="blue" data-open="idea">الفكرة</button><button class="blue" data-open="steps">الخطوات</button></div></article>
-</div></div>
-<div id="view-problems" class="view"><div class="hrow"><strong>كل المسائل</strong></div>
-<div class="cards"><article class="card gold"><span class="tag ty">فكرة جديدة</span><p class="q">حوّل الزاوية ٣π/٤ راديان إلى درجة.</p><div class="btns"><button class="gray" data-open="give">التفاصيل</button><button class="blue" id="btnCmp2">مقارنة</button></div></article></div></div>
-<div id="view-ideas" class="view"><article class="card"><p class="q" style="text-align:right">تحويل راديان إلى درجة: نضرب في ١٨٠/π ثم نبسط.</p></article></div>
+<div class="stat"><div><b id="nTan">٠</b><span>تنويع</span></div><div class="ico g">▤</div></div>
+<div class="stat"><div><b id="nNew">٠</b><span>جديدة</span></div><div class="ico y">★</div></div>
+<div class="stat"><div><b id="nIdea">٠</b><span>أفكار</span></div><div class="ico l">💡</div></div>
+<div class="stat"><div><b id="nAll">٠</b><span>مسائل</span></div><div class="ico bl">📋</div></div></div>
+<div class="filters"><div class="search">⌕ <input id="q" placeholder="ابحث..."></div>
+<button class="chip" id="btnCmp">المقارنة</button>
+<button class="chip" data-f="all">كل المسائل</button>
+<button class="chip on" data-f="idea">حسب الفكرة</button></div>
+<div class="hrow"><strong>المسائل المضافة</strong><span class="badge" id="nBadge">٠</span></div>
+<div class="cards" id="homeCards"></div></div>
+<div id="view-problems" class="view"><div class="hrow"><strong>كل المسائل</strong></div><div class="cards" id="allCards"></div></div>
+<div id="view-ideas" class="view"><div class="cards" id="ideaCards"></div></div>
 </div></section>
 <div class="mask hidden" id="addM"><div class="sheet"><div class="row"><h3>إضافة مسألة</h3><button class="x" data-close="addM">×</button></div>
-<textarea class="area" id="ptxt" placeholder="اكتب نص المسألة">حوّل الزاوية ٣π/٤ راديان إلى درجة.</textarea>
-<div class="drop" id="drop">أضف صورة للمسألة — اضغط للاختيار<input type="file" id="pimg" accept="image/*" hidden></div>
-<div class="grid2"><div class="mini"><b>الفكرة</b>تحويل راديان إلى درجة</div><div class="mini"><b>الخطوات</b>اضرب في ١٨٠/π</div></div>
+<textarea class="area" id="ptxt" placeholder="اكتب نص المسألة هنا..."></textarea>
+<div class="drop" id="drop">أضف صورة للمسألة<input type="file" id="pimg" accept="image/*" hidden></div>
+<div class="field"><label>نوع المسألة</label><select id="ptype"><option value="idea">فكرة جديدة</option><option value="tanwee">تنويع</option></select></div>
+<div class="field"><label>الفكرة</label><input id="pidea" placeholder="مثال: تحويل راديان إلى درجة"></div>
+<div class="field"><label>الخطوات</label><input id="psteps" placeholder="مثال: اضرب في ١٨٠/π"></div>
 <div class="foot"><button class="gray" data-close="addM">إلغاء</button><button class="b2" id="save">حفظ</button></div></div></div>
-<div class="mask hidden" id="cmpM"><div class="sheet"><div class="row"><h3>مقارنة مسألتين</h3><button class="x" data-close="cmpM">×</button></div>
-<div class="banner">نفس الفكرة ونفس الخطوات — تغيّرت الأرقام فقط</div>
-<table><tr><th>البعد</th><th>الأولى</th><th>الثانية</th></tr>
-<tr><td>الفكرة</td><td class="ok">نفس الفكرة ✓</td><td class="ok">نفس الفكرة ✓</td></tr>
-<tr><td>الخطوات</td><td class="ok">نفس الخطوات ✓</td><td class="ok">نفس الخطوات ✓</td></tr>
-<tr><td>المطلوب</td><td class="no">المساحة الإجمالية ✕</td><td class="no">المساحة الباقية ✕</td></tr></table></div></div>
+<div class="mask hidden" id="cmpM"><div class="sheet"><div class="row"><h3>مقارنة مسألتين</h3><button class="x" data-close="cmpM">×</button></div><div class="banner" id="cmpBanner">أضف مسألتين أولاً</div><div id="cmpBody"></div></div></div>
 <div class="mask hidden" id="infoM"><div class="sheet"><div class="row"><h3 id="infoT">تفاصيل</h3><button class="x" data-close="infoM">×</button></div><p id="infoB" style="line-height:1.9;font-weight:700"></p></div></div>
 <script>
-const en=s=>String(s).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+const AR='٠١٢٣٤٥٦٧٨٩';
+const toAr=n=>String(n).replace(/\d/g,d=>AR[d]);
+const en=s=>String(s).replace(/[٠-٩]/g,d=>AR.indexOf(d));
 const $=s=>document.querySelector(s); const $$=s=>document.querySelectorAll(s);
+const KEY='rabt-items-v1';
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return[]}}
+function saveAll(arr){localStorage.setItem(KEY,JSON.stringify(arr))}
 function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),1600)}
 function openM(id){$('#'+id).classList.remove('hidden')} function closeM(id){$('#'+id).classList.add('hidden')}
-$('#loginBtn').onclick=()=>{const ok=en($('#sid').value.trim())==='1001'&&en($('#pin').value.trim())==='1234';if(!ok){$('#err').style.display='block';return}$('#login').classList.add('hidden');$('#app').classList.remove('hidden')};
+function stats(items){
+ const all=items.length, neu=items.filter(x=>x.type==='idea').length, tan=items.filter(x=>x.type==='tanwee').length;
+ const ideas=[...new Set(items.map(x=>(x.idea||'').trim()).filter(Boolean))].length;
+ $('#nAll').textContent=toAr(all); $('#nNew').textContent=toAr(neu); $('#nTan').textContent=toAr(tan); $('#nIdea').textContent=toAr(ideas); $('#nBadge').textContent=toAr(all);
+}
+function cardHTML(p){const neu=p.type==='idea';return `<article class="card ${neu?'gold':''}"><span class="tag ${neu?'ty':'tg'}">${neu?'فكرة جديدة ★':'تنويع'}</span><p class="q">${p.text}</p><div class="btns"><button class="gray" data-info="${p.id}|give">المعطيات</button><button class="${neu?'blue':'green'}" data-info="${p.id}|steps">الخطوات</button></div></article>`}
+function emptyBox(msg){return `<div class="empty">${msg}</div>`}
+function render(){
+ const items=load(); stats(items);
+ const home=$('#homeCards'), all=$('#allCards'), ideas=$('#ideaCards');
+ if(!items.length){home.innerHTML=emptyBox('لا توجد مسائل بعد. اضغط إضافة.');all.innerHTML=emptyBox('لا توجد مسائل بعد.');ideas.innerHTML=emptyBox('لا توجد أفكار بعد.');return;}
+ home.innerHTML=items.map(cardHTML).join(''); all.innerHTML=items.map(cardHTML).join('');
+ const uniq=[...new Map(items.filter(x=>x.idea).map(x=>[x.idea,x])).values()];
+ ideas.innerHTML=uniq.length?uniq.map(x=>`<article class="card"><p class="q" style="text-align:right">${x.idea}</p></article>`).join(''):emptyBox('لا توجد أفكار بعد.');
+ $$('[data-info]').forEach(b=>b.onclick=()=>{const [id,kind]=b.dataset.info.split('|');const p=load().find(x=>String(x.id)===id);if(!p)return;$('#infoT').textContent=kind==='steps'?'الخطوات':'المعطيات';$('#infoB').textContent=kind==='steps'?(p.steps||'لم تُكتب خطوات'):p.text;openM('infoM');});
+}
+$('#loginBtn').onclick=()=>{const ok=en($('#sid').value.trim())==='1001'&&en($('#pin').value.trim())==='1234';if(!ok){$('#err').style.display='block';return}$('#login').classList.add('hidden');$('#app').classList.remove('hidden');render();};
 $('#pin').addEventListener('keydown',e=>{if(e.key==='Enter')$('#loginBtn').click()});
 $('#out').onclick=()=>{$('#app').classList.add('hidden');$('#login').classList.remove('hidden')};
-$$('#nav [data-view]').forEach(b=>b.onclick=()=>{$$('#nav [data-view]').forEach(x=>x.classList.remove('on'));b.classList.add('on');$$('.view').forEach(v=>v.classList.remove('on'));if(b.dataset.view==='compare'){openM('cmpM');$('#view-home').classList.add('on');return}$('#view-'+b.dataset.view).classList.add('on')});
-$('#btnAdd').onclick=()=>openM('addM');$('#btnCmp').onclick=()=>openM('cmpM');
-const c2=$('#btnCmp2'); if(c2)c2.onclick=()=>openM('cmpM');
-$('#btnSearch').onclick=()=>{$('#q').focus();toast('اكتب في خانة البحث')};
+$$('#nav [data-view]').forEach(b=>b.onclick=()=>{$$('#nav [data-view]').forEach(x=>x.classList.remove('on'));b.classList.add('on');$$('.view').forEach(v=>v.classList.remove('on'));if(b.dataset.view==='compare'){showCompare();$('#view-home').classList.add('on');return}$('#view-'+b.dataset.view).classList.add('on')});
+$('#btnAdd').onclick=()=>openM('addM'); $('#btnCmp').onclick=showCompare;
 $$('[data-close]').forEach(b=>b.onclick=()=>closeM(b.dataset.close));
 $$('.mask').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.add('hidden')}));
-const info={idea:'الفكرة: التحويل بالضرب في ١٨٠/π.',steps:'الخطوات: اضرب في ١٨٠/π ثم بسّط.',give:'المعطيات: زاوية بالراديان.'};
-$$('[data-open]').forEach(b=>b.onclick=()=>{$('#infoT').textContent=b.textContent;$('#infoB').textContent=info[b.dataset.open];openM('infoM')});
-$$('.chip').forEach(c=>c.onclick=()=>{if(c.id==='btnCmp')return;$$('.chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');toast('تم تطبيق الفلتر: '+c.textContent)});
-$('#save').onclick=()=>{closeM('addM');toast('تم حفظ المسألة')};
-$('#drop').onclick=()=>$('#pimg').click();$('#pimg').onchange=()=>{if($('#pimg').files[0])toast('تم اختيار الصورة')};
+function showCompare(){const items=load();openM('cmpM');if(items.length<2){$('#cmpBanner').textContent='أضف مسألتين على الأقل للمقارنة';$('#cmpBody').innerHTML='';return;}const a=items[items.length-2],b=items[items.length-1];const sameIdea=!!a.idea&&a.idea===b.idea,sameSteps=!!a.steps&&a.steps===b.steps;$('#cmpBanner').textContent=sameIdea&&sameSteps?'نفس الفكرة ونفس الخطوات':'مقارنة آخر مسألتين';$('#cmpBody').innerHTML=`<table><tr><th>البعد</th><th>الأولى</th><th>الثانية</th></tr><tr><td>النص</td><td>${a.text}</td><td>${b.text}</td></tr><tr><td>الفكرة</td><td class="${sameIdea?'ok':'no'}">${a.idea||'—'}</td><td class="${sameIdea?'ok':'no'}">${b.idea||'—'}</td></tr><tr><td>الخطوات</td><td class="${sameSteps?'ok':'no'}">${a.steps||'—'}</td><td class="${sameSteps?'ok':'no'}">${b.steps||'—'}</td></tr></table>`;}
+$('#drop').onclick=()=>$('#pimg').click();let imgName='';$('#pimg').onchange=()=>{if($('#pimg').files[0]){imgName=$('#pimg').files[0].name;toast('تم اختيار الصورة')}};
+$('#save').onclick=()=>{const text=$('#ptxt').value.trim();if(!text){toast('اكتب نص المسألة');return}const items=load();items.push({id:Date.now(),text,type:$('#ptype').value,idea:$('#pidea').value.trim(),steps:$('#psteps').value.trim(),img:imgName});saveAll(items);$('#ptxt').value='';$('#pidea').value='';$('#psteps').value='';imgName='';$('#pimg').value='';closeM('addM');render();toast('أُضيفت المسألة وتحدّث العداد');};
 </script></body></html>
