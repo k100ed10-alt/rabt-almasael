@@ -61,13 +61,15 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 .toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 16px;border-radius:999px;z-index:60;font-weight:800}.view{display:none}.view.on{display:block}
 </style></head><body>
 <section class="login" id="login"><div class="box"><div class="logo">⟩</div><h1>رابط المسائل</h1>
-<div class="field"><label>رقم الطالب</label><input id="sid" inputmode="numeric"></div>
-<div class="field"><label>الرقم السري</label><input id="pin" type="password" inputmode="numeric"></div>
-<button class="go" id="loginBtn">دخول</button><div class="err" id="err">رقم غير صحيح</div><div class="hint">١٠٠١ / ١٢٣٤</div></div></section>
+<div class="field"><label>الدخول كـ</label><select id="role"><option value="student">طالب</option><option value="teacher">معلم</option></select></div>
+<div class="field"><label id="idLab">رقم الطالب</label><input id="sid" inputmode="numeric"></div>
+<div class="field"><label>الرقم السري</label><input id="pin" type="password"></div>
+<button class="go" id="loginBtn">دخول</button><div class="err" id="err">رقم غير صحيح</div>
+<div class="hint" id="hint">طالب: ١٠٠١ / ١٢٣٤</div></div></section>
 <section class="app hidden" id="app">
 <nav class="nav"><button class="on">الرئيسية</button><button id="out">خروج</button></nav>
-<div class="top"><div class="brand"><div class="logo">⟩</div><div><h2>رابط المسائل</h2><small>القياس الدائري</small></div></div>
-<div class="actions"><button class="b1" id="btnSearch">بحث</button><button class="b2" id="btnAdd">إضافة</button></div></div>
+<div class="top"><div class="brand"><div class="logo">⟩</div><div><h2>رابط المسائل</h2><small id="who">القياس الدائري</small></div></div>
+<div class="actions"><button class="b1" id="btnSearch">بحث</button><button class="b2 hidden" id="btnAdd">إضافة</button></div></div>
 <div id="view-home" class="view on">
 <div class="stats">
 <div class="stat"><div><b id="nTan">٠</b><span>تنويع</span></div><div class="ico g">▤</div></div>
@@ -95,10 +97,10 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 <input type="file" id="pimg" accept="image/*"></label>
 <img id="pprev" class="qimg hidden" alt="">
 <div class="grid2">
-<div class="field"><label>الفكرة</label><input id="pidea" placeholder="مثل: تحويل راديان إلى درجة"></div>
-<div class="field"><label>المعطيات</label><input id="pgiven" placeholder="مثل: زاوية بالراديان"></div>
-<div class="field"><label>الخطوات</label><input id="psteps" placeholder="اضرب في ١٨٠/π ثم بسّط"></div>
-<div class="field"><label>المطلوب</label><input id="preq" placeholder="إيجاد القياس بالدرجة"></div>
+<div class="field"><label>الفكرة</label><input id="pidea"></div>
+<div class="field"><label>المعطيات</label><input id="pgiven"></div>
+<div class="field"><label>الخطوات</label><input id="psteps"></div>
+<div class="field"><label>المطلوب</label><input id="preq"></div>
 </div>
 <label class="chk"><input type="checkbox" id="pnew"> هذه فكرة جديدة</label>
 <div class="foot"><button class="gray" data-close="addM">إلغاء</button><button class="b2" id="save">حفظ</button></div>
@@ -111,7 +113,7 @@ const toAr=n=>String(n).replace(/\d/g,d=>AR[d]);
 const en=s=>String(s).replace(/[٠-٩]/g,d=>AR.indexOf(d));
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 const KEY='rabt-items-v6';
-let IMG='';
+let IMG='', IS_TEACHER=false;
 const UNIT={title:'الوحدة الأولى: القياس الدائري', lessons:[
   {id:'1-1', title:'١-١ الراديان', page:'١١'},
   {id:'1-2', title:'١-٢ طول القوس', page:'١٥'},
@@ -162,9 +164,9 @@ function showQ(p){
 function render(){
  const items=load(); stats(items);
  let html='<details class="acc" open><summary><span>'+UNIT.title+'</span><span class="badge">'+toAr(items.length)+'</span></summary>';
- UNIT.lessons.forEach(ls=>{
+ UNIT.lessons.forEach((ls,i)=>{
   const arr=items.filter(p=>(p.lesson||'1-1')===ls.id);
-  html+='<details class="acc ls"><summary><span>'+ls.title+'</span><small>ص '+ls.page+'</small></summary>';
+  html+='<details class="acc ls"'+(i===0?' open':'')+'><summary><span>'+ls.title+'</span><small>ص '+ls.page+'</small></summary>';
   if(!arr.length) html+='<div class="empty">لا توجد أفكار بعد</div>';
   else {
    const ideas=new Map(); arr.forEach(p=>{const k=p.idea||'بدون فكرة'; if(!ideas.has(k)) ideas.set(k,[]); ideas.get(k).push(p)});
@@ -179,16 +181,21 @@ function render(){
  html+='</details>'; $('#homeCards').innerHTML=html;
  $$('#homeCards .qnum').forEach(b=>b.onclick=()=>{const p=load().find(x=>String(x.id)===b.dataset.id); if(p) showQ(p)});
 }
-$('#loginBtn').onclick=()=>{if(!(en($('#sid').value.trim())==='1001'&&en($('#pin').value.trim())==='1234')){$('#err').style.display='block';return}$('#login').classList.add('hidden');$('#app').classList.remove('hidden');render()};
+function enterApp(){$('#login').classList.add('hidden');$('#app').classList.remove('hidden'); if(IS_TEACHER){$('#btnAdd').classList.remove('hidden');$('#who').textContent='حساب المعلم'}else{$('#btnAdd').classList.add('hidden');$('#who').textContent='حساب الطالب'} render()}
+$('#role').onchange=()=>{const t=$('#role').value==='teacher'; $('#idLab').textContent=t?'رقم المعلم':'رقم الطالب'; $('#hint').textContent=t?'معلم: ٩٠٠١ / ٢٤٦٨':'طالب: ١٠٠١ / ١٢٣٤'};
+$('#loginBtn').onclick=()=>{const id=en($('#sid').value.trim()), pin=en($('#pin').value.trim()), role=$('#role').value; $('#err').style.display='none';
+  if(role==='teacher'){if(!(id==='9001'&&pin==='2468')){$('#err').style.display='block';return} IS_TEACHER=true; enterApp(); return}
+  if(!(id==='1001'&&pin==='1234')){$('#err').style.display='block';return} IS_TEACHER=false; enterApp()};
 $('#pin').addEventListener('keydown',e=>{if(e.key==='Enter')$('#loginBtn').click()});
-$('#out').onclick=()=>{$('#app').classList.add('hidden');$('#login').classList.remove('hidden')};
-$('#btnAdd').onclick=()=>openM('addM');
+$('#out').onclick=()=>{IS_TEACHER=false;$('#btnAdd').classList.add('hidden');$('#app').classList.add('hidden');$('#login').classList.remove('hidden')};
+$('#btnAdd').onclick=()=>{if(!IS_TEACHER){toast('الإضافة للمعلم فقط');return} openM('addM')};
 $$('[data-close]').forEach(b=>b.onclick=()=>closeM(b.dataset.close));
 $('#pop').onclick=e=>{if(e.target.id==='pop')$('#pop').classList.add('hidden')};
 $('#ptxt').addEventListener('input',()=>{$('#pcnt').textContent=toAr($('#ptxt').value.length)});
 $$('.chip').forEach(c=>c.onclick=()=>{$('#pidea').value=c.dataset.idea});
 $('#pimg').onchange=e=>{const f=e.target.files&&e.target.files[0]; if(!f)return; const r=new FileReader(); r.onload=()=>{IMG=r.result; $('#pprev').src=IMG; $('#pprev').classList.remove('hidden')}; r.readAsDataURL(f)};
 $('#save').onclick=()=>{
+  if(!IS_TEACHER){toast('الإضافة للمعلم فقط');return}
   const text=$('#ptxt').value.trim(); if(!text&&!IMG){toast('اكتب النص أو ارفع صورة');return}
   const a=load();
   a.push({id:'u'+Date.now(),ex:toAr(a.filter(x=>x.lesson===$('#plesson').value).length+1),letter:'—',text,type:$('#pnew').checked?'idea':'tanwee',idea:$('#pidea').value.trim()||'فكرة مضافة',given:$('#pgiven').value.trim(),steps:$('#psteps').value.trim(),required:$('#preq').value.trim(),lesson:$('#plesson').value,img:IMG});
