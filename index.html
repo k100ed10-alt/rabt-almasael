@@ -1,66 +1,52 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>رابط المسائل</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f3eee4;--navy:#163056;--ink:#1c2d4a;--soft:#5b6a80;--line:#e6dcc8}
-*{box-sizing:border-box;margin:0;padding:0}html,body{background:var(--bg);color:var(--ink);font-family:Cairo,Tahoma,sans-serif;direction:rtl}
+:root{--bg:#f3eee4;--navy:#163056;--line:#e6dcc8}
+*{box-sizing:border-box;margin:0;padding:0}body{background:var(--bg);font-family:Cairo,Tahoma,sans-serif;color:#1c2d4a}
 button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 .login{min-height:100dvh;display:grid;place-items:center;padding:20px}
 .box{width:min(420px,100%);background:#fffcf6;border:1px solid var(--line);border-radius:24px;padding:28px 22px;text-align:center}
-.logo{width:56px;height:56px;margin:0 auto 12px;border-radius:14px;background:#123047;color:#7ad7c7;display:grid;place-items:center;font-size:22px}
-.box h1{font-size:28px;color:var(--navy)}.box p{color:var(--soft);font-size:14px;margin:8px 0 18px}
-.field{text-align:right;margin-bottom:12px}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
-.field input,.field select{width:100%;height:48px;border:1px solid #e2d7bf;border-radius:12px;padding:0 12px;font-size:16px;background:#fff}
-.go{width:100%;height:50px;border:0;border-radius:12px;background:var(--navy);color:#fff;font-weight:800;font-size:17px}
-.hint{margin-top:12px;background:#f7f1e4;border-radius:10px;padding:10px;font-size:13px;color:var(--soft)}.err{display:none;color:#b42318;font-weight:700;margin-top:8px}
+.logo{width:56px;height:56px;margin:0 auto 12px;border-radius:14px;background:#123047;color:#7ad7c7;display:grid;place-items:center}
+.box h1{font-size:28px;color:var(--navy)}.field{text-align:right;margin-bottom:12px}
+.field label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}
+.field input,.field select,.area{width:100%;height:48px;border:1px solid #e2d7bf;border-radius:12px;padding:0 12px;font-size:16px}
+.area{height:auto;min-height:80px;padding:10px}.go{width:100%;height:50px;border:0;border-radius:12px;background:var(--navy);color:#fff;font-weight:800;font-size:17px}
+.hint{margin-top:12px;background:#f7f1e4;border-radius:10px;padding:10px;font-size:13px;color:#5b6a80}.err{display:none;color:#b42318;font-weight:800;margin-top:8px}
 .app{min-height:100dvh;padding:12px 12px 88px}
-.top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
-.brand{display:flex;align-items:center;gap:8px}.brand .logo{width:40px;height:40px;margin:0;font-size:16px}.brand h2{font-size:18px;color:var(--navy)}.brand small{display:block;font-size:11px;color:var(--soft)}
-.actions button{height:34px;border:0;border-radius:999px;padding:0 10px;font-weight:800;font-size:12px}.b1{background:#fff;border:1px solid var(--line)!important}.b2{background:var(--navy);color:#fff}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.brand{display:flex;gap:8px;align-items:center}.brand .logo{width:40px;height:40px;margin:0}.brand h2{font-size:18px}.brand small{display:block;font-size:11px;color:#5b6a80}
+.actions button{height:34px;border:0;border-radius:999px;padding:0 12px;font-weight:800}.b1{background:#fff;border:1px solid var(--line)!important}.b2{background:var(--navy);color:#fff}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.stat{background:#fff;border:1px solid #eee4d0;border-radius:16px;padding:12px;display:flex;align-items:center;justify-content:space-between;min-height:72px}
-.stat b{display:block;font-size:26px;color:var(--navy)}.stat span{font-size:12px;color:var(--soft);font-weight:700}
+.stat{background:#fff;border:1px solid #eee4d0;border-radius:16px;padding:12px;display:flex;justify-content:space-between;align-items:center;min-height:72px}
+.stat b{display:block;font-size:26px;color:var(--navy)}.stat span{font-size:12px;color:#5b6a80;font-weight:800}
 .ico{width:36px;height:36px;border-radius:10px;display:grid;place-items:center}.g{background:#e7f6ee}.y{background:#f8efcf}.l{background:#fff6d8}.bl{background:#eaf2ff}
-.filters{display:flex;gap:6px;overflow:auto;padding-bottom:8px;margin-bottom:10px}
-.search{flex:0 0 160px;height:38px;background:#fff;border:1px solid var(--line);border-radius:999px;display:flex;align-items:center;padding:0 12px}
-.search input{border:0;outline:0;width:100%;background:transparent;font-size:13px}
-.chip{height:38px;white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:0 12px;font-weight:700;font-size:12px}.chip.on{background:var(--navy);color:#fff}
-.hrow{display:flex;align-items:center;justify-content:space-between;margin:8px 0}
+.filters{display:flex;gap:6px;overflow:auto;padding-bottom:8px}
+.chip{height:38px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:0 12px;font-weight:800;font-size:12px;white-space:nowrap}.chip.on{background:var(--navy);color:#fff}
+.hrow{display:flex;justify-content:space-between;align-items:center;margin:8px 0}
 .badge{background:var(--navy);color:#fff;min-width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:12px;padding:0 6px}
-.cards{display:grid;gap:10px}.card{background:#fff;border:1px solid #eee4d0;border-radius:18px;padding:14px}
-.card.gold{border-color:#e4d39a}.tag{display:inline-block;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px}
-.tg{background:#e8f6ee;color:#2f8a5b}.ty{background:#f8efcf;color:#9a7a12}.kind{display:block;font-size:11px;color:#7a8494;margin:4px 0}
-.q{text-align:center;font-weight:800;font-size:16px;line-height:1.8;margin:8px 0 12px}
-.btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}.btns button{height:40px;border:0;border-radius:12px;font-weight:800}
-.gray{background:#ece9e1}.blue{background:#2563eb;color:#fff}.green{background:#22a06b;color:#fff}
-.empty{text-align:center;color:var(--soft);padding:28px 12px;background:#fff;border:1px dashed var(--line);border-radius:16px}
-.nav{position:fixed;bottom:0;right:0;left:0;background:#fbf8f1;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 6px calc(8px + env(safe-area-inset-bottom));z-index:20}
-.nav button{border:0;background:transparent;font-weight:800;font-size:12px;color:var(--soft);padding:8px}.nav button.on{color:var(--navy)}
+.acc{background:#fff;border:1px solid #eee4d0;border-radius:16px;margin:0 0 10px;overflow:hidden}
+.acc>summary{cursor:pointer;padding:14px 16px;font-weight:800;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center}
+.acc>summary::-webkit-details-marker{display:none}
+.qlist{display:grid;gap:8px;padding:0 12px 14px}
+.qnum{min-height:44px;border:1px solid #eadfc6;background:#fffcf6;border-radius:12px;font-weight:800;color:var(--navy);text-align:right;padding:8px 12px}
+.nav{position:fixed;bottom:0;right:0;left:0;background:#fbf8f1;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 6px calc(8px + env(safe-area-inset-bottom))}
+.nav button{border:0;background:0;font-weight:800;color:#5b6a80;padding:8px}.nav button.on{color:var(--navy)}
 .mask{position:fixed;inset:0;background:rgba(20,30,48,.4);display:grid;place-items:end;z-index:40}
-.sheet{width:100%;max-height:92dvh;overflow:auto;background:#fffcf7;border-radius:22px 22px 0 0;padding:16px}
+.sheet{width:100%;max-height:90dvh;overflow:auto;background:#fffcf7;border-radius:22px 22px 0 0;padding:16px}
 .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .x{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff}
-.area{width:100%;min-height:90px;border:1px solid #eadfc6;border-radius:12px;padding:10px;margin:8px 0}
-.drop{border:1.5px dashed #d7c9a6;border-radius:12px;padding:16px;text-align:center;background:#fff;margin-bottom:10px}
 .foot{display:flex;justify-content:space-between;margin-top:12px}.foot button{height:42px;padding:0 18px;border:0;border-radius:12px;font-weight:800}
-.banner{background:#f3e3b3;border-radius:12px;padding:10px;text-align:center;font-weight:800;color:#6d5410;margin:8px 0}
-table{width:100%;border-collapse:collapse}th{background:var(--navy);color:#fff;padding:10px}td{padding:10px;text-align:center;font-size:13px;border-bottom:1px solid #f0e6d0}
-.ok{background:#eef7f0;color:#2f8a5b;font-weight:800}.no{background:#fdecee;color:#c45c5c;font-weight:800}
-.toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 16px;border-radius:999px;z-index:60;font-weight:700}
+.gray{background:#ece9e1}.toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 16px;border-radius:999px;z-index:60;font-weight:800}
 .view{display:none}.view.on{display:block}
-.group{font-weight:800;color:#163056}
-@media(min-width:900px){.app{display:grid;grid-template-columns:230px 1fr;padding:0}.nav{position:sticky;top:0;height:100dvh;flex-direction:column;padding:16px 12px;border-top:0;border-left:1px solid var(--line)}.mainwrap{padding:20px 28px}.stats{grid-template-columns:repeat(4,1fr)}.cards{grid-template-columns:1fr 1fr}.mask{place-items:center}.sheet{width:min(820px,94vw);border-radius:22px}}
-</style></head>
-<body>
-<section class="login" id="login"><div class="box"><div class="logo">⟩</div><h1>رابط المسائل</h1><p>يميز الأفكار الجديدة في مسائل الرياضيات عن الحلول القديمة</p>
+</style></head><body>
+<section class="login" id="login"><div class="box"><div class="logo">⟩</div><h1>رابط المسائل</h1>
 <div class="field"><label>رقم الطالب</label><input id="sid" inputmode="numeric"></div>
 <div class="field"><label>الرقم السري</label><input id="pin" type="password" inputmode="numeric"></div>
 <button class="go" id="loginBtn">دخول</button><div class="err" id="err">رقم غير صحيح</div><div class="hint">١٠٠١ / ١٢٣٤</div></div></section>
 <section class="app hidden" id="app">
-<nav class="nav" id="nav"><button class="on" data-view="home">الرئيسية</button><button data-view="problems">المسائل</button><button data-view="ideas">الأفكار</button><button data-view="compare">المقارنة</button><button id="out">خروج</button></nav>
-<div class="mainwrap">
+<nav class="nav"><button class="on" data-view="home">الرئيسية</button><button data-view="problems">المسائل</button><button data-view="ideas">الأفكار</button><button data-view="compare">المقارنة</button><button id="out">خروج</button></nav>
 <div class="top"><div class="brand"><div class="logo">⟩</div><div><h2>رابط المسائل</h2><small>القياس الدائري</small></div></div>
 <div class="actions"><button class="b1" id="btnSearch">بحث</button><button class="b2" id="btnAdd">إضافة</button></div></div>
 <div id="view-home" class="view on">
@@ -75,42 +61,85 @@ table{width:100%;border-collapse:collapse}th{background:var(--navy);color:#fff;p
 <button class="chip" data-f="steps">حسب الخطوات</button>
 <button class="chip" data-f="req">حسب المطلوب</button>
 <button class="chip" id="btnCmp">المقارنة</button>
-<div class="search"><input id="q" placeholder="ابحث..."></div></div>
-<div class="hrow"><strong>تمارين ١-١</strong><span class="badge" id="nBadge">٠</span></div>
-<div class="cards" id="homeCards"></div></div>
-<div id="view-problems" class="view"><div class="cards" id="allCards"></div></div>
-<div id="view-ideas" class="view"><div class="cards" id="ideaCards"></div></div>
-</div></section>
-<div class="mask hidden" id="addM"><div class="sheet"><div class="row"><h3>إضافة مسألة</h3><button class="x" data-close="addM">×</button></div>
-<textarea class="area" id="ptxt"></textarea>
+</div>
+<div class="hrow"><strong id="listTitle">التصنيف</strong><span class="badge" id="nBadge">٠</span></div>
+<div id="homeCards"></div></div>
+<div id="view-problems" class="view"><div id="allCards"></div></div>
+<div id="view-ideas" class="view"><div id="ideaCards"></div></div>
+</section>
+<div class="mask hidden" id="addM"><div class="sheet"><div class="row"><h3>إضافة</h3><button class="x" data-close="addM">×</button></div>
+<textarea class="area" id="ptxt" placeholder="نص المسألة"></textarea>
 <div class="field"><label>النوع</label><select id="ptype"><option value="idea">فكرة جديدة</option><option value="tanwee">تنويع</option></select></div>
 <div class="field"><label>الفكرة</label><input id="pidea"></div>
 <div class="field"><label>الخطوات</label><input id="psteps"></div>
+<div class="field"><label>المطلوب</label><input id="preq"></div>
 <div class="foot"><button class="gray" data-close="addM">إلغاء</button><button class="b2" id="save">حفظ</button></div></div></div>
-<div class="mask hidden" id="cmpM"><div class="sheet"><div class="row"><h3>مقارنة</h3><button class="x" data-close="cmpM">×</button></div><div class="banner" id="cmpBanner"></div><div id="cmpBody"></div></div></div>
 <div class="mask hidden" id="infoM"><div class="sheet"><div class="row"><h3 id="infoT">تفاصيل</h3><button class="x" data-close="infoM">×</button></div><div id="infoB"></div></div></div>
+<div class="mask hidden" id="cmpM"><div class="sheet"><div class="row"><h3>مقارنة</h3><button class="x" data-close="cmpM">×</button></div><div id="cmpBody"></div></div></div>
 <script src="questions-data.js"></script>
 <script>
 const AR='٠١٢٣٤٥٦٧٨٩';
 const toAr=n=>String(n).replace(/\d/g,d=>AR[d]);
 const en=s=>String(s).replace(/[٠-٩]/g,d=>AR.indexOf(d));
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
-const KEY='rabt-items-v2';
-function bankItems(){const meta=window.RABT_META||{};return (window.RABT_BANK||[]).map((q,i)=>{const m=meta[q.kind]||{};return {id:'bank-'+i,text:'تمرين '+q.ex+' ('+q.letter+'): '+q.text,type:m.type||'tanwee',idea:m.idea||'',steps:m.steps||'',required:m.required||'',kind:q.kind,img:m.img||''};});}
-function load(){try{let a=JSON.parse(localStorage.getItem(KEY)||'[]');if(!a.length){a=bankItems();saveAll(a)}return a}catch(e){return bankItems()}}
+const KEY='rabt-items-v3';
+let MODE='idea';
+function bankItems(){
+  const meta=window.RABT_META||{};
+  return (window.RABT_BANK||[]).map((q,i)=>{const m=meta[q.kind]||{};return {id:'bank-'+i,ex:q.ex,letter:q.letter,text:q.text,type:m.type||'tanwee',idea:m.idea||'',steps:m.steps||'',required:m.required||'',kind:q.kind,lesson:m.lesson||'1-1'};});
+}
+function load(){try{let a=JSON.parse(localStorage.getItem(KEY)||'[]');if(!a.length){a=bankItems();localStorage.setItem(KEY,JSON.stringify(a))}return a}catch(e){return bankItems()}}
 function saveAll(a){localStorage.setItem(KEY,JSON.stringify(a))}
-function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),1600)}
 function openM(id){$('#'+id).classList.remove('hidden')} function closeM(id){$('#'+id).classList.add('hidden')}
-function stats(items){const all=items.length,neu=items.filter(x=>x.type==='idea').length,tan=items.filter(x=>x.type==='tanwee').length,ideas=[...new Set(items.map(x=>(x.idea||'').trim()).filter(Boolean))].length;$('#nAll').textContent=toAr(all);$('#nNew').textContent=toAr(neu);$('#nTan').textContent=toAr(tan);$('#nIdea').textContent=toAr(ideas);$('#nBadge').textContent=toAr(all)}
-function cardHTML(p){const neu=p.type==='idea';return `<article class="card ${neu?'gold':''}"><span class="tag ${neu?'ty':'tg'}">${neu?'فكرة جديدة ★':'تنويع'}</span><span class="kind">${p.required||''}</span><p class="q">${p.text}</p><div class="btns"><button class="gray" data-info="${p.id}|give">المعطيات</button><button class="${neu?'blue':'green'}" data-info="${p.id}|steps">الخطوات</button></div></article>`}
-function render(){const items=load();stats(items);$('#homeCards').innerHTML=items.map(cardHTML).join('');}
-$('#loginBtn').onclick=()=>{if(!(en($('#sid').value.trim())==='1001'&&en($('#pin').value.trim())==='1234')){$('#err').style.display='block';return}$('#login').classList.add('hidden');$('#app').classList.remove('hidden');render()};
+function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),1500)}
+function stats(items){
+  $('#nAll').textContent=toAr(items.length);
+  $('#nNew').textContent=toAr(items.filter(x=>x.type==='idea').length);
+  $('#nTan').textContent=toAr(items.filter(x=>x.type==='tanwee').length);
+  $('#nIdea').textContent=toAr([...new Set(items.map(x=>x.idea).filter(Boolean))].length);
+  $('#nBadge').textContent=toAr(items.length);
+}
+function groupOf(p){
+  if(MODE==='idea') return p.idea||'بدون فكرة';
+  if(MODE==='steps') return p.steps||'بدون خطوات';
+  if(MODE==='req') return p.required||'بدون مطلوب';
+  return 'الوحدة الأولى: القياس الدائري';
+}
+function titles(){return {idea:'حسب الفكرة',steps:'حسب الخطوات',req:'حسب المطلوب',all:'كل المسائل'}[MODE]}
+function render(){
+  const items=load(); stats(items);
+  $('#listTitle').textContent=titles();
+  const map=new Map();
+  items.forEach(p=>{const k=groupOf(p); if(!map.has(k)) map.set(k,[]); map.get(k).push(p)});
+  let html='';
+  map.forEach((arr,title)=>{
+    html+='<details class="acc" open><summary><span>'+title+'</span><span class="badge">'+toAr(arr.length)+'</span></summary><div class="qlist">';
+    arr.forEach(p=>{
+      html+='<button type="button" class="qnum" data-id="'+p.id+'">تمرين '+(p.ex||'')+' ('+(p.letter||'')+')</button>';
+    });
+    html+='</div></details>';
+  });
+  $('#homeCards').innerHTML=html||'<div class="acc"><summary>لا توجد مسائل</summary></div>';
+  $$('#homeCards .qnum').forEach(b=>b.onclick=()=>{
+    const p=load().find(x=>String(x.id)===b.dataset.id); if(!p)return;
+    $('#infoT').textContent='تمرين '+(p.ex||'')+' ('+(p.letter||'')+')';
+    $('#infoB').innerHTML='<p style="font-weight:800;line-height:1.9;margin-bottom:10px">'+p.text+'</p><p><b>الفكرة:</b> '+(p.idea||'—')+'</p><p><b>الخطوات:</b> '+(p.steps||'—')+'</p><p><b>المطلوب:</b> '+(p.required||'—')+'</p>';
+    openM('infoM');
+  });
+  const ideas=$('#ideaCards'); if(ideas){ideas.innerHTML=[...map.keys()].map(k=>'<div class="acc"><summary>'+k+'</summary></div>').join('')}
+  const all=$('#allCards'); if(all) all.innerHTML=$('#homeCards').innerHTML;
+}
+$('#loginBtn').onclick=()=>{
+  if(!(en($('#sid').value.trim())==='1001'&&en($('#pin').value.trim())==='1234')){$('#err').style.display='block';return}
+  $('#login').classList.add('hidden'); $('#app').classList.remove('hidden'); render();
+};
 $('#pin').addEventListener('keydown',e=>{if(e.key==='Enter')$('#loginBtn').click()});
 $('#out').onclick=()=>{$('#app').classList.add('hidden');$('#login').classList.remove('hidden')};
-$$('#nav [data-view]').forEach(b=>b.onclick=()=>{$$('#nav [data-view]').forEach(x=>x.classList.remove('on'));b.classList.add('on');$$('.view').forEach(v=>v.classList.remove('on'));if(b.dataset.view==='compare'){openM('cmpM');$('#view-home').classList.add('on');return}$('#view-'+b.dataset.view).classList.add('on')});
-$('#btnAdd').onclick=()=>openM('addM');$('#btnCmp').onclick=()=>openM('cmpM');
+$$('.chip[data-f]').forEach(c=>c.onclick=()=>{$$('.chip[data-f]').forEach(x=>x.classList.remove('on'));c.classList.add('on');MODE=c.dataset.f;render()});
+$$('nav [data-view]').forEach(b=>b.onclick=()=>{$$('nav [data-view]').forEach(x=>x.classList.remove('on'));b.classList.add('on');$$('.view').forEach(v=>v.classList.remove('on')); if(b.dataset.view==='compare'){openM('cmpM');$('#view-home').classList.add('on');return} $('#view-'+b.dataset.view).classList.add('on')});
+$('#btnAdd').onclick=()=>openM('addM');
+$('#btnCmp').onclick=()=>openM('cmpM');
 $$('[data-close]').forEach(b=>b.onclick=()=>closeM(b.dataset.close));
-$('#save').onclick=()=>{const text=$('#ptxt').value.trim();if(!text){toast('اكتب النص');return}const items=load();items.push({id:Date.now(),text,type:$('#ptype').value,idea:$('#pidea').value.trim(),steps:$('#psteps').value.trim(),required:'مسألة مضافة'});saveAll(items);closeM('addM');render();toast('أُضيفت')};
-</script>
-<script src="filters.js"></script>
-</body></html>
+$$('.mask').forEach(m=>m.onclick=e=>{if(e.target===m)m.classList.add('hidden')});
+$('#save').onclick=()=>{const text=$('#ptxt').value.trim();if(!text){toast('اكتب النص');return}const a=load();a.push({id:'u'+Date.now(),ex:'+',letter:'',text,type:$('#ptype').value,idea:$('#pidea').value.trim(),steps:$('#psteps').value.trim(),required:$('#preq').value.trim()||'مضاف'});saveAll(a);closeM('addM');render();toast('أُضيفت')};
+</script></body></html>
