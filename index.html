@@ -22,8 +22,6 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 .stat{background:#fff;border:1px solid #eee4d0;border-radius:16px;padding:12px;display:flex;justify-content:space-between;align-items:center;min-height:72px}
 .stat b{display:block;font-size:26px;color:var(--navy)}.stat span{font-size:12px;color:#5b6a80;font-weight:800}
 .ico{width:36px;height:36px;border-radius:10px;display:grid;place-items:center}.g{background:#e7f6ee}.y{background:#f8efcf}.l{background:#fff6d8}.bl{background:#eaf2ff}
-.filters{display:flex;gap:6px;overflow:auto;padding-bottom:8px}
-.chip{height:38px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:0 12px;font-weight:800;font-size:12px;white-space:nowrap}.chip.on{background:var(--navy);color:#fff}
 .hrow{display:flex;justify-content:space-between;align-items:center;margin:8px 0}
 .badge{background:var(--navy);color:#fff;min-width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:11px;padding:0 6px}
 .tree{display:grid;gap:8px}
@@ -81,7 +79,7 @@ const AR='٠١٢٣٤٥٦٧٨٩';
 const toAr=n=>String(n).replace(/\d/g,d=>AR[d]);
 const en=s=>String(s).replace(/[٠-٩]/g,d=>AR.indexOf(d));
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
-const KEY='rabt-items-v4';
+const KEY='rabt-items-v5';
 const UNIT={title:'الوحدة الأولى: القياس الدائري', lessons:[
   {id:'1-1', title:'١-١ الراديان', page:'١١'},
   {id:'1-2', title:'١-٢ طول القوس', page:'١٥'},
@@ -91,7 +89,14 @@ function bankItems(){
   const meta=window.RABT_META||{};
   return (window.RABT_BANK||[]).map((q,i)=>{const m=meta[q.kind]||{};return {id:'bank-'+i,ex:q.ex,letter:q.letter,text:q.text,type:m.type||'tanwee',idea:m.idea||'بدون فكرة',steps:m.steps||'',required:m.required||'',kind:q.kind,lesson:m.lesson||'1-1'};});
 }
-function load(){try{let a=JSON.parse(localStorage.getItem(KEY)||'[]');if(!a.length){a=bankItems();localStorage.setItem(KEY,JSON.stringify(a))}return a}catch(e){return bankItems()}}
+function load(){
+  const bank=bankItems();
+  try{
+    let a=JSON.parse(localStorage.getItem(KEY)||'[]');
+    if(a.length<bank.length){a=bank;localStorage.setItem(KEY,JSON.stringify(a))}
+    return a.length?a:bank;
+  }catch(e){return bank}
+}
 function saveAll(a){localStorage.setItem(KEY,JSON.stringify(a))}
 function openM(id){$('#'+id).classList.remove('hidden')} function closeM(id){$('#'+id).classList.add('hidden')}
 function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),1500)}
@@ -114,9 +119,7 @@ function render(){
       arr.forEach(p=>{const k=p.idea||'بدون فكرة'; if(!ideas.has(k)) ideas.set(k,[]); ideas.get(k).push(p)});
       ideas.forEach((qs,idea)=>{
         html+='<details class="acc id"><summary><span>'+idea+'</span><span class="badge">'+toAr(qs.length)+'</span></summary><div class="qlist">';
-        qs.forEach(p=>{
-          html+='<button type="button" class="qnum" data-id="'+p.id+'">سؤال '+p.ex+' — '+p.letter+'</button>';
-        });
+        qs.forEach(p=>{html+='<button type="button" class="qnum" data-id="'+p.id+'">سؤال '+p.ex+' — '+p.letter+'</button>';});
         html+='</div></details>';
       });
     }
