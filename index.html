@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>رابط المسائل</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<section id="loginScreen" class="login-wrap">
+  <div class="login-card">
+    <div class="brand-mark" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path d="M7 8h12l8 9-8 9H7l8-9-8-9z" fill="#7ad7c7"/><path d="M11 8h10l7 9-7 9H11l7-9-7-9z" fill="#2aa89a"/></svg></div>
+    <h1>رابط المسائل</h1>
+    <p class="tagline">يميز الأفكار الجديدة في مسائل الرياضيات عن الحلول القديمة</p>
+    <div class="field"><label for="studentId">رقم الطالب</label><input id="studentId" inputmode="numeric" placeholder="مثال: ١٠٠١" /></div>
+    <div class="field"><label for="secretPin">الرقم السري</label><input id="secretPin" type="password" inputmode="numeric" placeholder="••••" /></div>
+    <button class="login-btn" id="loginBtn">دخول</button>
+    <div class="login-error" id="loginError">رقم الطالب أو الرقم السري غير صحيح</div>
+    <div class="login-hint">حساب تجريبي للمعاينة: رقم الطالب <b>١٠٠١</b> — الرقم السري <b>١٢٣٤</b></div>
+  </div>
+</section>
+<section id="appScreen" class="app hidden">
+<aside class="sidebar">
+  <div class="side-user"><div class="avatar">أ</div><div><strong>مرحباً أحمد</strong><span>محمد · الصف العاشر</span></div></div>
+  <button class="nav-item active" data-view="home">الرئيسية</button>
+  <button class="nav-item" data-view="problems">المسائل</button>
+  <button class="nav-item" data-view="ideas">الأفكار</button>
+  <button class="nav-item" data-view="concepts">المفاهيم</button>
+  <button class="nav-item" data-view="tests">الاختبارات</button>
+  <button class="nav-item" id="logoutBtn" style="margin-top:18px;color:#c45c5c">خروج</button>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <div class="brand-inline">
+      <div class="brand-mark" style="width:48px;height:48px;margin:0;border-radius:12px"><svg width="26" height="26" viewBox="0 0 34 34" fill="none"><path d="M7 8h12l8 9-8 9H7l8-9-8-9z" fill="#7ad7c7"/><path d="M11 8h10l7 9-7 9H11l7-9-7-9z" fill="#2aa89a"/></svg></div>
+      <div><h2>رابط المسائل</h2><p>يميز الأفكار الجديدة في مسائل الرياضيات عن الحلول القديمة</p></div>
+    </div>
+    <div class="top-actions">
+      <button class="ghost-btn" id="searchTop">بحث</button>
+      <button class="primary-btn" id="addProblemBtn">إضافة مسألة</button>
+      <button class="primary-btn crown">الاشتراك المميز ★</button>
+    </div>
+  </div>
+  <div id="view-home" class="view active">
+    <div class="stats">
+      <div class="stat"><div><div class="num">١٦</div><div class="lbl">تنويع</div></div><div class="icon-box icon-green">▤</div></div>
+      <div class="stat"><div><div class="num">٨</div><div class="lbl">جديدة</div></div><div class="icon-box icon-gold">★</div></div>
+      <div class="stat"><div><div class="num">٥</div><div class="lbl">أفكار</div></div><div class="icon-box icon-yellow">💡</div></div>
+      <div class="stat"><div><div class="num">٢٤</div><div class="lbl">مسائل</div></div><div class="icon-box icon-blue">📋</div></div>
+    </div>
+    <div class="filters">
+      <div class="search"><span>⌕</span><input placeholder="ابحث عن مسألة أو فكرة..." /></div>
+      <button class="filter" id="compareOpen">المقارنة</button>
+      <button class="filter">حسب المطلوب</button>
+      <button class="filter">حسب الخطوات</button>
+      <button class="filter">كل المسائل</button>
+      <button class="filter active">حسب الفكرة</button>
+    </div>
+    <div class="layout-split">
+      <div>
+        <div class="progress-card"><h4>التقدم الأسبوعي</h4>
+          <div class="prog-item"><div class="dot dot-navy">٪</div><div><strong>١٢٣٤٥٦٧٨٩</strong><small>التقدم إلى درجة</small></div></div>
+          <div class="prog-item"><div class="dot dot-teal">٨٥٪</div><div><strong>٨٥٪</strong><small>لمساية الموجة</small></div></div>
+          <div class="prog-item"><div class="dot dot-gold">٣</div><div><strong>٠١٢٣٤٥٦٧٨٩</strong><small>الدائرة الوحدوية</small></div></div>
+        </div>
+        <div class="suggest-card" style="margin-top:14px"><h4>المسائل المقترحة</h4><p style="color:#7a8494;font-size:13px;line-height:1.8">مسائل مرتبطة بفكرة تحويل الراديان.</p></div>
+      </div>
+      <div>
+        <div class="section-head"><h3>📘 تحويل راديان ↔ درجة</h3><span class="count-badge">٦</span></div>
+        <div class="cards">
+          <article class="problem-card"><div class="pc-top"><span class="tag tag-green">تنويع</span></div><p class="problem-text">إذا كان π/٦ = راديان، أوجد قياسه بالدرجة.</p><div class="card-actions"><button class="btn-gray">المعطيات</button><button class="btn-green">الخطوات</button></div></article>
+          <article class="problem-card highlight"><div class="pc-top"><span class="tag tag-gold">فكرة جديدة ★</span></div><p class="problem-text">حوّل ٥π/٦ من راديان إلى درجة.</p><div class="card-actions"><button class="btn-blue">الفكرة</button><button class="btn-blue">الخطوات</button></div></article>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="view-problems" class="view"><div class="section-head"><h3>كل المسائل</h3></div></div>
+  <div id="view-ideas" class="view"><div class="section-head"><h3>الأفكار</h3></div></div>
+  <div id="view-concepts" class="view"><div class="section-head"><h3>المفاهيم</h3></div></div>
+  <div id="view-tests" class="view"><div class="section-head"><h3>الاختبارات</h3></div></div>
+</main>
+</section>
+<div id="addModal" class="overlay hidden"><div class="modal add-sheet"><div class="modal-head"><h3>إضافة مسألة</h3><button class="x-btn" data-close="addModal">×</button></div><div class="modal-body"><div class="form-label">نص المسألة</div><div class="content-split"><textarea class="textarea" id="problemText" placeholder="اكتب نص المسألة..."></textarea><div><input type="file" id="problemImage" accept="image/*" hidden /><div class="image-drop" id="imageDrop"><img id="imagePreview" alt="" class="hidden" /><div class="image-placeholder" id="imagePlaceholder"><strong>أضف صورة للمسألة</strong><span>اضغط للاختيار</span></div></div><button type="button" class="ghost-btn image-remove hidden" id="removeImage">حذف الصورة</button></div></div><label class="check-row"><input type="checkbox" checked /> هذه فكرة جديدة</label><div class="modal-foot"><button class="btn-gray" data-close="addModal">إلغاء</button><button class="primary-btn" id="saveProblem">حفظ</button></div></div></div></div>
+<div id="compareModal" class="overlay hidden"><div class="modal compare-sheet"><div class="compare-top"><div class="compare-brand"><strong>رابط المسائل</strong></div><div class="compare-title"><h3>مقارنة مسألتين</h3></div><button class="back-btn" data-close="compareModal">عودة</button></div><div class="modal-body"><div class="compare-banner">نفس الفكرة ونفس الخطوات — تغيّرت الأرقام فقط</div></div></div></div>
+<script src="app.js"></script>
+</body>
+</html>
