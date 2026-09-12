@@ -48,7 +48,7 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 .frac .num{border-bottom:1.6px solid currentColor;padding:0 4px 1px;font-size:.86em}.frac .den{padding:1px 4px 0;font-size:.86em}
 .nav{position:fixed;bottom:0;right:0;left:0;background:#fbf8f1;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 6px calc(8px + env(safe-area-inset-bottom));z-index:30}
 .nav button{border:0;background:0;font-weight:800;color:#5b6a80;padding:8px}.nav button.on{color:var(--navy)}
-.book{height:calc(100dvh - 150px);border:1px solid #eee4d0;border-radius:16px;overflow:hidden;background:#fff}
+.book{height:calc(100dvh - 72px);border:1px solid #eee4d0;border-radius:16px;overflow:hidden;background:#fff}
 .book iframe{width:100%;height:100%;border:0}
 .mask{position:fixed;inset:0;background:rgba(20,30,48,.35);display:grid;place-items:center;padding:12px;z-index:40}
 .sheet{width:min(430px,100%);max-height:92dvh;overflow:auto;background:#fffcf7;border-radius:22px;padding:16px}
@@ -84,7 +84,7 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 <div class="stat"><div><b id="nAll">٠</b><span>مسائل</span></div><div class="ico bl">📋</div></div></div>
 <div class="hrow"><strong>الوحدة — الدرس — الفكرة — رقم السؤال</strong><span class="badge" id="nBadge">٠</span></div>
 <div id="homeCards"></div></div>
-<div id="view-book" class="view"><div class="book"><iframe id="bookFrame" src="activity.html" title="كتاب النشاط"></iframe></div></div>
+<div id="view-book" class="view"><div class="book"><iframe id="bookFrame" src="activity.html?v=3" title="كتاب النشاط"></iframe></div></div>
 </section>
 <div class="pop hidden" id="pop"><div class="qcard" id="popCard"></div></div>
 <div class="mask hidden" id="addM"><div class="sheet">
@@ -146,6 +146,7 @@ function showView(name){
   $('#view-'+name).classList.add('on');
   $$('nav [data-view]').forEach(b=>b.classList.toggle('on',b.dataset.view===name));
   $('#topBar').classList.toggle('hidden', name==='book');
+  if(name==='book') $('#bookFrame').src='activity.html?v=3&t='+Date.now();
 }
 function showQ(p){
   const neu=p.type==='idea';
