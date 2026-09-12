@@ -13,7 +13,7 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 .field input,.field select,.area{width:100%;height:48px;border:1px solid #e2d7bf;border-radius:12px;padding:0 12px;font-size:16px}.area{height:auto;min-height:80px;padding:10px}
 .go{width:100%;height:50px;border:0;border-radius:12px;background:var(--navy);color:#fff;font-weight:800;font-size:17px}
 .hint{margin-top:12px;background:#f7f1e4;border-radius:10px;padding:10px;font-size:13px;color:#5b6a80}.err{display:none;color:#b42318;font-weight:800;margin-top:8px}
-.app{min-height:100dvh;padding:12px 12px 88px}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.app{min-height:100dvh;padding:12px 12px 72px}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .brand{display:flex;gap:8px;align-items:center}.brand .logo{width:40px;height:40px;margin:0}.brand h2{font-size:18px}.brand small{display:block;font-size:11px;color:#5b6a80}
 .actions button{height:34px;border:0;border-radius:999px;padding:0 12px;font-weight:800}.b1{background:#fff;border:1px solid var(--line)!important}.b2{background:var(--navy);color:#fff}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
@@ -43,15 +43,11 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 .s-given{background:#d9f3e8;color:#1f7a56;border-color:#9ed9bf}
 .s-steps{background:#dce8fb;color:#1d4f9a;border-color:#9bb8e8}
 .s-req{background:#fde2c8;color:#9a4b12;border-color:#f0b27a}
-.s-idea.on{background:#e0b423;color:#fff}
-.s-given.on{background:#2f8a5b;color:#fff}
-.s-steps.on{background:#2563eb;color:#fff}
-.s-req.on{background:#163056;color:#fff}
+.s-idea.on{background:#e0b423;color:#fff}.s-given.on{background:#2f8a5b;color:#fff}.s-steps.on{background:#2563eb;color:#fff}.s-req.on{background:#163056;color:#fff}
 .slotbox{margin-top:10px;border-radius:14px;padding:12px;font-size:14px;font-weight:700;line-height:1.8}
 .slotbox.idea{background:#fff6d8;color:#7a5b08}.slotbox.given{background:#e7f6ee;color:#1f7a56}.slotbox.steps{background:#eaf2ff;color:#1d4f9a}.slotbox.req{background:#f7f1e4;color:#163056}
 .frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.05;margin:0 4px}
-.frac .num{border-bottom:1.6px solid currentColor;padding:0 4px 1px;font-size:.86em}
-.frac .den{padding:1px 4px 0;font-size:.86em}
+.frac .num{border-bottom:1.6px solid currentColor;padding:0 4px 1px;font-size:.86em}.frac .den{padding:1px 4px 0;font-size:.86em}
 .nav{position:fixed;bottom:0;right:0;left:0;background:#fbf8f1;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 6px calc(8px + env(safe-area-inset-bottom))}
 .nav button{border:0;background:0;font-weight:800;color:#5b6a80;padding:8px}.nav button.on{color:var(--navy)}
 .mask{position:fixed;inset:0;background:rgba(20,30,48,.4);display:grid;place-items:end;z-index:40}
@@ -65,7 +61,7 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 <div class="field"><label>الرقم السري</label><input id="pin" type="password" inputmode="numeric"></div>
 <button class="go" id="loginBtn">دخول</button><div class="err" id="err">رقم غير صحيح</div><div class="hint">١٠٠١ / ١٢٣٤</div></div></section>
 <section class="app hidden" id="app">
-<nav class="nav"><button class="on" data-view="home">الرئيسية</button><button data-view="problems">المسائل</button><button data-view="ideas">الأفكار</button><button data-view="compare">المقارنة</button><button id="out">خروج</button></nav>
+<nav class="nav"><button class="on">الرئيسية</button><button id="out">خروج</button></nav>
 <div class="top"><div class="brand"><div class="logo">⟩</div><div><h2>رابط المسائل</h2><small>القياس الدائري</small></div></div>
 <div class="actions"><button class="b1" id="btnSearch">بحث</button><button class="b2" id="btnAdd">إضافة</button></div></div>
 <div id="view-home" class="view on">
@@ -76,8 +72,6 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 <div class="stat"><div><b id="nAll">٠</b><span>مسائل</span></div><div class="ico bl">📋</div></div></div>
 <div class="hrow"><strong>الوحدة — الدرس — الفكرة — رقم السؤال</strong><span class="badge" id="nBadge">٠</span></div>
 <div id="homeCards"></div></div>
-<div id="view-problems" class="view"><div id="allCards"></div></div>
-<div id="view-ideas" class="view"><div id="ideaCards"></div></div>
 </section>
 <div class="pop hidden" id="pop"><div class="qcard" id="popCard"></div></div>
 <div class="mask hidden" id="addM"><div class="sheet"><div class="row"><h3>إضافة</h3><button class="x" data-close="addM">×</button></div>
@@ -163,7 +157,6 @@ function render(){
 $('#loginBtn').onclick=()=>{if(!(en($('#sid').value.trim())==='1001'&&en($('#pin').value.trim())==='1234')){$('#err').style.display='block';return}$('#login').classList.add('hidden');$('#app').classList.remove('hidden');render()};
 $('#pin').addEventListener('keydown',e=>{if(e.key==='Enter')$('#loginBtn').click()});
 $('#out').onclick=()=>{$('#app').classList.add('hidden');$('#login').classList.remove('hidden')};
-$$('nav [data-view]').forEach(b=>b.onclick=()=>{$$('nav [data-view]').forEach(x=>x.classList.remove('on'));b.classList.add('on');$$('.view').forEach(v=>v.classList.remove('on'));$('#view-'+(b.dataset.view==='compare'?'home':b.dataset.view)).classList.add('on')});
 $('#btnAdd').onclick=()=>openM('addM');
 $$('[data-close]').forEach(b=>b.onclick=()=>closeM(b.dataset.close));
 $('#pop').onclick=e=>{if(e.target.id==='pop')$('#pop').classList.add('hidden')};
