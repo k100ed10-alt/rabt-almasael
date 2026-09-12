@@ -74,10 +74,14 @@ table{width:100%;border-collapse:collapse}th{background:var(--navy);color:#fff;p
 <div class="stat"><div><b id="nNew">٠</b><span>جديدة</span></div><div class="ico y">★</div></div>
 <div class="stat"><div><b id="nIdea">٠</b><span>أفكار</span></div><div class="ico l">💡</div></div>
 <div class="stat"><div><b id="nAll">٠</b><span>مسائل</span></div><div class="ico bl">📋</div></div></div>
-<div class="filters"><div class="search">⌕ <input id="q" placeholder="ابحث..."></div>
-<button class="chip" id="btnCmp">المقارنة</button>
+<div class="filters">
+<button class="chip on" data-f="req">حسب المطلوب</button>
+<button class="chip" data-f="steps">حسب الخطوات</button>
 <button class="chip" data-f="all">كل المسائل</button>
-<button class="chip on" data-f="idea">حسب الفكرة</button></div>
+<button class="chip" data-f="idea">حسب الفكرة</button>
+<button class="chip" id="btnCmp">المقارنة</button>
+<div class="search">⌕ <input id="q" placeholder="ابحث..."></div>
+</div>
 <div class="hrow"><strong>المسائل المضافة</strong><span class="badge" id="nBadge">٠</span></div>
 <div class="cards" id="homeCards"></div></div>
 <div id="view-problems" class="view"><div class="hrow"><strong>كل المسائل</strong></div><div class="cards" id="allCards"></div></div>
@@ -87,8 +91,8 @@ table{width:100%;border-collapse:collapse}th{background:var(--navy);color:#fff;p
 <textarea class="area" id="ptxt" placeholder="اكتب نص المسألة هنا..."></textarea>
 <div class="drop" id="drop">أضف صورة للمسألة<input type="file" id="pimg" accept="image/*" hidden></div>
 <div class="field"><label>نوع المسألة</label><select id="ptype"><option value="idea">فكرة جديدة</option><option value="tanwee">تنويع</option></select></div>
-<div class="field"><label>الفكرة</label><input id="pidea" placeholder="مثال: تحويل راديان إلى درجة"></div>
-<div class="field"><label>الخطوات</label><input id="psteps" placeholder="مثال: اضرب في ١٨٠/π"></div>
+<div class="field"><label>الفكرة</label><input id="pidea"></div>
+<div class="field"><label>الخطوات</label><input id="psteps"></div>
 <div class="foot"><button class="gray" data-close="addM">إلغاء</button><button class="b2" id="save">حفظ</button></div></div></div>
 <div class="mask hidden" id="cmpM"><div class="sheet"><div class="row"><h3>مقارنة مسألتين</h3><button class="x" data-close="cmpM">×</button></div><div class="banner" id="cmpBanner">أضف مسألتين أولاً</div><div id="cmpBody"></div></div></div>
 <div class="mask hidden" id="infoM"><div class="sheet"><div class="row"><h3 id="infoT">تفاصيل</h3><button class="x" data-close="infoM">×</button></div><p id="infoB" style="line-height:1.9;font-weight:700"></p></div></div>
@@ -125,7 +129,8 @@ $$('#nav [data-view]').forEach(b=>b.onclick=()=>{$$('#nav [data-view]').forEach(
 $('#btnAdd').onclick=()=>openM('addM'); $('#btnCmp').onclick=showCompare;
 $$('[data-close]').forEach(b=>b.onclick=()=>closeM(b.dataset.close));
 $$('.mask').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.add('hidden')}));
-function showCompare(){const items=load();openM('cmpM');if(items.length<2){$('#cmpBanner').textContent='أضف مسألتين على الأقل للمقارنة';$('#cmpBody').innerHTML='';return;}const a=items[items.length-2],b=items[items.length-1];const sameIdea=!!a.idea&&a.idea===b.idea,sameSteps=!!a.steps&&a.steps===b.steps;$('#cmpBanner').textContent=sameIdea&&sameSteps?'نفس الفكرة ونفس الخطوات':'مقارنة آخر مسألتين';$('#cmpBody').innerHTML=`<table><tr><th>البعد</th><th>الأولى</th><th>الثانية</th></tr><tr><td>النص</td><td>${a.text}</td><td>${b.text}</td></tr><tr><td>الفكرة</td><td class="${sameIdea?'ok':'no'}">${a.idea||'—'}</td><td class="${sameIdea?'ok':'no'}">${b.idea||'—'}</td></tr><tr><td>الخطوات</td><td class="${sameSteps?'ok':'no'}">${a.steps||'—'}</td><td class="${sameSteps?'ok':'no'}">${b.steps||'—'}</td></tr></table>`;}
+$$('.chip[data-f]').forEach(c=>c.onclick=()=>{$$('.chip[data-f]').forEach(x=>x.classList.remove('on'));c.classList.add('on')});
+function showCompare(){const items=load();openM('cmpM');if(items.length<2){$('#cmpBanner').textContent='أضف مسألتين على الأقل';$('#cmpBody').innerHTML='';return;}const a=items[items.length-2],b=items[items.length-1];const sameIdea=!!a.idea&&a.idea===b.idea,sameSteps=!!a.steps&&a.steps===b.steps;$('#cmpBanner').textContent=sameIdea&&sameSteps?'نفس الفكرة ونفس الخطوات':'مقارنة آخر مسألتين';$('#cmpBody').innerHTML=`<table><tr><th>البعد</th><th>الأولى</th><th>الثانية</th></tr><tr><td>النص</td><td>${a.text}</td><td>${b.text}</td></tr><tr><td>الفكرة</td><td class="${sameIdea?'ok':'no'}">${a.idea||'—'}</td><td class="${sameIdea?'ok':'no'}">${b.idea||'—'}</td></tr><tr><td>الخطوات</td><td class="${sameSteps?'ok':'no'}">${a.steps||'—'}</td><td class="${sameSteps?'ok':'no'}">${b.steps||'—'}</td></tr></table>`;}
 $('#drop').onclick=()=>$('#pimg').click();let imgName='';$('#pimg').onchange=()=>{if($('#pimg').files[0]){imgName=$('#pimg').files[0].name;toast('تم اختيار الصورة')}};
-$('#save').onclick=()=>{const text=$('#ptxt').value.trim();if(!text){toast('اكتب نص المسألة');return}const items=load();items.push({id:Date.now(),text,type:$('#ptype').value,idea:$('#pidea').value.trim(),steps:$('#psteps').value.trim(),img:imgName});saveAll(items);$('#ptxt').value='';$('#pidea').value='';$('#psteps').value='';imgName='';$('#pimg').value='';closeM('addM');render();toast('أُضيفت المسألة وتحدّث العداد');};
+$('#save').onclick=()=>{const text=$('#ptxt').value.trim();if(!text){toast('اكتب نص المسألة');return}const items=load();items.push({id:Date.now(),text,type:$('#ptype').value,idea:$('#pidea').value.trim(),steps:$('#psteps').value.trim(),img:imgName});saveAll(items);$('#ptxt').value='';$('#pidea').value='';$('#psteps').value='';imgName='';$('#pimg').value='';closeM('addM');render();toast('أُضيفت المسألة');};
 </script></body></html>
