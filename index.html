@@ -7,8 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f3eee4;--navy:#163056;--ink:#1c2d4a;--soft:#5b6a80;--line:#e6dcc8}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--bg);color:var(--ink);font-family:Cairo,Tahoma,sans-serif;direction:rtl}
+*{box-sizing:border-box;margin:0;padding:0}html,body{background:var(--bg);color:var(--ink);font-family:Cairo,Tahoma,sans-serif;direction:rtl}
 button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 .login{min-height:100dvh;display:grid;place-items:center;padding:20px}
 .box{width:min(420px,100%);background:#fffcf6;border:1px solid var(--line);border-radius:24px;padding:28px 22px;text-align:center}
@@ -30,22 +29,24 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 .stat b{display:block;font-size:26px;color:var(--navy)}.stat span{font-size:12px;color:var(--soft);font-weight:700}
 .ico{width:36px;height:36px;border-radius:10px;display:grid;place-items:center}.g{background:#e7f6ee}.y{background:#f8efcf}.l{background:#fff6d8}.bl{background:#eaf2ff}
 .filters{display:flex;gap:6px;overflow:auto;padding-bottom:8px;margin-bottom:10px}
-.search{flex:0 0 200px;height:38px;background:#fff;border:1px solid var(--line);border-radius:999px;display:flex;align-items:center;padding:0 12px;gap:6px}
+.search{flex:0 0 180px;height:38px;background:#fff;border:1px solid var(--line);border-radius:999px;display:flex;align-items:center;padding:0 12px}
 .search input{border:0;outline:0;width:100%;background:transparent;font-size:13px}
 .chip{height:38px;white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:0 12px;font-weight:700;font-size:12px}.chip.on{background:var(--navy);color:#fff}
 .hrow{display:flex;align-items:center;justify-content:space-between;margin:8px 0}
 .badge{background:var(--navy);color:#fff;min-width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:12px;padding:0 6px}
 .cards{display:grid;gap:10px}.card{background:#fff;border:1px solid #eee4d0;border-radius:18px;padding:14px}
-.card.gold{border-color:#e4d39a}.tag{display:inline-block;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;margin-bottom:8px}
+.card.gold{border-color:#e4d39a}.tag{display:inline-block;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px}
 .tg{background:#e8f6ee;color:#2f8a5b}.ty{background:#f8efcf;color:#9a7a12}
+.kind{display:block;font-size:11px;color:#7a8494;margin:4px 0}
 .q{text-align:center;font-weight:800;font-size:16px;line-height:1.8;margin:8px 0 12px}
 .btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}.btns button{height:40px;border:0;border-radius:12px;font-weight:800}
 .gray{background:#ece9e1}.blue{background:#2563eb;color:#fff}.green{background:#22a06b;color:#fff}
 .empty{text-align:center;color:var(--soft);padding:28px 12px;background:#fff;border:1px dashed var(--line);border-radius:16px}
+.qimg{width:100%;border-radius:10px;margin:8px 0}
 .nav{position:fixed;bottom:0;right:0;left:0;background:#fbf8f1;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 6px calc(8px + env(safe-area-inset-bottom));z-index:20}
 .nav button{border:0;background:transparent;font-weight:800;font-size:12px;color:var(--soft);padding:8px}.nav button.on{color:var(--navy)}
 .mask{position:fixed;inset:0;background:rgba(20,30,48,.4);display:grid;place-items:end;z-index:40}
-.sheet{width:100%;max-height:92dvh;overflow:auto;background:#fffcf7;border-radius:22px 22px 0 0;padding:16px 16px 28px}
+.sheet{width:100%;max-height:92dvh;overflow:auto;background:#fffcf7;border-radius:22px 22px 0 0;padding:16px}
 .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .x{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff}
 .area{width:100%;min-height:90px;border:1px solid #eadfc6;border-radius:12px;padding:10px;margin:8px 0}
@@ -60,13 +61,13 @@ table{width:100%;border-collapse:collapse}th{background:var(--navy);color:#fff;p
 </style></head>
 <body>
 <section class="login" id="login"><div class="box"><div class="logo">⟩</div><h1>رابط المسائل</h1><p>يميز الأفكار الجديدة في مسائل الرياضيات عن الحلول القديمة</p>
-<div class="field"><label>رقم الطالب</label><input id="sid" inputmode="numeric" placeholder="مثال: ١٠٠١"></div>
+<div class="field"><label>رقم الطالب</label><input id="sid" inputmode="numeric" placeholder="١٠٠١"></div>
 <div class="field"><label>الرقم السري</label><input id="pin" type="password" inputmode="numeric"></div>
 <button class="go" id="loginBtn">دخول</button><div class="err" id="err">رقم غير صحيح</div><div class="hint">حساب تجريبي: ١٠٠١ / ١٢٣٤</div></div></section>
 <section class="app hidden" id="app">
 <nav class="nav" id="nav"><button class="on" data-view="home">الرئيسية</button><button data-view="problems">المسائل</button><button data-view="ideas">الأفكار</button><button data-view="compare">المقارنة</button><button id="out">خروج</button></nav>
 <div class="mainwrap">
-<div class="top"><div class="brand"><div class="logo">⟩</div><div><h2>رابط المسائل</h2><small>يميز الأفكار الجديدة عن الحلول القديمة</small></div></div>
+<div class="top"><div class="brand"><div class="logo">⟩</div><div><h2>رابط المسائل</h2><small>القياس الدائري — الراديان</small></div></div>
 <div class="actions"><button class="b1" id="btnSearch">بحث</button><button class="b2" id="btnAdd">إضافة</button></div></div>
 <div id="view-home" class="view on">
 <div class="stats">
@@ -80,57 +81,47 @@ table{width:100%;border-collapse:collapse}th{background:var(--navy);color:#fff;p
 <button class="chip" data-f="all">كل المسائل</button>
 <button class="chip" data-f="idea">حسب الفكرة</button>
 <button class="chip" id="btnCmp">المقارنة</button>
-<div class="search">⌕ <input id="q" placeholder="ابحث..."></div>
-</div>
-<div class="hrow"><strong>المسائل المضافة</strong><span class="badge" id="nBadge">٠</span></div>
+<div class="search"><input id="q" placeholder="ابحث..."></div></div>
+<div class="hrow"><strong>تمارين ١-١ القياس الدائري</strong><span class="badge" id="nBadge">٠</span></div>
 <div class="cards" id="homeCards"></div></div>
-<div id="view-problems" class="view"><div class="hrow"><strong>كل المسائل</strong></div><div class="cards" id="allCards"></div></div>
+<div id="view-problems" class="view"><div class="cards" id="allCards"></div></div>
 <div id="view-ideas" class="view"><div class="cards" id="ideaCards"></div></div>
 </div></section>
 <div class="mask hidden" id="addM"><div class="sheet"><div class="row"><h3>إضافة مسألة</h3><button class="x" data-close="addM">×</button></div>
-<textarea class="area" id="ptxt" placeholder="اكتب نص المسألة هنا..."></textarea>
-<div class="drop" id="drop">أضف صورة للمسألة<input type="file" id="pimg" accept="image/*" hidden></div>
-<div class="field"><label>نوع المسألة</label><select id="ptype"><option value="idea">فكرة جديدة</option><option value="tanwee">تنويع</option></select></div>
+<textarea class="area" id="ptxt" placeholder="اكتب نص المسألة"></textarea>
+<div class="drop" id="drop">صورة المسألة<input type="file" id="pimg" accept="image/*" hidden></div>
+<div class="field"><label>النوع</label><select id="ptype"><option value="idea">فكرة جديدة</option><option value="tanwee">تنويع</option></select></div>
 <div class="field"><label>الفكرة</label><input id="pidea"></div>
 <div class="field"><label>الخطوات</label><input id="psteps"></div>
 <div class="foot"><button class="gray" data-close="addM">إلغاء</button><button class="b2" id="save">حفظ</button></div></div></div>
-<div class="mask hidden" id="cmpM"><div class="sheet"><div class="row"><h3>مقارنة مسألتين</h3><button class="x" data-close="cmpM">×</button></div><div class="banner" id="cmpBanner">أضف مسألتين أولاً</div><div id="cmpBody"></div></div></div>
-<div class="mask hidden" id="infoM"><div class="sheet"><div class="row"><h3 id="infoT">تفاصيل</h3><button class="x" data-close="infoM">×</button></div><p id="infoB" style="line-height:1.9;font-weight:700"></p></div></div>
+<div class="mask hidden" id="cmpM"><div class="sheet"><div class="row"><h3>مقارنة</h3><button class="x" data-close="cmpM">×</button></div><div class="banner" id="cmpBanner"></div><div id="cmpBody"></div></div></div>
+<div class="mask hidden" id="infoM"><div class="sheet"><div class="row"><h3 id="infoT">تفاصيل</h3><button class="x" data-close="infoM">×</button></div><div id="infoB"></div></div></div>
+<script src="questions-data.js"></script>
+<script src="img-p11.js"></script>
+<script src="img-p12.js"></script>
 <script>
 const AR='٠١٢٣٤٥٦٧٨٩';
 const toAr=n=>String(n).replace(/\d/g,d=>AR[d]);
 const en=s=>String(s).replace(/[٠-٩]/g,d=>AR.indexOf(d));
-const $=s=>document.querySelector(s); const $$=s=>document.querySelectorAll(s);
-const KEY='rabt-items-v1';
-function load(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return[]}}
-function saveAll(arr){localStorage.setItem(KEY,JSON.stringify(arr))}
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const KEY='rabt-items-v2';
+function bankItems(){const meta=window.RABT_META||{};return (window.RABT_BANK||[]).map((q,i)=>{const m=meta[q.kind]||{};return {id:'bank-'+i,text:'تمرين '+q.ex+' ('+q.letter+'): '+q.text,type:m.type||'tanwee',idea:m.idea||'',steps:m.steps||'',required:m.required||'',kind:q.kind,img:m.img||'',fromBook:true};});}
+function load(){try{let a=JSON.parse(localStorage.getItem(KEY)||'[]');if(!a.length){a=bankItems();saveAll(a)}return a}catch(e){return bankItems()}}
+function saveAll(a){localStorage.setItem(KEY,JSON.stringify(a))}
 function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),1600)}
 function openM(id){$('#'+id).classList.remove('hidden')} function closeM(id){$('#'+id).classList.add('hidden')}
-function stats(items){
- const all=items.length, neu=items.filter(x=>x.type==='idea').length, tan=items.filter(x=>x.type==='tanwee').length;
- const ideas=[...new Set(items.map(x=>(x.idea||'').trim()).filter(Boolean))].length;
- $('#nAll').textContent=toAr(all); $('#nNew').textContent=toAr(neu); $('#nTan').textContent=toAr(tan); $('#nIdea').textContent=toAr(ideas); $('#nBadge').textContent=toAr(all);
-}
-function cardHTML(p){const neu=p.type==='idea';return `<article class="card ${neu?'gold':''}"><span class="tag ${neu?'ty':'tg'}">${neu?'فكرة جديدة ★':'تنويع'}</span><p class="q">${p.text}</p><div class="btns"><button class="gray" data-info="${p.id}|give">المعطيات</button><button class="${neu?'blue':'green'}" data-info="${p.id}|steps">الخطوات</button></div></article>`}
-function emptyBox(msg){return `<div class="empty">${msg}</div>`}
-function render(){
- const items=load(); stats(items);
- const home=$('#homeCards'), all=$('#allCards'), ideas=$('#ideaCards');
- if(!items.length){home.innerHTML=emptyBox('لا توجد مسائل بعد. اضغط إضافة.');all.innerHTML=emptyBox('لا توجد مسائل بعد.');ideas.innerHTML=emptyBox('لا توجد أفكار بعد.');return;}
- home.innerHTML=items.map(cardHTML).join(''); all.innerHTML=items.map(cardHTML).join('');
- const uniq=[...new Map(items.filter(x=>x.idea).map(x=>[x.idea,x])).values()];
- ideas.innerHTML=uniq.length?uniq.map(x=>`<article class="card"><p class="q" style="text-align:right">${x.idea}</p></article>`).join(''):emptyBox('لا توجد أفكار بعد.');
- $$('[data-info]').forEach(b=>b.onclick=()=>{const [id,kind]=b.dataset.info.split('|');const p=load().find(x=>String(x.id)===id);if(!p)return;$('#infoT').textContent=kind==='steps'?'الخطوات':'المعطيات';$('#infoB').textContent=kind==='steps'?(p.steps||'لم تُكتب خطوات'):p.text;openM('infoM');});
-}
-$('#loginBtn').onclick=()=>{const ok=en($('#sid').value.trim())==='1001'&&en($('#pin').value.trim())==='1234';if(!ok){$('#err').style.display='block';return}$('#login').classList.add('hidden');$('#app').classList.remove('hidden');render();};
+function stats(items){const all=items.length,neu=items.filter(x=>x.type==='idea').length,tan=items.filter(x=>x.type==='tanwee').length,ideas=[...new Set(items.map(x=>(x.idea||'').trim()).filter(Boolean))].length;$('#nAll').textContent=toAr(all);$('#nNew').textContent=toAr(neu);$('#nTan').textContent=toAr(tan);$('#nIdea').textContent=toAr(ideas);$('#nBadge').textContent=toAr(all)}
+function cardHTML(p){const neu=p.type==='idea';return `<article class="card ${neu?'gold':''}" data-kind="${p.kind||''}" data-idea="${p.idea||''}" data-req="${p.required||''}"><span class="tag ${neu?'ty':'tg'}">${neu?'فكرة جديدة ★':'تنويع'}</span><span class="kind">${p.required||''}</span><p class="q">${p.text}</p><div class="btns"><button class="gray" data-info="${p.id}|give">المعطيات</button><button class="${neu?'blue':'green'}" data-info="${p.id}|steps">الخطوات</button></div></article>`}
+function render(){const items=load();stats(items);const home=$('#homeCards'),all=$('#allCards'),ideas=$('#ideaCards');if(!items.length){home.innerHTML=all.innerHTML=ideas.innerHTML='<div class="empty">لا توجد مسائل</div>';return}home.innerHTML=all.innerHTML=items.map(cardHTML).join('');const uniq=[...new Map(items.filter(x=>x.idea).map(x=>[x.idea,x])).values()];ideas.innerHTML=uniq.map(x=>`<article class="card"><p class="q" style="text-align:right">${x.idea}</p></article>`).join('');$$('[data-info]').forEach(b=>b.onclick=()=>{const [id,kind]=b.dataset.info.split('|');const p=load().find(x=>String(x.id)===id);if(!p)return;$('#infoT').textContent=kind==='steps'?'الخطوات':'المعطيات';const src=(window.RABT_IMAGES||{})[p.img]||'';$('#infoB').innerHTML=(src?`<img class="qimg" src="${src}">`:'')+'<div style="line-height:1.9;font-weight:700">'+(kind==='steps'?(p.steps||''):(p.required+' — '+p.text))+'</div>';openM('infoM')})}
+$('#loginBtn').onclick=()=>{if(!(en($('#sid').value.trim())==='1001'&&en($('#pin').value.trim())==='1234')){$('#err').style.display='block';return}$('#login').classList.add('hidden');$('#app').classList.remove('hidden');render()};
 $('#pin').addEventListener('keydown',e=>{if(e.key==='Enter')$('#loginBtn').click()});
 $('#out').onclick=()=>{$('#app').classList.add('hidden');$('#login').classList.remove('hidden')};
 $$('#nav [data-view]').forEach(b=>b.onclick=()=>{$$('#nav [data-view]').forEach(x=>x.classList.remove('on'));b.classList.add('on');$$('.view').forEach(v=>v.classList.remove('on'));if(b.dataset.view==='compare'){showCompare();$('#view-home').classList.add('on');return}$('#view-'+b.dataset.view).classList.add('on')});
-$('#btnAdd').onclick=()=>openM('addM'); $('#btnCmp').onclick=showCompare;
+$('#btnAdd').onclick=()=>openM('addM');$('#btnCmp').onclick=showCompare;
 $$('[data-close]').forEach(b=>b.onclick=()=>closeM(b.dataset.close));
-$$('.mask').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.add('hidden')}));
-$$('.chip[data-f]').forEach(c=>c.onclick=()=>{$$('.chip[data-f]').forEach(x=>x.classList.remove('on'));c.classList.add('on')});
-function showCompare(){const items=load();openM('cmpM');if(items.length<2){$('#cmpBanner').textContent='أضف مسألتين على الأقل';$('#cmpBody').innerHTML='';return;}const a=items[items.length-2],b=items[items.length-1];const sameIdea=!!a.idea&&a.idea===b.idea,sameSteps=!!a.steps&&a.steps===b.steps;$('#cmpBanner').textContent=sameIdea&&sameSteps?'نفس الفكرة ونفس الخطوات':'مقارنة آخر مسألتين';$('#cmpBody').innerHTML=`<table><tr><th>البعد</th><th>الأولى</th><th>الثانية</th></tr><tr><td>النص</td><td>${a.text}</td><td>${b.text}</td></tr><tr><td>الفكرة</td><td class="${sameIdea?'ok':'no'}">${a.idea||'—'}</td><td class="${sameIdea?'ok':'no'}">${b.idea||'—'}</td></tr><tr><td>الخطوات</td><td class="${sameSteps?'ok':'no'}">${a.steps||'—'}</td><td class="${sameSteps?'ok':'no'}">${b.steps||'—'}</td></tr></table>`;}
-$('#drop').onclick=()=>$('#pimg').click();let imgName='';$('#pimg').onchange=()=>{if($('#pimg').files[0]){imgName=$('#pimg').files[0].name;toast('تم اختيار الصورة')}};
-$('#save').onclick=()=>{const text=$('#ptxt').value.trim();if(!text){toast('اكتب نص المسألة');return}const items=load();items.push({id:Date.now(),text,type:$('#ptype').value,idea:$('#pidea').value.trim(),steps:$('#psteps').value.trim(),img:imgName});saveAll(items);$('#ptxt').value='';$('#pidea').value='';$('#psteps').value='';imgName='';$('#pimg').value='';closeM('addM');render();toast('أُضيفت المسألة');};
+$$('.mask').forEach(m=>m.onclick=e=>{if(e.target===m)m.classList.add('hidden')});
+$$('.chip[data-f]').forEach(c=>c.onclick=()=>{$$('.chip[data-f]').forEach(x=>x.classList.remove('on'));c.classList.add('on');const f=c.dataset.f;$$('#homeCards .card').forEach(card=>{if(f==='all'||f==='req'||f==='steps'){card.style.display='';return}if(f==='idea'){/* keep one per idea later */card.style.display=''}})});
+function showCompare(){const items=load();openM('cmpM');if(items.length<2){$('#cmpBanner').textContent='أضف مسألتين';$('#cmpBody').innerHTML='';return}const a=items[0],b=items[12]||items[1];const same=a.idea===b.idea;$('#cmpBanner').textContent=same?'نفس الفكرة وتغيّرت الأرقام':'مقارنة';$('#cmpBody').innerHTML=`<table><tr><th>البعد</th><th>أ</th><th>ب</th></tr><tr><td>النص</td><td>${a.text}</td><td>${b.text}</td></tr><tr><td>الفكرة</td><td class="${same?'ok':'no'}">${a.idea}</td><td class="${same?'ok':'no'}">${b.idea}</td></tr><tr><td>المطلوب</td><td>${a.required}</td><td>${b.required}</td></tr></table>`}
+$('#drop').onclick=()=>$('#pimg').click();
+$('#save').onclick=()=>{const text=$('#ptxt').value.trim();if(!text){toast('اكتب النص');return}const items=load();items.push({id:Date.now(),text,type:$('#ptype').value,idea:$('#pidea').value.trim(),steps:$('#psteps').value.trim()});saveAll(items);closeM('addM');render();toast('أُضيفت')};
 </script></body></html>
