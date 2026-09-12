@@ -1,1 +1,67 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>كتاب النشاط</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&display=swap" rel="stylesheet"><style>body{margin:0;min-height:100dvh;display:grid;place-items:center;background:#f3eee4;font-family:Cairo,Tahoma,sans-serif;color:#163056;text-align:center;padding:24px}.card{background:#fffdf8;border:1px solid #e6dcc8;border-radius:20px;padding:28px 22px;max-width:360px}h1{font-size:22px;margin:0 0 8px}p{margin:0;color:#5b6a80;font-weight:700;line-height:1.8}</style></head><body><div class="card"><h1>كتاب النشاط</h1><p>هذه صفحة جاهزة. سيُستبدل هذا الملف بكتاب النشاط لاحقًا.</p></div></body></html>
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>كتاب النشاط</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#163056;--teal:#2a7a86;--bg:#f3eee4;--line:#e6dcc8}
+*{box-sizing:border-box;margin:0;padding:0}body{background:var(--bg);font-family:Cairo,Tahoma,sans-serif;color:#1c2d4a;padding:14px 12px 24px}
+h1{color:var(--teal);font-size:26px;margin:4px 2px 14px}
+.unit{background:#fff;border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden}
+.unit h2{background:#eef6f6;color:var(--teal);font-size:16px;padding:12px 14px}
+.item{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:right;padding:12px 14px;border:0;border-top:1px solid #f1eadc;background:#fff;font:inherit;font-weight:800;color:var(--navy);cursor:pointer}
+.item:active{background:#f7f1e4}.page{color:#7a8494;font-size:13px;min-width:28px}
+</style></head><body>
+<h1>المحتويات</h1>
+<div id="toc"></div>
+<script>
+const BOOK=[
+ {title:'كيف تستخدم هذا الكتاب؟',items:[{id:'how',name:'كيف تستخدم هذا الكتاب؟',page:'x'}]},
+ {title:'الوحدة الأولى: القياس الدائري',items:[
+  {id:'1-1',name:'١-١ الراديان',page:'١١'},
+  {id:'1-2',name:'١-٢ طول القوس',page:'١٥'},
+  {id:'1-3',name:'١-٣ مساحة القطاع الدائري',page:'١٨'},
+  {id:'1-rev',name:'تمارين مراجعة نهاية الوحدة الأولى',page:'٢١'}
+ ]},
+ {title:'الوحدة الثانية: حساب المثلثات',items:[
+  {id:'2-1',name:'٢-١ الزوايا بين ٠° و٩٠°',page:'٢٧'},
+  {id:'2-2',name:'٢-٢ زاوية الأساس (الزاوية المرجعية)',page:'٣١'},
+  {id:'2-3',name:'٢-٣ النسب المثلثية للزوايا العامة',page:'٣٣'},
+  {id:'2-4',name:'٢-٤ التمثيلات البيانية للدوال المثلثية',page:'٣٦'},
+  {id:'2-5',name:'٢-٥ الدوال المثلثية العكسية',page:'٤١'},
+  {id:'2-6',name:'٢-٦ المعادلات المثلثية',page:'٤٤'},
+  {id:'2-7',name:'٢-٧ المتطابقات المثلثية',page:'٤٨'},
+  {id:'2-8',name:'٢-٨ المزيد من المعادلات المثلثية',page:'٥١'},
+  {id:'2-rev',name:'تمارين مراجعة نهاية الوحدة الثانية',page:'٥٤'}
+ ]},
+ {title:'الوحدة الثالثة: مقدمة في النهايات والاتصال',items:[
+  {id:'3-1',name:'٣-١ نهاية الدالة عند نقطة',page:'٥٧'},
+  {id:'3-1a',name:'٣-١ أ نهاية الدالة كثيرة الحدود',page:'٥٧'},
+  {id:'3-1b',name:'٣-١ ب نهاية الدالة النسبية',page:'٦٠'},
+  {id:'3-1c',name:'٣-١ ج نهاية الدالة المعرّفة بأكثر من قاعدة',page:'٦٤'},
+  {id:'3-2',name:'٣-٢ نهاية الدالة النسبية عند اللانهاية',page:'٦٩'},
+  {id:'3-3',name:'٣-٣ خواص النهايات',page:'٧١'},
+  {id:'3-4',name:'٣-٤ الاتصال',page:'٧٤'},
+  {id:'3-rev',name:'تمارين مراجعة نهاية الوحدة الثالثة',page:'٨٠'}
+ ]},
+ {title:'الوحدة الرابعة: التفاضل',items:[
+  {id:'4-1',name:'٤-١ المشتقة وعلاقتها بالميل',page:'٨٣'},
+  {id:'4-2',name:'٤-٢ مشتقة دالة القوة',page:'٨٥'},
+  {id:'4-3',name:'٤-٣ قاعدة السلسلة',page:'٨٩'},
+  {id:'4-4',name:'٤-٤ المماس والعمودي',page:'٩١'},
+  {id:'4-5',name:'٤-٥ الدوال المتزايدة والدوال المتناقصة',page:'٩٣'},
+  {id:'4-6',name:'٤-٦ النقاط الحرجة',page:'٩٦'}
+ ]}
+];
+const box=document.getElementById('toc');
+BOOK.forEach(u=>{
+  const d=document.createElement('section'); d.className='unit';
+  d.innerHTML='<h2>'+u.title+'</h2>';
+  u.items.forEach(it=>{
+    const b=document.createElement('button'); b.className='item'; b.type='button';
+    b.innerHTML='<span>'+it.name+'</span><span class="page">'+it.page+'</span>';
+    b.onclick=()=>{location.href='lesson.html?id='+encodeURIComponent(it.id)};
+    d.appendChild(b);
+  });
+  box.appendChild(d);
+});
+</script></body></html>

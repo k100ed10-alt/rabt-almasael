@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>الدرس</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#163056;--teal:#2a7a86;--bg:#f3eee4;--line:#e6dcc8}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%;background:var(--bg);font-family:Cairo,Tahoma,sans-serif;color:#1c2d4a}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;background:#fffcf7;border-bottom:1px solid var(--line)}
+.bar a{text-decoration:none;color:var(--navy);font-weight:800;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.bar h1{font-size:15px;color:var(--teal);text-align:center;flex:1}
+.wrap{height:calc(100% - 52px);padding:8px}
+iframe{width:100%;height:100%;border:1px solid var(--line);border-radius:14px;background:#fff}
+</style></head><body>
+<div class="bar"><a href="activity.html">المحتويات</a><h1 id="title">الدرس</h1><span></span></div>
+<div class="wrap"><iframe id="fr" title="محتوى الدرس" src="about:blank"></iframe></div>
+<script>
+const NAMES={
+ 'how':'كيف تستخدم هذا الكتاب؟',
+ '1-1':'١-١ الراديان','1-2':'١-٢ طول القوس','1-3':'١-٣ مساحة القطاع الدائري','1-rev':'مراجعة الوحدة الأولى',
+ '2-1':'٢-١ الزوايا بين ٠° و٩٠°','2-2':'٢-٢ زاوية الأساس','2-3':'٢-٣ النسب المثلثية للزوايا العامة',
+ '2-4':'٢-٤ التمثيلات البيانية','2-5':'٢-٥ الدوال المثلثية العكسية','2-6':'٢-٦ المعادلات المثلثية',
+ '2-7':'٢-٧ المتطابقات المثلثية','2-8':'٢-٨ المزيد من المعادلات المثلثية','2-rev':'مراجعة الوحدة الثانية',
+ '3-1':'٣-١ نهاية الدالة عند نقطة','3-1a':'٣-١ أ نهاية الدالة كثيرة الحدود','3-1b':'٣-١ ب نهاية الدالة النسبية',
+ '3-1c':'٣-١ ج نهاية الدالة المعرّفة بأكثر من قاعدة','3-2':'٣-٢ نهاية عند اللانهاية','3-3':'٣-٣ خواص النهايات','3-4':'٣-٤ الاتصال','3-rev':'مراجعة الوحدة الثالثة',
+ '4-1':'٤-١ المشتقة وعلاقتها بالميل','4-2':'٤-٢ مشتقة دالة القوة','4-3':'٤-٣ قاعدة السلسلة',
+ '4-4':'٤-٤ المماس والعمودي','4-5':'٤-٥ الدوال المتزايدة والمتناقصة','4-6':'٤-٦ النقاط الحرجة'
+};
+const id=new URLSearchParams(location.search).get('id')||'1-1';
+document.getElementById('title').textContent=NAMES[id]||id;
+document.getElementById('fr').src='frames/'+id+'.html';
+</script></body></html>
