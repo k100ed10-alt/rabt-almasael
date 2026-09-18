@@ -1,1 +1,62 @@
-PLACEHOLDER
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>تمارين ١-٢ طول القوس</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBF6EC;font-family:Cairo,Tahoma,sans-serif;color:#2B2320;padding:12px 12px 80px}
+.hero{text-align:center;margin-bottom:12px}h1{margin:4px 0;font-size:22px;color:#2B4570}
+.board{display:flex;justify-content:space-between;align-items:center;background:#fff;border:2px solid #2B2320;border-radius:14px;padding:10px 12px;margin:10px 0;font-weight:800}
+.card{background:#fff;border:2px solid #2B2320;border-radius:16px;padding:12px;margin:12px 0}
+.item{background:#FBF6EC;border:1px solid #e6dcc8;border-radius:12px;padding:8px;margin:8px 0;font-weight:700}
+input{width:120px;height:36px;border:1.5px solid #d7c9a6;border-radius:10px;text-align:center;font:16px Cairo}
+button{font:800 14px Cairo;border:2px solid #2B2320;background:#fff;border-radius:10px;padding:7px 10px;margin:4px 4px 0 0}
+button.p{background:#2B2320;color:#fff}
+.reveal{display:none;margin-top:8px;padding:8px;border-radius:10px;background:#fff6d8;line-height:1.8}
+.reveal.show{display:block}.mark{margin-right:8px;font-weight:800}
+</style></head><body>
+<div class="hero"><div>الوحدة الأولى • القياس الدائري</div>
+<h1>١-٢ طول القوس</h1>
+<p>ن = نق × هـ &nbsp;،&nbsp; هـ بالراديان</p></div>
+<div class="board"><span>نتيجتك: <b id="sc">٠ / ٠</b></span><button onclick="resetAll()">إعادة تعيين</button></div>
+<section class="card"><b>القوانين</b>
+<p>ن = نق × هـ &nbsp;|&nbsp; هـ = ن ÷ نق &nbsp;|&nbsp; نق = ن ÷ هـ &nbsp;|&nbsp; محيط القطاع = نق(٢+هـ)</p></section>
+<section class="card"><h3>١) نق=٨ ، ن=٧.٥</h3>
+<div class="item">أ) بالراديان <input id="q1a"><span class="mark" id="m-q1a"></span></div>
+<div class="item">ب) بالدرجات <input id="q1b"><span class="mark" id="m-q1b"></span></div>
+<button class="p" onclick="chk1()">تحقّق</button><button onclick="tog('a1')">الإجابة</button>
+<div class="reveal" id="a1">٠.٩٣٨ راد ، ٥٣.٧°</div></section>
+<section class="card"><h3>٢) ن=١٢ ، هـ=١.٦</h3>
+<div class="item">نق = <input id="q2"><span class="mark" id="m-q2"></span></div>
+<button class="p" onclick="chk2()">تحقّق</button><button onclick="tog('a2')">الإجابة</button>
+<div class="reveal" id="a2">٧.٥ سم</div></section>
+<section class="card"><h3>٣) طول القوس بدلالة π</h3>
+<div class="item">أ) نق=٤ ، هـ=π/٢ <input id="q3a"><span class="mark" id="m-q3a"></span></div>
+<div class="item">ب) نق=٣ ، هـ=٣π/٤ <input id="q3b"><span class="mark" id="m-q3b"></span></div>
+<button class="p" onclick="chk3()">تحقّق</button><button onclick="tog('a3')">الإجابة</button>
+<div class="reveal" id="a3">أ) ٢π &nbsp; ب) ٩π/٤</div></section>
+<section class="card"><h3>٤) طول القوس</h3>
+<div class="item">أ) نق=١٢ ، هـ=١.٢ <input id="q4a"><span class="mark" id="m-q4a"></span></div>
+<div class="item">ب) نق=٤.٥ ، هـ=٠.٥٥ <input id="q4b"><span class="mark" id="m-q4b"></span></div>
+<button class="p" onclick="chk4()">تحقّق</button><button onclick="tog('a4')">الإجابة</button>
+<div class="reveal" id="a4">أ) ١٤.٤ &nbsp; ب) ٢.٤٨</div></section>
+<section class="card"><h3>٩) محيط القطعة الصغرى نق=٢٥ وتر=١٤</h3>
+<div class="item">المحيط ≈ <input id="q9"><span class="mark" id="m-q9"></span></div>
+<button class="p" onclick="chk9()">تحقّق</button><button onclick="tog('a9')">الإجابة</button>
+<div class="reveal" id="a9">٢٨.٢ سم</div></section>
+<script>
+const AR='٠١٢٣٤٥٦٧٨٩';
+const west=s=>String(s||'').replace(/[٠-٩]/g,d=>String(AR.indexOf(d)));
+const arn=n=>String(n).replace(/\d/g,d=>AR[d]);
+const tog=id=>document.getElementById(id).classList.toggle('show');
+function norm(s){return west(s).toLowerCase().replace(/π|pi|باي/g,'π').replace(/[°سمراديانراددرجة ]/g,'').replace(/٫/g,'.').replace(/\s+/g,'');}
+function closeEnough(v,t){const n=parseFloat(west(v).replace(/[^\d.\-]/g,''));return !isNaN(n)&&Math.abs(n-t)<=Math.max(0.02,Math.abs(t)*0.02);}
+function ok(id,acc,num){const v=norm(document.getElementById(id).value);let g=acc.some(a=>norm(a)===v||(norm(a).length>1&&v.includes(norm(a))));if(!g&&num!=null)g=closeEnough(v,num);const e=document.getElementById('m-'+id);e.textContent=g?'✅':'❌';}
+function score(){let c=0,t=0;document.querySelectorAll('[id^=m-]').forEach(e=>{t++;if(e.textContent==='✅')c++});document.getElementById('sc').textContent=arn(c)+' / '+arn(t);}
+function resetAll(){document.querySelectorAll('input').forEach(i=>i.value='');document.querySelectorAll('[id^=m-]').forEach(e=>e.textContent='');document.querySelectorAll('.reveal').forEach(e=>e.classList.remove('show'));score();}
+function chk1(){ok('q1a',['0.938'],0.938);ok('q1b',['53.7'],53.7);score()}
+function chk2(){ok('q2',['7.5'],7.5);score()}
+function chk3(){ok('q3a',['2π','2pi','π2']);ok('q3b',['9π/4','9pi/4']);score()}
+function chk4(){ok('q4a',['14.4'],14.4);ok('q4b',['2.48'],2.48);score()}
+function chk9(){ok('q9',['28.2'],28.2);score()}
+score();
+</script></body></html>
