@@ -3,23 +3,33 @@ const toAr=n=>String(n).replace(/\d/g,d=>AR[d]);
 const en=s=>String(s).replace(/[٠-٩]/g,d=>AR.indexOf(d));
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 const KEY='rabt-items-v6';
-let IMG='', IS_TEACHER=false;
+let IMG='', IS_TEACHER=false, ENTERED=false;
 const ADMIN_EMAILS=['k100ed10@gmail.com'];
 const FB_CFG=Object.assign({apiKey:"",authDomain:"grade12platform.firebaseapp.com",projectId:"grade12platform",storageBucket:"grade12platform.firebasestorage.app",messagingSenderId:"",appId:""}, window.FIREBASE_CONFIG||{});
 let fbDb=null, fbAuth=null;
-function initFb(){try{if(!window.firebase)return;if(!FB_CFG.apiKey)return;if(!firebase.apps.length)firebase.initializeApp(FB_CFG);fbDb=firebase.firestore();fbAuth=firebase.auth();fbAuth.onAuthStateChanged(u=>{if(u) applyUser(u); else showLogin();});}catch(e){console.warn(e)}}
+function initFb(){
+  try{
+    if(!window.firebase||!FB_CFG.apiKey) return;
+    if(!firebase.apps.length) firebase.initializeApp(FB_CFG);
+    fbDb=firebase.firestore();
+    fbAuth=firebase.auth();
+    fbAuth.setPersistence(firebase.auth.Auth.Persistence.NONE).catch(()=>{});
+    fbAuth.onAuthStateChanged(u=>{ if(u && !ENTERED) applyUser(u); });
+  }catch(e){console.warn(e)}
+}
 function showErr(msg){const e=$('#err');if(!e)return;e.textContent=msg;e.style.display='block';}
 let PENDING_NAME='';
-function isTeacherAccount(email,data){const e=(email||'').toLowerCase();if(ADMIN_EMAILS.includes(e))return true;const role=String((data&&(data.role||data.type))||'').toLowerCase();return ['teacher','admin','معلم','مدير'].includes(role)||(data&&data.isTeacher===true);}
+function isTeacherAccount(email){return ADMIN_EMAILS.includes((email||'').toLowerCase());}
 function applyUser(u){
+  if(ENTERED) return;
+  ENTERED=true;
   const email=(u&&u.email||'').toLowerCase();
-  IS_TEACHER=isTeacherAccount(email,null);
+  IS_TEACHER=isTeacherAccount(email);
+  resetLoginBtn();
   enterApp();
-  if(!fbDb||!u) return;
-  const nm=PENDING_NAME||localStorage.getItem('rabt-name')||'';
-  fbDb.collection('users').doc(u.uid).set({email:email,name:nm,role:IS_TEACHER?'teacher':'student',updated:Date.now()},{merge:true}).catch(()=>{});
 }
-function showLogin(){IS_TEACHER=false;const app=$('#app'),login=$('#login');if(app) app.classList.add('hidden');if(login) login.classList.remove('hidden');}
+function resetLoginBtn(){const b=$('#loginBtn');if(!b)return;b.disabled=false;b.textContent='دخول';}
+function showLogin(){ENTERED=false;IS_TEACHER=false;const app=$('#app'),login=$('#login');if(app) app.classList.add('hidden');if(login) login.classList.remove('hidden');resetLoginBtn();}
 function authErr(c){const m={'auth/invalid-email':'البريد غير صالح','auth/user-not-found':'هذا البريد غير مسجّل','auth/wrong-password':'كلمة المرور غير صحيحة','auth/invalid-credential':'البريد أو كلمة المرور غير صحيحة','auth/too-many-requests':'محاولات كثيرة','auth/unauthorized-domain':'النطاق غير مصرح'};return m[c]||'تعذر الدخول';}
 const UNIT={title:'الوحدة الأولى: القياس الدائري', lessons:[{id:'1-1',title:'١-١ الراديان',page:'١١'},{id:'1-2',title:'١-٢ طول القوس',page:'١٥'},{id:'1-3',title:'١-٣ مساحة القطاع الدائري',page:'١٨'}]};
 function F(a,b){return '<span class="frac"><span class="num">'+a+'</span><span class="den">'+b+'</span></span>'}
@@ -35,6 +45,7 @@ function showView(name){$$('.view').forEach(v=>v.classList.remove('on'));const v
 function enterApp(){const login=$('#login'),app=$('#app');if(login) login.classList.add('hidden');if(app) app.classList.remove('hidden');const shown=localStorage.getItem('rabt-name')||'';const add=$('#btnAdd'),who=$('#who');if(IS_TEACHER){if(add) add.classList.remove('hidden');if(who) who.textContent=shown||'حساب المعلم'}else{if(add) add.classList.add('hidden');if(who) who.textContent=shown||'حساب الطالب'}showView('home');try{render()}catch(e){console.warn(e)}}
 function render(){const items=load();stats(items);const cards=$('#homeCards');if(!cards)return;let html='<details class="acc" open><summary><span>'+UNIT.title+'</span><span class="badge">'+toAr(items.length)+'</span></summary>';UNIT.lessons.forEach((ls,i)=>{const arr=items.filter(p=>(p.lesson||'1-1')===ls.id);html+='<details class="acc ls"'+(i===0?' open':'')+'><summary><span>'+ls.title+'</span><small>ص '+ls.page+'</small></summary>';if(!arr.length) html+='<div class="empty">لا توجد أفكار بعد</div>';else{const ideas=new Map();arr.forEach(p=>{const k=p.idea||'بدون فكرة';if(!ideas.has(k))ideas.set(k,[]);ideas.get(k).push(p)});ideas.forEach((qs,idea)=>{html+='<details class="acc id"><summary><span>'+fracify(idea)+'</span><span class="badge">'+toAr(qs.length)+'</span></summary><div class="qlist">';qs.forEach(p=>{html+='<button type="button" class="qnum" data-id="'+p.id+'">سؤال '+p.ex+' — '+(p.letter||'—')+'</button>';});html+='</div></details>';});}html+='</details>';});html+='</details>';cards.innerHTML=html;$$('#homeCards .qnum').forEach(b=>b.onclick=()=>{const p=load().find(x=>String(x.id)===b.dataset.id);if(p)showQ(p)});}
 function showQ(p){const neu=p.type==='idea';const card=$('#popCard');if(!card)return;card.className='qcard'+(neu?' gold':'');card.innerHTML='<div class="qhead"><span class="kindtag '+(neu?'n':'t')+'">'+(neu?'★ فكرة جديدة':'تنويع')+'</span><div style="display:flex;gap:8px;align-items:center"><small>سؤال '+p.ex+' — '+p.letter+'</small><button class="x" id="popX">×</button></div></div>'+(p.img?'<img class="qimg" src="'+p.img+'">':'')+'<div class="qtxt">'+fracify(p.text)+'</div><div class="slots"><button type="button" class="slot s-idea" data-k="idea">الفكرة</button><button type="button" class="slot s-given" data-k="given">المعطيات</button><button type="button" class="slot s-steps" data-k="steps">الخطوات</button><button type="button" class="slot s-req" data-k="req">المطلوب</button></div><div class="slotbox hidden" id="slotBox"></div>';const map={idea:[fracify(p.idea||'—'),'idea'],given:[fracify(givenOf(p)),'given'],steps:[fracify(p.steps||'—'),'steps'],req:[fracify(p.required||'—'),'req']};const titles={idea:'الفكرة',given:'المعطيات',steps:'الخطوات',req:'المطلوب'};const box=$('#slotBox');card.querySelectorAll('.slot').forEach(s=>s.onclick=()=>{const on=s.classList.contains('on');card.querySelectorAll('.slot').forEach(x=>x.classList.remove('on'));if(on){box.classList.add('hidden');return}s.classList.add('on');box.classList.remove('hidden');const k=s.dataset.k;box.className='slotbox '+map[k][1];box.innerHTML='<b>'+titles[k]+'</b><br>'+map[k][0];});const x=$('#popX'),pop=$('#pop');if(x) x.onclick=()=>pop.classList.add('hidden');if(pop) pop.classList.remove('hidden');}
+function withTimeout(p,ms){return Promise.race([p,new Promise((_,rej)=>setTimeout(()=>rej(Object.assign(new Error('timeout'),{code:'timeout'})),ms))]);}
 const loginBtn=$('#loginBtn');
 if(loginBtn) loginBtn.onclick=async()=>{
   const email=$('#email').value.trim(),pass=$('#pass').value,name=$('#sname').value.trim();
@@ -45,14 +56,22 @@ if(loginBtn) loginBtn.onclick=async()=>{
   if(!fbAuth){showErr('Firebase غير جاهز');return}
   loginBtn.disabled=true;loginBtn.textContent='...';
   try{
-    const cred=await fbAuth.signInWithEmailAndPassword(email,pass);
-    applyUser(cred.user||{email:email});
-  }catch(e){showErr(authErr(e.code));}
-  finally{loginBtn.disabled=false;loginBtn.textContent='دخول';}
+    await fbAuth.setPersistence(firebase.auth.Auth.Persistence.NONE).catch(()=>{});
+    const cred=await withTimeout(fbAuth.signInWithEmailAndPassword(email,pass),4000);
+    applyUser((cred&&cred.user)||{email:email});
+  }catch(e){
+    if(e&&e.code==='timeout'){
+      if(fbAuth.currentUser) applyUser(fbAuth.currentUser);
+      else applyUser({email:email});
+    }else{
+      resetLoginBtn();
+      showErr(authErr(e&&e.code));
+    }
+  }
 };
 const passEl=$('#pass');if(passEl) passEl.addEventListener('keydown',e=>{if(e.key==='Enter' && loginBtn) loginBtn.click()});
 $$('nav [data-view]').forEach(b=>b.onclick=()=>showView(b.dataset.view));
-const out=$('#out');if(out) out.onclick=()=>{if(fbAuth)fbAuth.signOut();else showLogin();};
+const out=$('#out');if(out) out.onclick=()=>{ENTERED=false;if(fbAuth)fbAuth.signOut().catch(()=>{});showLogin();};
 const btnAdd=$('#btnAdd');if(btnAdd) btnAdd.onclick=()=>{if(!IS_TEACHER){toast('الإضافة للمعلم فقط');return}openM('addM')};
 $$('[data-close]').forEach(b=>b.onclick=()=>closeM(b.dataset.close));
 const pop=$('#pop');if(pop) pop.onclick=e=>{if(e.target.id==='pop') pop.classList.add('hidden')};
