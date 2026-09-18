@@ -6,47 +6,31 @@
 <title>تمارين ١-٣ • مساحة القطاع</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--cream:#FBF6EC;--ink:#2B2320;--navy:#2B4570;--flame:#D9531E;--paper:#E7DFCF;--teal:#1F6F6A;--gold:#C48A2A}
-*{box-sizing:border-box}
-body{margin:0;background:var(--cream);font-family:Tajawal,sans-serif;color:var(--ink);padding-bottom:80px}
+:root{--cream:#FBF6EC;--ink:#2B2320;--navy:#2B4570;--flame:#D9531E}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);font-family:Tajawal,sans-serif;color:var(--ink);padding-bottom:80px}
 .hero{padding:20px 14px 12px;text-align:center;border-bottom:3px dashed #D8CBB0}
-.kicker{font-family:Cairo;font-weight:700;color:var(--navy)}
-h1{font-family:Cairo;font-weight:800;font-size:1.35rem;margin:.25em 0}
+.kicker{font-family:Cairo;font-weight:700;color:var(--navy)}h1{font-family:Cairo;font-weight:800;font-size:1.35rem;margin:.25em 0}
 .scoreboard{max-width:1040px;margin:12px auto 0;display:flex;justify-content:space-between;align-items:center;gap:8px;background:#fff;border:2px solid var(--ink);border-radius:14px;padding:8px 12px;font-family:Cairo;flex-wrap:wrap}
-.value{font-weight:800;color:var(--flame)}
-.scoreboard button{font-family:Cairo;font-weight:700;background:var(--ink);color:#fff;border:none;border-radius:10px;padding:7px 10px}
+.value{font-weight:800;color:var(--flame)}.scoreboard button{font-family:Cairo;font-weight:700;background:var(--ink);color:#fff;border:none;border-radius:10px;padding:7px 10px}
 main{max-width:1040px;margin:0 auto;padding:12px}
 .card,.formulas{background:#fff;border:2px solid var(--ink);border-radius:16px;padding:12px;margin-bottom:12px}
 .card h2,.formulas h2{font-family:Cairo;font-size:1rem;margin:0 0 8px;display:flex;gap:8px;align-items:center}
 .num{width:28px;height:28px;border-radius:50%;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800}
 .item{background:#FBF6EC;border:1.5px solid rgba(43,35,32,.18);border-radius:10px;padding:8px;margin:6px 0}
-.q{font-weight:700;margin:0 0 6px}
-.row{display:flex;gap:6px;align-items:center;margin:4px 0}
+.q{font-weight:700;margin:0 0 6px}.row{display:flex;gap:6px;align-items:center;margin:4px 0}
 input[type=text]{width:88px;height:30px;border:1.5px solid rgba(43,35,32,.22);background:#fff;font:13px Cairo;text-align:center;padding:3px 4px;border-radius:8px;direction:ltr}
 .tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.tools button{font-family:Cairo;font-weight:700;font-size:.82rem;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:7px 10px}
-.tools .p{background:var(--ink);color:#fff}
-.reveal{display:none;margin-top:8px;padding:8px;border-radius:10px;border:1.5px solid rgba(43,35,32,.28);line-height:1.8;font-size:.9rem}
-.reveal.show{display:block}
-.expr{display:inline-flex;flex-direction:column;align-items:center;font-family:Cairo;font-weight:800;margin:0 4px;direction:ltr;line-height:1.05}
-.expr .n{border-bottom:2px solid currentColor;padding:0 6px 1px}
-.expr .d{padding:1px 6px 0}
-.pic{direction:ltr;font-family:Cairo;font-weight:800}
-.note{color:#5b5148;line-height:1.7}
-.grid{display:grid;grid-template-columns:1fr;gap:6px}
-.fcard{background:#FBF6EC;border:1.5px solid rgba(43,35,32,.16);border-radius:10px;padding:8px}
-.eq{font-family:Cairo;font-weight:800;direction:rtl;display:block;margin-top:4px}
-.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.legend span{background:#E5EAF2;border-radius:999px;padding:3px 10px;font-size:.8rem;font-family:Cairo;font-weight:700}
-.mark{font-weight:800}
-.fig{display:flex;justify-content:center;margin:6px 0}
-svg.diag{max-width:240px;width:100%;height:auto;background:#fff;border-radius:10px;border:1.5px solid rgba(43,35,32,.15)}
-footer{text-align:center;color:#8a7f70;padding:8px}
-.sec-title{font-family:Cairo;font-weight:800;color:var(--navy);margin:16px 4px 8px}
+.tools button{font-family:Cairo;font-weight:700;font-size:.82rem;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:7px 10px}.tools .p{background:var(--ink);color:#fff}
+.reveal{display:none;margin-top:8px;padding:8px;border-radius:10px;border:1.5px solid rgba(43,35,32,.28);line-height:1.8;font-size:.9rem}.reveal.show{display:block}
+.note{color:#5b5148;line-height:1.7}.grid{display:grid;grid-template-columns:1fr;gap:6px}
+.fcard{background:#FBF6EC;border:1.5px solid rgba(43,35,32,.16);border-radius:10px;padding:8px}.eq{font-family:Cairo;font-weight:800;direction:rtl;display:block;margin-top:4px}
+.mark{font-weight:800}.fig{display:flex;justify-content:center;margin:6px 0}
+svg.diag{max-width:260px;width:100%;height:auto;background:#fff;border-radius:10px;border:1.5px solid rgba(43,35,32,.15)}
+footer{text-align:center;color:#8a7f70;padding:8px}.sec-title{font-family:Cairo;font-weight:800;color:var(--navy);margin:16px 4px 8px}
 </style></head><body>
 <div class="hero"><div class="kicker">الوحدة الأولى • القياس الدائري</div>
 <h1>١-٣ مساحة القطاع</h1>
-<p class="note">أ = ½ نق² هـ ، والقطعة = قطاع − مثلث. π يسار الرقم مثل π٣.</p></div>
+<p class="note">أ = ½ نق² هـ ، والقطعة = قطاع − مثلث.</p></div>
 <div class="scoreboard"><div>نتيجتك: <span class="value" id="sc">٠ / ٠</span></div>
 <button onclick="resetAll()">↺ إعادة تعيين</button></div>
 <main>
@@ -58,32 +42,35 @@ footer{text-align:center;color:#8a7f70;padding:8px}
 </div></section>
 <p class="sec-title">تمارين ١-٣</p>
 <section class="card" style="background:#E5EAF2"><h2><span class="num" style="background:#2B4570">١</span> من المساحة إلى نق</h2>
-<p class="note">هـ=١٫٢ ، أ=٥٤. أ=½ نق² هـ</p>
+<p class="note">هـ=١٫٢ ، أ=٥٤</p>
 <div class="item"><div class="q">نق ≈</div><div class="row"><input type="text" id="s1"><span class="mark" id="m-s1"></span></div></div>
 <div class="tools"><button class="p" onclick="chks1()">✓ تحقّق</button><button onclick="tog('as1')">الإجابة</button></div>
-<div class="reveal" id="as1">نق²=٩٠ ، نق≈٩٫٤٩ سم</div></section>
+<div class="reveal" id="as1">نق≈٩٫٤٩ سم</div></section>
 <section class="card" style="background:#FBEEDA"><h2><span class="num" style="background:#E0932B">٢</span> من المحيط إلى المساحة</h2>
 <p class="note">المحيط=٢٨ ، هـ=١٫٦</p>
+<div class="fig"><svg class="diag" viewBox="0 0 280 240"><path d="M60 120 L210 40 A150 150 0 0 1 220 200 Z" fill="#fff" stroke="#2B6B7A" stroke-width="3"/><path d="M90 112 A40 40 0 0 1 96 140" fill="none" stroke="#111" stroke-width="1.6"/><text x="108" y="132" font-size="14" font-family="Cairo">١٫٦</text><text x="38" y="126" font-size="16" font-family="Cairo">م</text><text x="214" y="32" font-size="16" font-family="Cairo">ن</text><text x="224" y="220" font-size="16" font-family="Cairo">ل</text></svg></div>
 <div class="item"><div class="q">المساحة ≈</div><div class="row"><input type="text" id="s2"><span class="mark" id="m-s2"></span></div></div>
 <div class="tools"><button class="p" onclick="chks2()">✓ تحقّق</button><button onclick="tog('as2')">الإجابة</button></div>
-<div class="reveal" id="as2">نق≈٧٫٧٨ ثم أ≈٤٨٫٤ سم²</div></section>
+<div class="reveal" id="as2">أ≈٤٨٫٤ سم²</div></section>
 <section class="card" style="background:#E8F3EA"><h2><span class="num" style="background:#2E8B57">٣</span> زاوية بدلالة π</h2>
 <p class="note">هـ=٠٫٩π ، أ=١٨٠</p>
 <div class="item"><div class="q">نق ≈</div><div class="row"><input type="text" id="s3"><span class="mark" id="m-s3"></span></div></div>
 <div class="tools"><button class="p" onclick="chks3()">✓ تحقّق</button><button onclick="tog('as3')">الإجابة</button></div>
 <div class="reveal" id="as3">نق≈١١٫٣ سم</div></section>
 <section class="card" style="background:#F3E8F0"><h2><span class="num" style="background:#7A3E6D">٤</span> المنطقة المظللة</h2>
-<p class="note">٤٥° ونق=٦. أ=½×٣٦×π/٤=٩π/٢</p>
+<p class="note">٤٥° ونق=٦</p>
+<div class="fig"><svg class="diag" viewBox="0 0 300 210"><path d="M20 180 L260 180 A170 170 0 0 0 140 28 Z" fill="#D7ECF3" stroke="#2B6B7A" stroke-width="2.5"/><line x1="20" y1="180" x2="260" y2="180" stroke="#2B6B7A" stroke-width="2.5"/><line x1="20" y1="180" x2="140" y2="28" stroke="#2B6B7A" stroke-width="2.5"/><line x1="140" y1="28" x2="260" y2="180" stroke="#2B6B7A" stroke-width="2" stroke-dasharray="6 4"/><path d="M52 180 A32 32 0 0 1 44 154" fill="none" stroke="#111" stroke-width="1.5"/><text x="58" y="168" font-size="13" font-family="Cairo">٤٥°</text><text x="86" y="88" font-size="13" font-family="Cairo">٦ سم</text><text x="148" y="120" font-size="13" font-family="Cairo">٤ سم</text></svg></div>
 <div class="item"><div class="q">المساحة</div><div class="row"><input type="text" id="s4"><span class="mark" id="m-s4"></span></div></div>
 <div class="tools"><button class="p" onclick="chks4()">✓ تحقّق</button><button onclick="tog('as4')">الإجابة</button></div>
 <div class="reveal" id="as4">٩π/٢ أو ١٤٫١ سم²</div></section>
 <section class="card" style="background:#F8E6DE"><h2><span class="num" style="background:#D9531E">٥</span> فرق القطاعين</h2>
-<p class="note">نق=٥ ، الفرق=١٥. الفرق=نق²(π−هـ)</p>
+<p class="note">نق=٥ ، الفرق=١٥</p>
 <div class="item"><div class="q">الزاوية المنفرجة ≈</div><div class="row"><input type="text" id="s5"><span class="mark" id="m-s5"></span></div></div>
 <div class="tools"><button class="p" onclick="chks5()">✓ تحقّق</button><button onclick="tog('as5')">الإجابة</button></div>
 <div class="reveal" id="as5">٢٫٥٤ راد</div></section>
 <section class="card" style="background:#E5EAF2"><h2><span class="num" style="background:#2B4570">٦</span> مساحة القطعة</h2>
-<p class="note">نق=١٣ ، الوتر=١٠. القطعة=½نق²(هـ−جا هـ)</p>
+<p class="note">نق=١٣ ، الوتر=١٠</p>
+<div class="fig"><svg class="diag" viewBox="0 0 280 280"><circle cx="140" cy="150" r="105" fill="#fff" stroke="#2B6B7A" stroke-width="3"/><path d="M140 48 A105 105 0 0 1 232 98 L140 150 Z" fill="#D7ECF3" stroke="#2B6B7A" stroke-width="2.5"/><line x1="140" y1="150" x2="140" y2="48" stroke="#2B6B7A" stroke-width="2.5"/><line x1="140" y1="150" x2="232" y2="98" stroke="#2B6B7A" stroke-width="2.5"/><circle cx="140" cy="150" r="4" fill="#111"/><circle cx="140" cy="48" r="5" fill="#111"/><circle cx="232" cy="98" r="5" fill="#111"/><text x="128" y="172" font-size="15" font-family="Cairo">م</text><text x="132" y="38" font-size="15" font-family="Cairo">ب</text><text x="244" y="96" font-size="15" font-family="Cairo">أ</text><text x="108" y="100" font-size="13" font-family="Cairo">١٣ سم</text><text x="178" y="140" font-size="13" font-family="Cairo">١٣ سم</text><text x="178" y="68" font-size="13" font-family="Cairo">١٠ سم</text></svg></div>
 <div class="item"><div class="q">المساحة ≈</div><div class="row"><input type="text" id="s6"><span class="mark" id="m-s6"></span></div></div>
 <div class="tools"><button class="p" onclick="chks6()">✓ تحقّق</button><button onclick="tog('as6')">الإجابة</button></div>
 <div class="reveal" id="as6">٧٫٢٣ سم²</div></section>
@@ -94,19 +81,20 @@ footer{text-align:center;color:#8a7f70;padding:8px}
 <div class="reveal" id="as7">أ) π/٢ &nbsp; ب) ٢٫٣١ راد</div></section>
 <section class="card" style="background:#E8F3EA"><h2><span class="num" style="background:#2E8B57">٨</span> قطاع ونصف دائرة</h2>
 <p class="note">نق=١٠ ، نصف الدائرة = ضعف القطاع</p>
+<div class="fig"><svg class="diag" viewBox="0 0 300 230"><path d="M40 110 L230 30 A120 120 0 0 1 250 110 A105 105 0 0 1 40 110 Z" fill="#fff" stroke="#2B6B7A" stroke-width="3"/><line x1="40" y1="110" x2="250" y2="110" stroke="#2B6B7A" stroke-width="2" stroke-dasharray="6 4"/><line x1="40" y1="110" x2="230" y2="30" stroke="#2B6B7A" stroke-width="2.5"/><text x="24" y="116" font-size="15" font-family="Cairo">أ</text><text x="236" y="24" font-size="15" font-family="Cairo">ب</text><text x="258" y="116" font-size="15" font-family="Cairo">ع</text><text x="110" y="62" font-size="13" font-family="Cairo">١٠ سم</text><text x="120" y="102" font-size="13" font-family="Cairo">هـ</text><text x="120" y="132" font-size="13" font-family="Cairo">١٠ سم</text></svg></div>
 <div class="grid"><div class="item"><div class="q">أ) هـ</div><div class="row"><input type="text" id="s8a" placeholder="π/٨"><span class="mark" id="m-s8a"></span></div></div>
 <div class="item"><div class="q">ب) المحيط</div><div class="row"><input type="text" id="s8b" placeholder="١٠+٢٥π/٤"><span class="mark" id="m-s8b"></span></div></div></div>
 <div class="tools"><button class="p" onclick="chks8()">✓ تحقّق</button><button onclick="tog('as8')">الإجابة</button></div>
 <div class="reveal" id="as8">أ) π/٨ &nbsp; ب) ١٠+٢٥π/٤</div></section>
 <section class="card" style="background:#F3E8F0"><h2><span class="num" style="background:#7A3E6D">٩</span> مثلث رولو</h2>
 <p class="note">مثلث متساوي الأضلاع ضلعه ٢ سم</p>
-<div class="fig"><svg class="diag" viewBox="0 0 280 220"><polygon points="140,40 230,180 50,180" fill="#FBF6EC" stroke="#2B2320" stroke-width="2"/><text x="140" y="210" text-anchor="middle" font-size="13" font-weight="700">ضلع = ٢ سم</text></svg></div>
+<div class="fig"><svg class="diag" viewBox="0 0 280 250"><path d="M140 36 A120 120 0 0 1 236 198 A120 120 0 0 1 44 198 A120 120 0 0 1 140 36 Z" fill="#fff" stroke="#2B6B7A" stroke-width="3"/><polygon points="140,50 228,190 52,190" fill="none" stroke="#111" stroke-width="1.6" stroke-dasharray="6 4"/><text x="136" y="28" font-size="16" font-family="Cairo">أ</text><text x="28" y="210" font-size="16" font-family="Cairo">ب</text><text x="236" y="214" font-size="16" font-family="Cairo">ع</text></svg></div>
 <div class="grid"><div class="item"><div class="q">المحيط</div><div class="row"><input type="text" id="s9a" placeholder="٢π"><span class="mark" id="m-s9a"></span></div></div>
 <div class="item"><div class="q">المساحة</div><div class="row"><input type="text" id="s9b" placeholder="٢(π−√٣)"><span class="mark" id="m-s9b"></span></div></div></div>
 <div class="tools"><button class="p" onclick="chks9()">✓ تحقّق</button><button onclick="tog('as9')">الإجابة</button></div>
 <div class="reveal" id="as9">محيط ٢π ، مساحة ٢(π−√٣)</div></section>
 <section class="card" style="background:#F8E6DE"><h2><span class="num" style="background:#D9531E">١٠</span> أكبر مساحة لمحيط ثابت</h2>
-<p class="note">المحيط=٦. هـ=٦/نق−٢ ، أ=٣نق−نق²</p>
+<p class="note">المحيط=٦</p>
 <div class="grid"><div class="item"><div class="q">أ) أ بدلالة نق</div><div class="row"><input type="text" id="s10a" placeholder="٣نق−نق²"><span class="mark" id="m-s10a"></span></div></div>
 <div class="item"><div class="q">ب) نق</div><div class="row"><input type="text" id="s10b"><span class="mark" id="m-s10b"></span></div></div>
 <div class="item"><div class="q">ب) هـ</div><div class="row"><input type="text" id="s10c"><span class="mark" id="m-s10c"></span></div></div></div>
@@ -118,22 +106,22 @@ const AR='٠١٢٣٤٥٦٧٨٩';
 function west(s){return String(s||'').replace(/[٠-٩]/g,d=>String(AR.indexOf(d)));}
 function arn(n){return String(n).replace(/\d/g,d=>AR[d]);}
 function tog(id){document.getElementById(id).classList.toggle('show')}
-function norm(s){return west(s).toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/باي|pi|π/g,'π').replace(/جذر|sqrt/g,'√').replace(/÷/g,'/').replace(/×/g,'*').replace(/−|–|—/g,'-').replace(/درجة|درجات|°|سم²|سم2|سم|راديان|راد/g,'').replace(/٫/g,'.').replace(/\s+/g,'').replace(/[()（）]/g,'');}
+function norm(s){return west(s).toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/باي|pi|π/g,'π').replace(/جذر|sqrt/g,'√').replace(/÷/g,'/').replace(/×/g,'*').replace(/[−–—]/g,'-').replace(/درجة|درجات|°|سم²|سم2|سم|راديان|راد/g,'').replace(/٫/g,'.').replace(/\s+/g,'').replace(/[()]/g,'');}
 function joined(id){return (document.getElementById(id)||{}).value||'';}
 function closeEnough(v,t,rel=0.015){const n=parseFloat(west(String(v)).replace(/[^\d.\-]/g,''));const x=parseFloat(t);if(Number.isNaN(n)||Number.isNaN(x))return false;return Math.abs(n-x)<=Math.max(rel,Math.abs(x)*rel);}
 function ok(id,acc,numeric=null){const v=norm(joined(id));let good=acc.some(a=>v===norm(a)||(norm(a).length>=2&&v.includes(norm(a))));if(!good&&numeric!=null)good=closeEnough(v,numeric);const e=document.getElementById('m-'+id);e.textContent=good?'✅':'❌';e.style.color=good?'#2E8B57':'#C0392B';}
 function score(){let c=0,t=0;document.querySelectorAll('[id^=m-]').forEach(e=>{t++;if(e.textContent==='✅')c++});document.getElementById('sc').textContent=arn(c)+' / '+arn(t);}
 function piForms(num,den){if(den===1)return [num+'π','π'+num];if(num===1)return ['π/'+den];return [num+'π/'+den,'π'+num+'/'+den];}
 function resetAll(){document.querySelectorAll('input').forEach(i=>i.value='');document.querySelectorAll('[id^=m-]').forEach(e=>e.textContent='');document.querySelectorAll('.reveal').forEach(e=>e.classList.remove('show'));score();}
-function chks1(){ok('s1',['9.49','٩.٤٩','3√10'],9.49);score()}
-function chks2(){ok('s2',['48.4','٤٨.٤'],48.4);score()}
-function chks3(){ok('s3',['11.3','١١.٣'],11.3);score()}
-function chks4(){ok('s4',piForms(9,2).concat(['4.5π','14.1','١٤.١']),14.1);score()}
-function chks5(){ok('s5',['2.54','٢.٥٤'],2.54);score()}
-function chks6(){ok('s6',['7.23','٧.٢٣','7.2'],7.23);score()}
-function chks7(){ok('s7a',['π/2','π٢/٢','pi/2','نعم']);ok('s7b',['2.31','٢.٣١'],2.31);score()}
-function chks8(){ok('s8a',piForms(1,8).concat(['π/8']));ok('s8b',['10+25π/4','١٠+٢٥π/٤','10+6.25π']);score()}
-function chks9(){ok('s9a',piForms(2,1).concat(['2π','٢π']));ok('s9b',['2(π-√3)','٢(π-√٣)','2π-2√3']);score()}
-function chks10(){ok('s10a',['3r-r^2','3نق-نق^2','٣نق-نق²','3نق-نق²']);ok('s10b',['3/2','1.5','١.٥','٣/٢'],1.5);ok('s10c',['2','٢'],2);score()}
+function chks1(){ok('s1',['9.49','3√10'],9.49);score()}
+function chks2(){ok('s2',['48.4'],48.4);score()}
+function chks3(){ok('s3',['11.3'],11.3);score()}
+function chks4(){ok('s4',piForms(9,2).concat(['4.5π','14.1']),14.1);score()}
+function chks5(){ok('s5',['2.54'],2.54);score()}
+function chks6(){ok('s6',['7.23','7.2'],7.23);score()}
+function chks7(){ok('s7a',['π/2','pi/2']);ok('s7b',['2.31'],2.31);score()}
+function chks8(){ok('s8a',piForms(1,8).concat(['π/8']));ok('s8b',['10+25π/4','10+6.25π']);score()}
+function chks9(){ok('s9a',piForms(2,1).concat(['2π']));ok('s9b',['2(π-√3)','2π-2√3']);score()}
+function chks10(){ok('s10a',['3r-r^2','3نق-نق^2','3نق-نق²']);ok('s10b',['3/2','1.5'],1.5);ok('s10c',['2'],2);score()}
 score();
 </script></body></html>
