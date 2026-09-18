@@ -67,17 +67,12 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 <div class="field"><label id="idLab">رقم الطالب</label><input id="sid" inputmode="numeric"></div>
 <div class="field"><label>الرقم السري</label><input id="pin" type="password"></div>
 <button class="go" id="loginBtn">دخول</button><div class="err" id="err">رقم غير صحيح</div>
-<div class="hint" id="hint">تُتحقق الأرقام من Firebase • احتياطي طالب: ١٠٠١ / ١٢٣٤</div></div></section>
+<div class="hint" id="hint">تُتحقق الأرقام من مشروع grade12platform • احتياطي طالب: ١٠٠١ / ١٢٣٤</div></div></section>
 <section class="app hidden" id="app">
-<nav class="nav">
-<button class="on" data-view="home">الرئيسية</button>
-<button data-view="book">كتاب النشاط</button>
-<button id="out">خروج</button>
-</nav>
+<nav class="nav"><button class="on" data-view="home">الرئيسية</button><button data-view="book">كتاب النشاط</button><button id="out">خروج</button></nav>
 <div class="top" id="topBar"><div class="brand"><div class="logo">⟩</div><div><h2>رابط المسائل</h2><small id="who">القياس الدائري</small></div></div>
 <div class="actions"><button class="b1" id="btnSearch">بحث</button><button class="b1 hidden" id="btnCodes">الأرقام</button><button class="b2 hidden" id="btnAdd">إضافة</button></div></div>
-<div id="view-home" class="view on">
-<div class="stats">
+<div id="view-home" class="view on"><div class="stats">
 <div class="stat"><div><b id="nTan">٠</b><span>تنويع</span></div><div class="ico g">▤</div></div>
 <div class="stat"><div><b id="nNew">٠</b><span>جديدة</span></div><div class="ico y">★</div></div>
 <div class="stat"><div><b id="nIdea">٠</b><span>أفكار</span></div><div class="ico l">💡</div></div>
@@ -88,42 +83,26 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 </section>
 <div class="pop hidden" id="pop"><div class="qcard" id="popCard"></div></div>
 <div class="mask hidden" id="addM"><div class="sheet">
-<div class="row"><h3>إضافة مسألة</h3><button class="x" data-close="addM">×</button></div>
-<div class="grid2">
-<div class="field"><label>الوحدة</label><select id="punit"><option>الوحدة الأولى: القياس الدائري</option></select></div>
-<div class="field"><label>الدرس</label><select id="plesson"><option value="1-1">١-١ الراديان</option><option value="1-2">١-٢ طول القوس</option><option value="1-3">١-٣ مساحة القطاع الدائري</option></select></div>
-</div>
+<div class="row"><h3>إضافة مسألة</h3><button class="x" data-close="addM">	imes</button></div>
+<div class="grid2"><div class="field"><label>الوحدة</label><select id="punit"><option>الوحدة الأولى: القياس الدائري</option></select></div>
+<div class="field"><label>الدرس</label><select id="plesson"><option value="1-1">١-١ الراديان</option><option value="1-2">١-٢ طول القوس</option><option value="1-3">١-٣ مساحة القطاع الدائري</option></select></div></div>
 <div class="field"><label>نص المسألة</label><textarea class="area" id="ptxt" maxlength="300"></textarea><div class="cnt"><span id="pcnt">٠</span> / ٣٠٠</div></div>
-<div class="chips">
-<button type="button" class="chip" data-idea="تحويل درجة إلى راديان">تحويل درجة إلى راديان</button>
-<button type="button" class="chip" data-idea="تحويل راديان إلى درجة">تحويل راديان إلى درجة</button>
-<button type="button" class="chip" data-idea="طول القوس">طول القوس</button>
-<button type="button" class="chip" data-idea="مساحة القطاع">مساحة القطاع</button>
-</div>
+<div class="chips"><button type="button" class="chip" data-idea="تحويل درجة إلى راديان">تحويل درجة إلى راديان</button><button type="button" class="chip" data-idea="تحويل راديان إلى درجة">تحويل راديان إلى درجة</button><button type="button" class="chip" data-idea="طول القوس">طول القوس</button><button type="button" class="chip" data-idea="مساحة القطاع">مساحة القطاع</button></div>
 <label class="drop">ارفع صورة المسألة<input type="file" id="pimg" accept="image/*"></label>
 <img id="pprev" class="qimg hidden" alt="">
-<div class="grid2">
-<div class="field"><label>الفكرة</label><input id="pidea"></div>
-<div class="field"><label>المعطيات</label><input id="pgiven"></div>
-<div class="field"><label>الخطوات</label><input id="psteps"></div>
-<div class="field"><label>المطلوب</label><input id="preq"></div>
-</div>
+<div class="grid2"><div class="field"><label>الفكرة</label><input id="pidea"></div><div class="field"><label>المعطيات</label><input id="pgiven"></div><div class="field"><label>الخطوات</label><input id="psteps"></div><div class="field"><label>المطلوب</label><input id="preq"></div></div>
 <label class="chk"><input type="checkbox" id="pnew"> هذه فكرة جديدة</label>
-<div class="foot"><button class="gray" data-close="addM">إلغاء</button><button class="b2" id="save">حفظ</button></div>
-</div></div>
+<div class="foot"><button class="gray" data-close="addM">إلغاء</button><button class="b2" id="save">حفظ</button></div></div></div>
 <div class="mask hidden" id="codesM"><div class="sheet">
-<div class="row"><h3>الأرقام السرية (Firebase)</h3><button class="x" data-close="codesM">×</button></div>
-<p class="hint" style="text-align:right;margin:0 0 10px">تُحفظ في مجموعة <b>rabtCodes</b>.</p>
-<div class="grid2">
-<div class="field"><label>الرقم</label><input id="cid" inputmode="numeric"></div>
-<div class="field"><label>الرقم السري</label><input id="cpin" inputmode="numeric"></div>
-</div>
+<div class="row"><h3>الأرقام السرية (grade12platform)</h3><button class="x" data-close="codesM">	imes</button></div>
+<p class="hint" style="text-align:right;margin:0 0 10px">مشروع Firebase: <b>grade12platform</b></p>
+<div class="grid2"><div class="field"><label>الرقم</label><input id="cid" inputmode="numeric"></div><div class="field"><label>الرقم السري</label><input id="cpin" inputmode="numeric"></div></div>
 <div class="field"><label>الصفة</label><select id="crole"><option value="student">طالب</option><option value="teacher">معلم</option></select></div>
 <div class="foot"><button class="gray" data-close="codesM">إغلاق</button><button class="b2" id="saveCode">حفظ في Firebase</button></div>
-<div id="codeList" style="margin-top:12px;font-size:13px;line-height:1.9"></div>
-</div></div>
+<div id="codeList" style="margin-top:12px;font-size:13px;line-height:1.9"></div></div></div>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
 <script src="questions-data.js"></script>
 <script src="questions-l23.js"></script>
 <script>
@@ -133,12 +112,15 @@ const en=s=>String(s).replace(/[٠-٩]/g,d=>AR.indexOf(d));
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 const KEY='rabt-items-v6';
 let IMG='', IS_TEACHER=false;
-const FB_CFG={apiKey:"AIzaSyCEqpctjEqvOLekfR3fs7A8qwa2V7AXFu8",authDomain:"onlineclass-d632d.firebaseapp.com",projectId:"onlineclass-d632d",storageBucket:"onlineclass-d632d.firebasestorage.app",messagingSenderId:"225216144640",appId:"1:225216144640:web:bcc755411c6c1ff2d6bfe5"};
+const FB_CFG=Object.assign({apiKey:"",authDomain:"grade12platform.firebaseapp.com",projectId:"grade12platform",storageBucket:"grade12platform.firebasestorage.app",messagingSenderId:"",appId:""}, window.FIREBASE_CONFIG||{});
 const FALLBACK={students:{'1001':'1234'},teachers:{'9001':'2468'}};
 let fbDb=null, CODES=JSON.parse(JSON.stringify(FALLBACK));
-function initFb(){try{if(!window.firebase)return;if(!firebase.apps.length)firebase.initializeApp(FB_CFG);fbDb=firebase.firestore();loadCodes();}catch(e){console.warn(e)}}
-async function loadCodes(){if(!fbDb)return;try{const snap=await fbDb.collection('rabtCodes').get();if(snap.empty){await fbDb.collection('rabtCodes').doc('1001').set({pin:'1234',role:'student'});await fbDb.collection('rabtCodes').doc('9001').set({pin:'2468',role:'teacher'});return;}const st={},te={};snap.forEach(d=>{const x=d.data()||{};const pin=String(x.pin||'').trim();if(!pin)return;if((x.role||'student')==='teacher')te[d.id]=pin;else st[d.id]=pin;});if(Object.keys(st).length)CODES.students=st;if(Object.keys(te).length)CODES.teachers=te;}catch(e){console.warn(e)}}
-async function saveCodeDoc(id,pin,role){if(!fbDb)throw new Error('no');await fbDb.collection('rabtCodes').doc(String(id)).set({pin:String(pin),role:role,updated:Date.now()});await loadCodes();}
+function initFb(){try{if(!window.firebase)return;if(!FB_CFG.apiKey||String(FB_CFG.apiKey).indexOf('PASTE')===0){console.warn('ضع apiKey لمشروع grade12platform');return;}if(!firebase.apps.length)firebase.initializeApp(FB_CFG);fbDb=firebase.firestore();loadCodes();}catch(e){console.warn(e)}}
+function pinOf(x){x=x||{};return String(x.pin||x.password||x.code||x.secret||x.pass||'').trim()}
+function isTeacher(x){const r=String((x&&(x.role||x.type||x.kind))||'').toLowerCase();return r==='teacher'||r==='admin'||r==='معلم'||x&&x.isTeacher===true}
+async function ingestSnap(snap,st,te){if(!snap||snap.empty)return;snap.forEach(d=>{const x=d.data()||{};const pin=pinOf(x);if(!pin)return;if(isTeacher(x)) te[d.id]=pin; else st[d.id]=pin;});}
+async function loadCodes(){if(!fbDb)return;try{const st={},te={};for(const n of ['rabtCodes','students','teachers','users','codes','grade12','g12']){try{await ingestSnap(await fbDb.collection(n).get(),st,te);}catch(e){}}if(!Object.keys(st).length&&!Object.keys(te).length){await fbDb.collection('rabtCodes').doc('1001').set({pin:'1234',role:'student',platform:'grade12platform'});await fbDb.collection('rabtCodes').doc('9001').set({pin:'2468',role:'teacher',platform:'grade12platform'});st['1001']='1234';te['9001']='2468';}if(Object.keys(st).length)CODES.students=st;if(Object.keys(te).length)CODES.teachers=te;}catch(e){console.warn(e)}}
+async function saveCodeDoc(id,pin,role){if(!fbDb)throw new Error('no');await fbDb.collection('rabtCodes').doc(String(id)).set({pin:String(pin),role:role,platform:'grade12platform',updated:Date.now()});await loadCodes();}
 function listCodesHtml(){const rows=[];Object.keys(CODES.students).forEach(id=>rows.push('طالب '+id+' / '+CODES.students[id]));Object.keys(CODES.teachers).forEach(id=>rows.push('معلم '+id+' / '+CODES.teachers[id]));return rows.join('<br>')||'لا توجد أرقام';}
 const UNIT={title:'الوحدة الأولى: القياس الدائري', lessons:[{id:'1-1',title:'١-١ الراديان',page:'١١'},{id:'1-2',title:'١-٢ طول القوس',page:'١٥'},{id:'1-3',title:'١-٣ مساحة القطاع الدائري',page:'١٨'}]};
 function F(a,b){return '<span class="frac"><span class="num">'+a+'</span><span class="den">'+b+'</span></span>'}
@@ -154,14 +136,14 @@ function showView(name){$$('.view').forEach(v=>v.classList.remove('on'));$('#vie
 function showQ(p){const neu=p.type==='idea';const card=$('#popCard');card.className='qcard'+(neu?' gold':'');card.innerHTML='<div class="qhead"><span class="kindtag '+(neu?'n':'t')+'">'+(neu?'★ فكرة جديدة':'تنويع')+'</span><div style="display:flex;gap:8px;align-items:center"><small>سؤال '+p.ex+' — '+p.letter+'</small><button class="x" id="popX">×</button></div></div>'+(p.img?'<img class="qimg" src="'+p.img+'">':'')+'<div class="qtxt">'+fracify(p.text)+'</div><div class="slots"><button type="button" class="slot s-idea" data-k="idea">الفكرة</button><button type="button" class="slot s-given" data-k="given">المعطيات</button><button type="button" class="slot s-steps" data-k="steps">الخطوات</button><button type="button" class="slot s-req" data-k="req">المطلوب</button></div><div class="slotbox hidden" id="slotBox"></div>';const map={idea:[fracify(p.idea||'—'),'idea'],given:[fracify(givenOf(p)),'given'],steps:[fracify(p.steps||'—'),'steps'],req:[fracify(p.required||'—'),'req']};const titles={idea:'الفكرة',given:'المعطيات',steps:'الخطوات',req:'المطلوب'};const box=$('#slotBox');card.querySelectorAll('.slot').forEach(s=>s.onclick=()=>{const on=s.classList.contains('on');card.querySelectorAll('.slot').forEach(x=>x.classList.remove('on'));if(on){box.classList.add('hidden');return}s.classList.add('on');box.classList.remove('hidden');const k=s.dataset.k;box.className='slotbox '+map[k][1];box.innerHTML='<b>'+titles[k]+'</b><br>'+map[k][0];});$('#popX').onclick=()=>$('#pop').classList.add('hidden');$('#pop').classList.remove('hidden');}
 function render(){const items=load();stats(items);let html='<details class="acc" open><summary><span>'+UNIT.title+'</span><span class="badge">'+toAr(items.length)+'</span></summary>';UNIT.lessons.forEach((ls,i)=>{const arr=items.filter(p=>(p.lesson||'1-1')===ls.id);html+='<details class="acc ls"'+(i===0?' open':'')+'><summary><span>'+ls.title+'</span><small>ص '+ls.page+'</small></summary>';if(!arr.length) html+='<div class="empty">لا توجد أفكار بعد</div>';else{const ideas=new Map();arr.forEach(p=>{const k=p.idea||'بدون فكرة';if(!ideas.has(k))ideas.set(k,[]);ideas.get(k).push(p)});ideas.forEach((qs,idea)=>{html+='<details class="acc id"><summary><span>'+fracify(idea)+'</span><span class="badge">'+toAr(qs.length)+'</span></summary><div class="qlist">';qs.forEach(p=>{html+='<button type="button" class="qnum" data-id="'+p.id+'">سؤال '+p.ex+' — '+(p.letter||'—')+'</button>';});html+='</div></details>';});}html+='</details>';});html+='</details>';$('#homeCards').innerHTML=html;$$('#homeCards .qnum').forEach(b=>b.onclick=()=>{const p=load().find(x=>String(x.id)===b.dataset.id);if(p)showQ(p)});}
 function enterApp(){$('#login').classList.add('hidden');$('#app').classList.remove('hidden');if(IS_TEACHER){$('#btnAdd').classList.remove('hidden');$('#btnCodes').classList.remove('hidden');$('#who').textContent='حساب المعلم'}else{$('#btnAdd').classList.add('hidden');$('#btnCodes').classList.add('hidden');$('#who').textContent='حساب الطالب'}showView('home');render()}
-$('#role').onchange=()=>{const t=$('#role').value==='teacher';$('#idLab').textContent=t?'رقم المعلم':'رقم الطالب';$('#hint').textContent=t?'معلم: ٩٠٠١ / ٢٤٦٨':'تُتحقق الأرقام من Firebase • احتياطي طالب: ١٠٠١ / ١٢٣٤'};
+$('#role').onchange=()=>{const t=$('#role').value==='teacher';$('#idLab').textContent=t?'رقم المعلم':'رقم الطالب';$('#hint').textContent=t?'معلم: ٩٠٠١ / ٢٤٦٨':'تُتحقق الأرقام من مشروع grade12platform'};
 $('#loginBtn').onclick=async()=>{const id=en($('#sid').value.trim()),pin=en($('#pin').value.trim()),role=$('#role').value;$('#err').style.display='none';if(!id||!pin){$('#err').style.display='block';return}await loadCodes();const map=role==='teacher'?CODES.teachers:CODES.students;if(map[id]!==pin){$('#err').style.display='block';return}IS_TEACHER=role==='teacher';enterApp();};
 $('#pin').addEventListener('keydown',e=>{if(e.key==='Enter')$('#loginBtn').click()});
 $$('nav [data-view]').forEach(b=>b.onclick=()=>showView(b.dataset.view));
 $('#out').onclick=()=>{IS_TEACHER=false;$('#btnAdd').classList.add('hidden');$('#btnCodes').classList.add('hidden');$('#app').classList.add('hidden');$('#login').classList.remove('hidden')};
 $('#btnAdd').onclick=()=>{if(!IS_TEACHER){toast('الإضافة للمعلم فقط');return}openM('addM')};
 $('#btnCodes').onclick=()=>{if(!IS_TEACHER)return;$('#codeList').innerHTML=listCodesHtml();openM('codesM')};
-$('#saveCode').onclick=async()=>{const id=en($('#cid').value.trim()),pin=en($('#cpin').value.trim()),role=$('#crole').value;if(!id||!pin){toast('أدخل الرقم والسرّي');return}try{await saveCodeDoc(id,pin,role);$('#codeList').innerHTML=listCodesHtml();toast('حُفظ في Firebase')}catch(e){toast('تعذر الحفظ. افتح قواعد Firestore لـ rabtCodes')}};
+$('#saveCode').onclick=async()=>{const id=en($('#cid').value.trim()),pin=en($('#cpin').value.trim()),role=$('#crole').value;if(!id||!pin){toast('أدخل الرقم والسرّي');return}try{await saveCodeDoc(id,pin,role);$('#codeList').innerHTML=listCodesHtml();toast('حُفظ في grade12platform')}catch(e){toast('تعذر الحفظ. راجع قواعد Firestore')}};
 $$('[data-close]').forEach(b=>b.onclick=()=>closeM(b.dataset.close));
 $('#pop').onclick=e=>{if(e.target.id==='pop')$('#pop').classList.add('hidden')};
 $('#ptxt').addEventListener('input',()=>{$('#pcnt').textContent=toAr($('#ptxt').value.length)});
