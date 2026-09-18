@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="ar" dir="rtl"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>الرياضيات المتقدمة — الثاني عشر</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&display=swap" rel="stylesheet">
 <style>
@@ -50,8 +50,6 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 .frac .num{border-bottom:1.6px solid currentColor;padding:0 4px 1px;font-size:.86em}.frac .den{padding:1px 4px 0;font-size:.86em}
 .nav{position:fixed;bottom:58px;right:0;left:0;background:#fbf8f1;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:10px 6px 12px;z-index:30}
 .nav button{border:0;background:0;font-weight:800;color:#5b6a80;padding:8px}.nav button.on{color:var(--navy)}
-.book{height:calc(100dvh - 170px);border:1px solid #eee4d0;border-radius:16px;overflow:hidden;background:#fff}
-.book iframe{width:100%;height:100%;border:0}
 .mask{position:fixed;inset:0;background:rgba(20,30,48,.35);display:grid;place-items:center;padding:12px;z-index:40}
 .sheet{width:min(430px,100%);max-height:92dvh;overflow:auto;background:#fffcf7;border-radius:22px;padding:16px}
 .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
@@ -75,7 +73,7 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 <button class="go" id="loginBtn">دخول</button><div class="err" id="err">بيانات غير صحيحة</div>
 <div class="hint">الاسم + البريد + كلمة المرور</div></div></section>
 <section class="app hidden" id="app">
-<nav class="nav"><button class="on" data-view="home">الرئيسية</button><button data-view="book">كتاب النشاط</button><button id="out">خروج</button></nav>
+<nav class="nav"><button class="on" data-view="home">الرئيسية</button><button id="out">خروج</button></nav>
 <div class="top" id="topBar"><div class="brand"><div class="logo"><img alt="SMB"></div><div><h2>الرياضيات المتقدمة</h2><small>الثاني عشر — أ. قحطان الرحبي</small><small id="who">Smartmathbook.com</small></div></div>
 <div class="actions"><button class="b1" id="btnSearch">بحث</button><button class="b2 hidden" id="btnAdd">إضافة</button></div></div>
 <div id="view-home" class="view on"><div class="stats">
@@ -85,7 +83,6 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 <div class="stat"><div><b id="nAll">٠</b><span>مسائل</span></div><div class="ico bl">📋</div></div></div>
 <div class="hrow"><strong>الوحدة — الدرس — الفكرة — رقم السؤال</strong><span class="badge" id="nBadge">٠</span></div>
 <div id="homeCards"></div></div>
-<div id="view-book" class="view"><div class="book"><iframe id="bookFrame" src="activity.html?v=3" title="book"></iframe></div></div>
 </section>
 <div class="pop hidden" id="pop"><div class="qcard" id="popCard"></div></div>
 <div class="mask hidden" id="addM"><div class="sheet">
