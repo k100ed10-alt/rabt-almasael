@@ -14,7 +14,7 @@ h1{font-size:22px;color:var(--navy);margin-bottom:6px}
 .sub{font-size:13px;color:#5b6a80;margin-bottom:14px}
 .field{margin-bottom:10px}
 label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}
-input,select{width:100%;height:44px;border:1px solid #e2d7bf;border-radius:12px;padding:0 12px;font-size:15px;font-family:inherit}
+input{width:100%;height:44px;border:1px solid #e2d7bf;border-radius:12px;padding:0 12px;font-size:15px;font-family:inherit}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .go{width:100%;height:48px;border:0;border-radius:12px;background:var(--navy);color:#fff;font-weight:800;font-size:16px;margin-top:6px}
 .ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
@@ -25,7 +25,6 @@ input,select{width:100%;height:44px;border:1px solid #e2d7bf;border-radius:12px;
 .card b{display:block;color:var(--navy)}
 .card button{margin-top:8px;height:32px;border:0;border-radius:8px;padding:0 10px;background:#eaf2ff;color:#1d4f9a;font-weight:800}
 .hint{background:#f7f1e4;border-radius:10px;padding:10px;font-size:13px;color:#5b6a80;margin-top:10px}
-a{color:var(--navy);font-weight:800}
 </style>
 </head>
 <body>
@@ -37,8 +36,7 @@ a{color:var(--navy);font-weight:800}
 <button class="go" id="tlogin">دخول</button>
 <div class="err" id="gerr"></div>
 </div>
-
-<div class="box hidden" id="app" style="display:none">
+<div class="box" id="app" style="display:none">
 <h1>توليد بريد طالب</h1>
 <p class="sub">يُنشأ حساب Firebase ويُحفظ الرقم مع البريد</p>
 <div class="row">
@@ -56,69 +54,23 @@ a{color:var(--navy);font-weight:800}
 <div class="err" id="err"></div>
 <div class="ok" id="ok"></div>
 <div class="list" id="list"></div>
-<p class="hint">صيغة البريد: رقم@students.grade12platform.app<br>مثال 1001 → <b dir="ltr">1001@students.grade12platform.app</b><br>
-<a href="index.html">العودة لرابط المسائل</a></p>
+<p class="hint">صيغة البريد: الرمز@student.hassad.om<br>مثال: 1001@student.hassad.om</p>
 </div>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="js/firebase-config.js"></script>
 <script>
+const CFG={apiKey:"AIzaSyBFCOFMb987uFI_qm-1P4M10Expb3mrG1g",authDomain:"grade12platform.firebaseapp.com",projectId:"grade12platform",storageBucket:"grade12platform.firebasestorage.app",messagingSenderId:"359958230567",appId:"1:359958230567:web:194a70d7552592c5680002"};
 const $=s=>document.querySelector(s);
-const CFG=window.FIREBASE_CONFIG;
 let db, auth, genApp;
-function mailOf(n){return String(n).trim()+'@students.grade12platform.app'}
+function mailOf(n){return String(n).trim()+'@student.hassad.om'}
 function show(el,t){el.style.display='block';el.textContent=t}
 function hide(el){el.style.display='none'}
-function init(){
-  if(!firebase.apps.length) firebase.initializeApp(CFG);
-  auth=firebase.auth(); db=firebase.firestore();
-  genApp=firebase.apps.find(a=>a.name==='gen')||firebase.initializeApp(CFG,'gen');
-}
-async function createOne(num,name,pass){
-  const email=mailOf(num);
-  try{
-    await genApp.auth().createUserWithEmailAndPassword(email,pass);
-  }catch(e){
-    if(e.code!=='auth/email-already-in-use') throw e;
-  }
-  try{await genApp.auth().signOut()}catch(_){}
-  await db.collection('users').doc(String(num)).set({
-    number:String(num), email, name:name||'', role:'student', passHint:pass, updated:Date.now()
-  },{merge:true});
-  return {num,email,pass,name};
-}
-function addCard(x){
-  const d=document.createElement('div'); d.className='card';
-  d.innerHTML='<b>طالب '+x.num+(x.name?' — '+x.name:'')+'</b>البريد: <span dir="ltr">'+x.email+'</span><br>كلمة المرور: '+x.pass;
-  const b=document.createElement('button'); b.textContent='نسخ البيانات';
-  b.onclick=()=>navigator.clipboard.writeText('الرقم: '+x.num+'\nالبريد: '+x.email+'\nكلمة المرور: '+x.pass);
-  d.appendChild(b); $('#list').prepend(d);
-}
-$('#tlogin').onclick=async()=>{
-  hide($('#gerr')); init();
-  try{
-    await auth.signInWithEmailAndPassword($('#temail').value.trim(), $('#tpass').value);
-    $('#gate').style.display='none'; $('#app').style.display='block';
-  }catch(e){ show($('#gerr'), 'تعذر دخول المعلم'); }
-};
-$('#one').onclick=async()=>{
-  hide($('#err')); hide($('#ok'));
-  const num=$('#num').value.trim(), pass=$('#spass').value.trim()||'123456';
-  if(!num){show($('#err'),'اكتب رقم الطالب');return}
-  try{const x=await createOne(num,$('#name').value.trim(),pass); addCard(x); show($('#ok'),'تم توليد: '+x.email);}catch(e){show($('#err'), e.message||'تعذر الإنشاء')}
-};
-$('#many').onclick=async()=>{
-  hide($('#err')); hide($('#ok'));
-  const a=parseInt($('#from').value,10), b=parseInt($('#to').value,10), pass=$('#spass').value.trim()||'123456';
-  if(!a||!b||b<a){show($('#err'),'أدخل نطاق أرقام صحيح');return}
-  if(b-a>40){show($('#err'),'الحد الأقصى 40 طالبًا في المرة');return}
-  let n=0;
-  for(let i=a;i<=b;i++){
-    try{const x=await createOne(String(i),'',pass); addCard(x); n++}catch(e){console.warn(i,e)}
-  }
-  show($('#ok'),'تم توليد '+n+' حسابًا');
-};
+function init(){if(!firebase.apps.length) firebase.initializeApp(CFG);auth=firebase.auth(); db=firebase.firestore();genApp=firebase.apps.find(a=>a.name==='gen')||firebase.initializeApp(CFG,'gen');}
+async function createOne(num,name,pass){const email=mailOf(num);try{await genApp.auth().createUserWithEmailAndPassword(email,pass);}catch(e){if(e.code!=='auth/email-already-in-use') throw e;}try{await genApp.auth().signOut()}catch(_){}await db.collection('users').doc(String(num)).set({number:String(num), email, name:name||'', role:'student', passHint:pass, updated:Date.now()},{merge:true});return {num,email,pass,name};}
+function addCard(x){const d=document.createElement('div'); d.className='card';d.innerHTML='<b>طالب '+x.num+(x.name?' — '+x.name:'')+'</b>البريد: <span dir="ltr">'+x.email+'</span><br>كلمة المرور: '+x.pass;const b=document.createElement('button'); b.textContent='نسخ البيانات';b.onclick=()=>navigator.clipboard.writeText('الرقم: '+x.num+'\nالبريد: '+x.email+'\nكلمة المرور: '+x.pass);d.appendChild(b); $('#list').prepend(d);}
+$('#tlogin').onclick=async()=>{hide($('#gerr')); init();try{await auth.signInWithEmailAndPassword($('#temail').value.trim(), $('#tpass').value);$('#gate').style.display='none'; $('#app').style.display='block';}catch(e){ show($('#gerr'), 'تعذر دخول المعلم'); }};
+$('#one').onclick=async()=>{hide($('#err')); hide($('#ok'));const num=$('#num').value.trim(), pass=$('#spass').value.trim()||'123456';if(!num){show($('#err'),'اكتب رقم الطالب');return}try{const x=await createOne(num,$('#name').value.trim(),pass); addCard(x); show($('#ok'),'تم توليد: '+x.email);}catch(e){show($('#err'), e.message||'تعذر الإنشاء')}};
+$('#many').onclick=async()=>{hide($('#err')); hide($('#ok'));const a=parseInt($('#from').value,10), b=parseInt($('#to').value,10), pass=$('#spass').value.trim()||'123456';if(!a||!b||b<a){show($('#err'),'أدخل نطاق أرقام صحيح');return}if(b-a>40){show($('#err'),'الحد الأقصى 40 طالبًا في المرة');return}let n=0;for(let i=a;i<=b;i++){try{const x=await createOne(String(i),'',pass); addCard(x); n++}catch(e){console.warn(i,e)}}show($('#ok'),'تم توليد '+n+' حسابًا');};
 </script>
 </body></html>
