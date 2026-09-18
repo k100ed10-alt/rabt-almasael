@@ -6,13 +6,15 @@
 <style>
 :root{--navy:#163056;--teal:#2a7a86;--bg:#f3eee4;--line:#e6dcc8}
 *{box-sizing:border-box;margin:0;padding:0}body{background:var(--bg);font-family:Cairo,Tahoma,sans-serif;color:#1c2d4a;padding:14px 12px 24px}
-h1{color:var(--teal);font-size:26px;margin:4px 2px 14px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+h1{color:var(--teal);font-size:26px;margin:0}
+.home{text-decoration:none;color:var(--navy);font-weight:800;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;flex:0 0 auto}
 .unit{background:#fff;border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden}
 .unit h2{background:#eef6f6;color:var(--teal);font-size:16px;padding:12px 14px}
 .item{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:right;padding:12px 14px;border:0;border-top:1px solid #f1eadc;background:#fff;font:inherit;font-weight:800;color:var(--navy);cursor:pointer}
 .item:active{background:#f7f1e4}.page{color:#7a8494;font-size:13px;min-width:28px}
 </style></head><body>
-<h1>المحتويات</h1>
+<div class="top"><h1>المحتويات</h1><a class="home" href="index.html">الرئيسية</a></div>
 <div id="toc"></div>
 <script>
 const BOOK=[
@@ -60,7 +62,7 @@ BOOK.forEach(u=>{
   u.items.forEach(it=>{
     const b=document.createElement('button'); b.className='item'; b.type='button';
     b.innerHTML='<span>'+it.name+'</span><span class="page">'+it.page+'</span>';
-    b.onclick=()=>{location.href='lesson.html?id='+encodeURIComponent(it.id)+'&t=17'};
+    b.onclick=()=>{location.href='lesson.html?id='+encodeURIComponent(it.id)+'&t=18'};
     d.appendChild(b);
   });
   box.appendChild(d);
