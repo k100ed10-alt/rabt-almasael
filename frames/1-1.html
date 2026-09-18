@@ -1,25 +1,87 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>١-١ الراديان</title>
-<style>html,body{margin:0;height:100%;height:100dvh;background:#FBF6EC;overflow:hidden}iframe{width:100%;height:100%;border:0;display:block}</style>
-</head><body>
-<iframe id="fr" title="١-١"></iframe>
-<script src="../js/b64-1-1-1.js"></script>
-<script src="../js/b64-1-1-2.js"></script>
-<script src="../js/b64-1-1-3.js"></script>
-<script src="../js/b64-1-1-4.js"></script>
-<script src="../js/b64-1-1-5.js"></script>
-<script src="../js/b64-1-1-6.js"></script>
-<script src="../js/b64-1-1-7.js"></script>
-<script src="../js/b64-1-1-8.js"></script>
-<script src="../js/b64-1-1-9.js"></script>
-<script src="../js/b64-1-1-10.js"></script>
-<script src="../js/b64-1-1-11.js"></script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>تمارين ١-١ الراديان</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#FBF6EC;font-family:Tajawal,Cairo,sans-serif;color:#2B2320;padding:12px 12px 90px}
+.hero{text-align:center;padding:16px 8px 8px}h1{font-family:Cairo;margin:4px 0;color:#2B4570;font-size:1.35rem}
+.board{max-width:1040px;margin:10px auto;display:flex;justify-content:space-between;align-items:center;background:#fff;border:2px solid #2B2320;border-radius:14px;padding:10px 12px;font-family:Cairo;font-weight:800}
+.card,.formulas{background:#fff;border:2px solid #2B2320;border-radius:16px;padding:14px;margin:12px auto;max-width:1040px}
+.item{background:#FBF6EC;border:1.5px solid #e6d8c0;border-radius:12px;padding:10px;margin:8px 0}
+.q{font-weight:800;margin:0 0 8px}.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fin{display:inline-flex;flex-direction:column;align-items:center;width:min(100%,220px);background:#fff;border:1.5px solid #d7c9a6;border-radius:12px;padding:4px 8px}
+.fin input{width:100%;border:0;text-align:center;font:16px Cairo;padding:4px}.fin .line{width:100%;height:2px;background:#2B2320}
+input[type=text]{height:36px;border:1.5px solid #d7c9a6;border-radius:10px;text-align:center;font:16px Cairo;padding:6px}
+.tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tools button{font:800 14px Cairo;border:2px solid #2B2320;background:#fff;border-radius:10px;padding:7px 10px}
+.tools .p{background:#2B2320;color:#fff}
+.reveal{display:none;margin-top:8px;padding:10px;border-radius:10px;background:#fff6d8;line-height:1.8}.reveal.show{display:block}
+.grid{display:grid;gap:8px}.note{color:#5b5148;line-height:1.7}.mark{font-weight:800;margin-right:6px}
+.expr{display:inline-flex;flex-direction:column;align-items:center;font-family:Cairo;font-weight:800;margin:0 6px;direction:ltr;line-height:1.05}
+.expr .n{border-bottom:2px solid currentColor;padding:0 6px 1px}.expr .d{padding:1px 6px 0}
+.num{width:28px;height:28px;border-radius:50%;background:#2B4570;color:#fff;display:inline-flex;align-items:center;justify-content:center;margin-left:6px}
+</style></head><body>
+<div class="hero"><div>الوحدة الأولى • القياس الدائري</div>
+<h1>١-١ الراديان • تمارين تفاعلية</h1>
+<p class="note">حوّل بين الدرجة والراديان. الكسر: البسط فوق والمقام تحت. π عن يسار الرقم مثل π3.</p></div>
+<div class="board"><span>نتيجتك: <span id="sc">٠ / ٠</span></span><button onclick="resetAll()">إعادة تعيين</button></div>
+<section class="formulas"><h2><span class="num">π</span> القوانين</h2>
+<p>هـراد = هـ° × π ÷ ١٨٠ &nbsp;|&nbsp; هـ° = هـراد × ١٨٠ ÷ π &nbsp;|&nbsp; ١٨٠° = π &nbsp;|&nbsp; ٣٦٠° = ٢π</p>
+<div class="tools"><button type="button" onclick="insertAt('π')">π</button><button type="button" onclick="insertAt('√')">√</button><button type="button" onclick="insertAt('-')">−</button></div></section>
+<section class="card"><h2><span class="num">١</span> حوّل من الدرجات إلى الراديان بدلالة π</h2>
+<div class="grid" id="g1"></div>
+<div class="tools"><button class="p" onclick="chk1()">تحقّق</button><button onclick="tog('a1')">الإجابة</button></div>
+<div class="reveal" id="a1">π/٢ &nbsp; ٧π/٩ &nbsp; π/٤ &nbsp; π/٦ &nbsp; ٢π/٥ &nbsp; π/١٠ &nbsp; ٢π/٣ &nbsp; π/٨ &nbsp; ٤π &nbsp; ٧π/٣ &nbsp; ٣π/٢ &nbsp; π/١٨٠</div></section>
+<section class="card"><h2><span class="num">٢</span> حوّل من الراديان إلى درجات</h2>
+<div class="grid" id="g2"></div>
+<div class="tools"><button class="p" onclick="chk2()">تحقّق</button><button onclick="tog('a2')">الإجابة</button></div>
+<div class="reveal" id="a2">١٠° ٩° ٣٦° ٢٢.٥° ٢٠° ١٢٠° ١١٢.٥° ١٠٨° ٤° ١٠٨٠° −٩٠° ٥٠°</div></section>
+<section class="card"><h2><span class="num">٣</span> قيم مثلثية دقيقة</h2>
+<div class="grid" id="g3"></div>
+<div class="tools"><button class="p" onclick="chk3()">تحقّق</button><button onclick="tog('a3')">الإجابة</button></div>
+<div class="reveal" id="a3">√٣/٢ &nbsp; √٢/٢ &nbsp; ١/√٣ &nbsp; ٠ &nbsp; −√٢/٢ &nbsp; −√٣/٢ &nbsp; −√٣ &nbsp; √٣/٢</div></section>
+<section class="card"><h2><span class="num">٦</span> راديان → درجة (٣ أرقام معنوية)</h2>
+<div class="grid" id="g6"></div>
+<div class="tools"><button class="p" onclick="chk6()">تحقّق</button><button onclick="tog('a6')">الإجابة</button></div>
+<div class="reveal" id="a6">٨٥.٩° &nbsp; ١٢٦° &nbsp; ٦٠.٧° &nbsp; ١١١° &nbsp; ٣٩.٠°</div></section>
+<section class="card"><h2><span class="num">٧</span> جا / جتا / ظا</h2>
+<div class="grid" id="g7"></div>
+<div class="tools"><button class="p" onclick="chk7()">تحقّق</button><button onclick="tog('a7')">الإجابة</button></div>
+<div class="reveal" id="a7">٠.٩٣٢ &nbsp; ٠.٦٩٧ &nbsp; ٢.٥٧ &nbsp; ٠.٣٠٩ &nbsp; ٠.٨٠٩ &nbsp; −١</div></section>
+<section class="card"><h2><span class="num">٩</span> السلّم المائل</h2>
+<div class="grid" id="g9"></div>
+<div class="tools"><button class="p" onclick="chk9()">تحقّق</button><button onclick="tog('a9')">الإجابة</button></div>
+<div class="reveal" id="a9">س ≈ ١.١٩ راد &nbsp; ، &nbsp; غير آمن</div></section>
 <script>
-function b64ToUtf8(s){const bin=atob(s);const b=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)b[i]=bin.charCodeAt(i);return new TextDecoder('utf-8').decode(b)}
-const fr=document.getElementById('fr');
-if(window.B64_1_1) fr.srcdoc=b64ToUtf8(window.B64_1_1);
-else fr.srcdoc='<p style="font-family:Cairo,Tahoma;padding:24px;text-align:center">جاري تحميل ملف الدرس …</p>';
-</script>
-</body></html>
+const AR='٠١٢٣٤٥٦٧٨٩';
+const west=s=>String(s||'').replace(/[٠-٩]/g,d=>String(AR.indexOf(d)));
+const arn=n=>String(n).replace(/\d/g,d=>AR[d]);
+const tog=id=>document.getElementById(id).classList.toggle('show');
+let lastInput=null;
+document.addEventListener('focusin',e=>{if(e.target.matches('input[type=text]')) lastInput=e.target});
+function insertAt(ch){const el=lastInput||document.querySelector('input[type=text]');if(!el)return;el.value=(el.value||'')+ch;el.focus()}
+function norm(s){return west(s).toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/باي|pi|π/g,'π').replace(/جذر|sqrt/g,'√').replace(/÷/g,'/').replace(/×/g,'*').replace(/[−–—]/g,'-').replace(/درجة|درجات|°|راديان|راد/g,'').replace(/٫/g,'.').replace(/\s+/g,'').replace(/[()]/g,'').replace(/√(\d+)/g,'$1√')}
+function joined(id){const n=(document.getElementById(id+'n')||{}).value||'';const d=(document.getElementById(id+'d')||{}).value||'';const w=(document.getElementById(id)||{}).value||'';if(n&&d)return n+'/'+d;if(n&&!d)return n;return w}
+function closeEnough(v,t,rel=0.012){const n=parseFloat(west(String(v)).replace(/[^\d.\-]/g,''));const x=parseFloat(t);if(isNaN(n)||isNaN(x))return false;return Math.abs(n-x)<=Math.max(rel,Math.abs(x)*rel)}
+function ok(id,acc,numeric=null){const v=norm(joined(id));let good=acc.some(a=>v===norm(a)||(norm(a).length>=2&&v.includes(norm(a))));if(!good&&numeric!=null)good=closeEnough(v,numeric);const e=document.getElementById('m-'+id);if(e){e.textContent=good?'\u2705':'\u274c';e.style.color=good?'#2E8B57':'#C0392B'}}
+function score(){let c=0,t=0;document.querySelectorAll('[id^=m-]').forEach(e=>{t++;if(e.textContent==='\u2705')c++});document.getElementById('sc').textContent=arn(c)+' / '+arn(t)}
+function frac(n,d){return '<span class="expr"><span class="n">'+n+'</span><span class="d">'+d+'</span></span>'}
+function field(id,label){return '<div class="item"><div class="q">'+label+'</div><div class="row"><div class="fin"><input type="text" id="'+id+'n" placeholder="البسط"><div class="line"></div><input type="text" id="'+id+'d" placeholder="المقام"></div><span class="mark" id="m-'+id+'"></span></div></div>'}
+function piForms(num,den){if(den===1)return num===1?['π','1π']: [num+'π','π'+num,num+'*π'];if(num===1)return ['π/'+den];return [num+'π/'+den,'π'+num+'/'+den]}
+document.getElementById('g1').innerHTML=[['q1a','أ) ٩٠°'],['q1b','ب) ١٤٠°'],['q1c','ج) ٤٥°'],['q1d','د) ٣٠°'],['q1e','هـ) ٧٢°'],['q1f','و) ١٨°'],['q1g','ز) ١٢٠°'],['q1h','ح) ٢٢½°'],['q1i','ط) ٧٢٠°'],['q1j','ي) ٤٢٠°'],['q1k','ك) ٢٧٠°'],['q1l','ل) ١°']].map(([id,l])=>field(id,l)).join('');
+document.getElementById('g2').innerHTML=[['q2a','أ) π/١٨'],['q2b','ب) π/٢٠'],['q2c','ج) π/٥'],['q2d','د) π/٨'],['q2e','هـ) π/٩'],['q2f','و) ٢π/٣'],['q2g','ز) ٥π/٨'],['q2h','ح) ٣π/٥'],['q2i','ط) π/٤٥'],['q2j','ي) ٦π'],['q2k','ك) −π/٢'],['q2l','ل) ٥π/١٨']].map(([id,l])=>field(id,l)).join('');
+document.getElementById('g3').innerHTML=[['q3a','أ) جا '+frac('π','٣')],['q3b','ب) جتا '+frac('π','٤')],['q3c','ج) ظا '+frac('π','٦')],['q3d','د) جتا '+frac('π3','٢')],['q3e','هـ) جا '+frac('π7','٤')],['q3f','و) جتا '+frac('π7','٦')],['q3g','ز) ظا '+frac('π5','٣')],['q3h','ح) جا '+frac('π2','٣')]].map(([id,l])=>field(id,l)).join('');
+document.getElementById('g6').innerHTML=[['q6a','أ) ١.٥ راد'],['q6b','ب) ٢.٢ راد'],['q6c','ج) ١.٠٦ راد'],['q6d','د) ١.٩٣ راد'],['q6e','هـ) ٠.٦٨ راد']].map(([id,l])=>field(id,l)).join('');
+document.getElementById('g7').innerHTML=[['q7a','أ) جا ١.٢'],['q7b','ب) جتا ٠.٨'],['q7c','ج) ظا ١.٢'],['q7d','د) جا '+frac('π','١٠')],['q7e','هـ) جتا '+frac('π','٥')],['q7f','و) ظا '+frac('π3','٤')]].map(([id,l])=>field(id,l)).join('');
+document.getElementById('g9').innerHTML=field('q9s','قيمة س بالراديان ≈')+field('q9ok','هل السلّم آمن؟ (نعم / لا)');
+function chk1(){ok('q1a',piForms(1,2));ok('q1b',piForms(7,9));ok('q1c',piForms(1,4));ok('q1d',piForms(1,6));ok('q1e',piForms(2,5));ok('q1f',piForms(1,10));ok('q1g',piForms(2,3));ok('q1h',piForms(1,8));ok('q1i',piForms(4,1));ok('q1j',piForms(7,3));ok('q1k',piForms(3,2));ok('q1l',piForms(1,180));score()}
+function chk2(){ok('q2a',['10']);ok('q2b',['9']);ok('q2c',['36']);ok('q2d',['22.5','45/2']);ok('q2e',['20']);ok('q2f',['120']);ok('q2g',['112.5','225/2']);ok('q2h',['108']);ok('q2i',['4']);ok('q2j',['1080']);ok('q2k',['-90','−90']);ok('q2l',['50']);score()}
+function chk3(){ok('q3a',['3√/2','√3/2']);ok('q3b',['2√/2','√2/2']);ok('q3c',['1/3√','3√/3']);ok('q3d',['0']);ok('q3e',['-2√/2','-√2/2']);ok('q3f',['-3√/2','-√3/2']);ok('q3g',['-3√','-√3']);ok('q3h',['3√/2','√3/2']);score()}
+function chk6(){ok('q6a',['85.9'],85.9);ok('q6b',['126'],126);ok('q6c',['60.7'],60.7);ok('q6d',['111'],111);ok('q6e',['39','39.0'],39);score()}
+function chk7(){ok('q7a',['0.932'],0.932);ok('q7b',['0.697'],0.697);ok('q7c',['2.57'],2.57);ok('q7d',['0.309'],0.309);ok('q7e',['0.809'],0.809);ok('q7f',['-1']);score()}
+function chk9(){ok('q9s',['1.19'],1.19);const v=norm(joined('q9ok'));const good=['لا','غيرامن','غيرآمن','no'].some(a=>v.includes(norm(a)));const e=document.getElementById('m-q9ok');e.textContent=good?'\u2705':'\u274c';e.style.color=good?'#2E8B57':'#C0392B';score()}
+function resetAll(){document.querySelectorAll('input').forEach(i=>i.value='');document.querySelectorAll('[id^=m-]').forEach(e=>e.textContent='');document.querySelectorAll('.reveal').forEach(e=>e.classList.remove('show'));score()}
+score();
+</script></body></html>
