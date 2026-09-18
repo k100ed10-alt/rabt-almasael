@@ -1,10 +1,8 @@
-/* مشروع Firebase: grade12platform
-   انسخ القيم من Firebase Console ← Project settings ← Your apps ← Web */
 window.FIREBASE_CONFIG = {
-  apiKey: "PASTE_API_KEY",
+  apiKey: "AIzaSyBFCOFMb987uFI_qm-1P4M10Expb3mrG1g",
   authDomain: "grade12platform.firebaseapp.com",
   projectId: "grade12platform",
   storageBucket: "grade12platform.firebasestorage.app",
-  messagingSenderId: "PASTE_SENDER_ID",
-  appId: "PASTE_APP_ID"
+  messagingSenderId: "359958230567",
+  appId: "1:359958230567:web:194a70d7552592c5680002"
 };
