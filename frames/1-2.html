@@ -1,1 +1,125 @@
-SEE_FILE
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تمارين ١-٢ • طول القوس</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FBF6EC;--ink:#2B2320;--navy:#2B4570;--flame:#D9531E}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);font-family:Tajawal,sans-serif;color:var(--ink);padding-bottom:80px}
+.hero{padding:20px 14px 12px;text-align:center;border-bottom:3px dashed #D8CBB0}
+.kicker{font-family:Cairo;font-weight:700;color:var(--navy)}h1{font-family:Cairo;font-weight:800;font-size:1.35rem;margin:.25em 0}
+.scoreboard{max-width:1040px;margin:12px auto 0;display:flex;justify-content:space-between;align-items:center;gap:8px;background:#fff;border:2px solid var(--ink);border-radius:14px;padding:8px 12px;font-family:Cairo;flex-wrap:wrap}
+.value{font-weight:800;color:var(--flame)}.scoreboard button{font-family:Cairo;font-weight:700;background:var(--ink);color:#fff;border:none;border-radius:10px;padding:7px 10px}
+main{max-width:1040px;margin:0 auto;padding:12px}
+.card,.formulas{background:#fff;border:2px solid var(--ink);border-radius:16px;padding:12px;margin-bottom:12px}
+.card h2,.formulas h2{font-family:Cairo;font-size:1rem;margin:0 0 8px;display:flex;gap:8px;align-items:center}
+.num{width:28px;height:28px;border-radius:50%;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800}
+.item{background:#FBF6EC;border:1.5px solid rgba(43,35,32,.18);border-radius:10px;padding:8px;margin:6px 0}
+.q{font-weight:700;margin:0 0 6px}.row{display:flex;gap:6px;align-items:center;margin:4px 0}
+input[type=text]{width:72px;height:30px;border:1.5px solid rgba(43,35,32,.22);background:#fff;font:13px Cairo;text-align:center;padding:3px 4px;border-radius:8px;direction:ltr}
+.fin{display:inline-flex;flex-direction:column;align-items:center;width:78px;background:#fff;border:1.5px solid rgba(43,35,32,.22);border-radius:8px;padding:1px 4px}
+.fin input{width:100%;height:24px;font-size:13px;border:none;text-align:center}.fin .line{width:100%;height:1.5px;background:var(--ink)}
+.tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tools button{font-family:Cairo;font-weight:700;font-size:.82rem;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:7px 10px}.tools .p{background:var(--ink);color:#fff}
+.reveal{display:none;margin-top:8px;padding:8px;border-radius:10px;border:1.5px solid rgba(43,35,32,.28);line-height:1.8;font-size:.9rem}.reveal.show{display:block}
+.expr{display:inline-flex;flex-direction:column;align-items:center;font-family:Cairo;font-weight:800;margin:0 4px;direction:ltr;line-height:1.05}.expr .n{border-bottom:2px solid currentColor;padding:0 6px 1px}.expr .d{padding:1px 6px 0}
+.note{color:#5b5148;line-height:1.7}.grid{display:grid;grid-template-columns:1fr;gap:6px}
+.fcard{background:#FBF6EC;border:1.5px solid rgba(43,35,32,.16);border-radius:10px;padding:8px}.eq{font-family:Cairo;font-weight:800;direction:rtl;display:block;margin-top:4px}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.legend span{background:#E5EAF2;border-radius:999px;padding:3px 10px;font-size:.8rem;font-family:Cairo;font-weight:700}
+.mark{font-weight:800}.fig{display:flex;justify-content:center;margin:6px 0}
+svg.diag{max-width:260px;width:100%;height:auto;background:#fff;border-radius:10px;border:1.5px solid rgba(43,35,32,.15)}
+footer{text-align:center;color:#8a7f70;padding:8px}.sec-title{font-family:Cairo;font-weight:800;color:var(--navy);margin:16px 4px 8px}
+</style></head><body>
+<div class="hero"><div class="kicker">الوحدة الأولى • القياس الدائري</div>
+<h1>١-٢ طول القوس</h1>
+<p class="note">طبّق ن = نق × هـ بالراديان، ثم قرّب إلى ٣ أرقام معنوية.</p></div>
+<div class="scoreboard"><div>نتيجتك: <span class="value" id="sc">٠ / ٠</span></div>
+<button onclick="resetAll()">↺ إعادة تعيين</button></div>
+<main>
+<section class="formulas"><h2><span class="num" style="background:#2B4570">π</span> القوانين</h2>
+<div class="grid">
+<div class="fcard"><b>طول القوس</b><span class="eq">ن = نق × هـ</span></div>
+<div class="fcard"><b>الزاوية</b><span class="eq">هـ = ن ÷ نق</span></div>
+<div class="fcard"><b>نصف القطر</b><span class="eq">نق = ن ÷ هـ</span></div>
+<div class="fcard"><b>محيط القطاع</b><span class="eq">محيط = نق(٢ + هـ)</span></div>
+</div></section>
+<div class="fig"><svg class="diag" viewBox="0 0 320 300"><circle cx="160" cy="160" r="100" fill="#fff" stroke="#2B6B7A" stroke-width="3"/><path d="M260 160 A100 100 0 0 0 100 70" fill="none" stroke="#C0392B" stroke-width="5"/><line x1="160" y1="160" x2="260" y2="160" stroke="#2B6B7A" stroke-width="2.5"/><line x1="160" y1="160" x2="100" y2="70" stroke="#2B6B7A" stroke-width="2.5"/><path d="M220 160 A60 60 0 0 0 130 112" fill="none" stroke="#111" stroke-width="1.8"/><circle cx="160" cy="160" r="5" fill="#111"/><text x="150" y="188" font-size="16" font-family="Cairo">م</text><text x="188" y="148" font-size="15" font-family="Cairo">هـ</text><text x="198" y="178" font-size="15" font-family="Cairo">نق</text><text x="118" y="128" font-size="15" font-family="Cairo">نق</text><text x="268" y="175" font-size="16" font-family="Cairo">ك</text><text x="88" y="62" font-size="16" font-family="Cairo">ل</text><text x="230" y="58" font-size="16" font-family="Cairo">ن</text></svg></div>
+<p class="sec-title">تمارين ١-٢</p>
+<section class="card" style="background:#E5EAF2"><h2><span class="num" style="background:#2B4570">١</span> الزاوية من طول القوس</h2>
+<p class="note">نق=٨ سم ، القوس=٧٫٥ سم</p>
+<div class="fig"><svg class="diag" viewBox="0 0 320 300"><circle cx="160" cy="155" r="100" fill="#fff" stroke="#2B6B7A" stroke-width="3"/><line x1="160" y1="155" x2="230" y2="70" stroke="#2B6B7A" stroke-width="2.5"/><line x1="160" y1="155" x2="95" y2="70" stroke="#2B6B7A" stroke-width="2.5"/><circle cx="160" cy="155" r="5" fill="#111"/><circle cx="230" cy="70" r="6" fill="#111"/><circle cx="95" cy="70" r="6" fill="#111"/><text x="160" y="178" text-anchor="middle" font-size="16" font-family="Cairo">م</text><text x="248" y="68" font-size="16" font-family="Cairo">أ</text><text x="78" y="64" font-size="16" font-family="Cairo">ب</text><text x="210" y="120" font-size="14" font-family="Cairo">٨ سم</text><text x="95" y="120" font-size="14" font-family="Cairo">٨ سم</text><text x="160" y="48" text-anchor="middle" font-size="15" font-family="Cairo">٧٫٥ سم</text></svg></div>
+<div class="fig"><svg class="diag" viewBox="0 0 320 260"><path d="M70 200 L250 200 A140 140 0 0 0 70 200 Z" fill="#D7ECF3" stroke="#2B6B7A" stroke-width="3"/><line x1="160" y1="200" x2="70" y2="80" stroke="#2B6B7A" stroke-width="2.5" stroke-dasharray="6 5"/><line x1="160" y1="200" x2="250" y2="80" stroke="#2B6B7A" stroke-width="2.5" stroke-dasharray="6 5"/><path d="M70 80 A140 140 0 0 1 250 80" fill="none" stroke="#2B6B7A" stroke-width="3"/><path d="M125 168 A50 50 0 0 1 195 168" fill="none" stroke="#111" stroke-width="1.6"/><text x="148" y="158" font-size="15" font-family="Cairo">٥٣٫٢°</text><text x="52" y="78" font-size="16" font-family="Cairo">أ</text><text x="258" y="78" font-size="16" font-family="Cairo">ب</text><text x="154" y="230" font-size="16" font-family="Cairo">م</text></svg></div>
+<div class="grid"><div class="item"><div class="q">أ) بالراديان</div><div class="row"><input type="text" id="q1a"><span class="mark" id="m-q1a"></span></div></div>
+<div class="item"><div class="q">ب) بالدرجات</div><div class="row"><input type="text" id="q1b"><span class="mark" id="m-q1b"></span></div></div></div>
+<div class="tools"><button class="p" onclick="chk1()">✓ تحقّق</button><button onclick="tog('h1')">تلميح</button><button onclick="tog('a1')">الإجابة</button></div>
+<div class="reveal" id="h1">هـ=٧٫٥÷٨ ثم ×١٨٠/π</div>
+<div class="reveal" id="a1">٠٫٩٣٨ راد ، ٥٣٫٧°</div></section>
+<section class="card" style="background:#FBEEDA"><h2><span class="num" style="background:#E0932B">٢</span> نصف القطر من القوس</h2>
+<p class="note">ن=١٢ سم ، هـ=١٫٦ راد</p>
+<div class="item"><div class="q">نق =</div><div class="row"><input type="text" id="q2"><span class="mark" id="m-q2"></span></div></div>
+<div class="tools"><button class="p" onclick="chk2()">✓ تحقّق</button><button onclick="tog('a2')">الإجابة</button></div>
+<div class="reveal" id="a2">١٢÷١٫٦ = ٧٫٥ سم</div></section>
+<section class="card" style="background:#E8F3EA"><h2><span class="num" style="background:#2E8B57">٣</span> طول القوس بدلالة π</h2>
+<div class="grid" id="g3"></div>
+<div class="tools"><button class="p" onclick="chk3()">✓ تحقّق</button><button onclick="tog('a3')">الإجابة</button></div>
+<div class="reveal" id="a3">أ) ٢π &nbsp; ب) ٩π/٤ &nbsp; ج) ٦π &nbsp; د) ١٠π</div></section>
+<section class="card" style="background:#F3E8F0"><h2><span class="num" style="background:#7A3E6D">٤</span> طول القوس</h2>
+<div class="grid"><div class="item"><div class="q">أ) نق=١٢ ، هـ=١٫٢</div><div class="row"><input type="text" id="q4a"><span class="mark" id="m-q4a"></span></div></div>
+<div class="item"><div class="q">ب) نق=٤٫٥ ، هـ=٠٫٥٥</div><div class="row"><input type="text" id="q4b"><span class="mark" id="m-q4b"></span></div></div></div>
+<div class="tools"><button class="p" onclick="chk4()">✓ تحقّق</button><button onclick="tog('a4')">الإجابة</button></div>
+<div class="reveal" id="a4">أ) ١٤٫٤ سم &nbsp; ب) ٢٫٤٨ سم</div></section>
+<section class="card" style="background:#E5EAF2"><h2><span class="num" style="background:#2B4570">٥</span> الزاوية من القوس</h2>
+<div class="grid"><div class="item"><div class="q">أ) نق=٢٠ ، ن=٥</div><div class="row"><input type="text" id="q5a"><span class="mark" id="m-q5a"></span></div></div>
+<div class="item"><div class="q">ب) نق=٩٫٣٦ ، ن=٥٫٢</div><div class="row"><input type="text" id="q5b"><span class="mark" id="m-q5b"></span></div></div></div>
+<div class="tools"><button class="p" onclick="chk5()">✓ تحقّق</button><button onclick="tog('a5')">الإجابة</button></div>
+<div class="reveal" id="a5">أ) ٠٫٢٥ &nbsp; ب) ٠٫٥٥٦ راد</div></section>
+<section class="card" style="background:#FBEEDA"><h2><span class="num" style="background:#E0932B">٦</span> ن = نق × هـ</h2>
+<div class="grid" id="g6"></div>
+<div class="tools"><button class="p" onclick="chk6()">✓ تحقّق</button><button onclick="tog('a6')">الإجابة</button></div>
+<div class="reveal" id="a6">أ) ٢٧π/٥ &nbsp; ب) ٥ سم &nbsp; ج) ٧π/٩</div></section>
+<section class="card" style="background:#E8F3EA"><h2><span class="num" style="background:#2E8B57">٧</span> محيط القطاع → الزاوية</h2>
+<p class="note">نق=١٥ ، المحيط=٥٠</p>
+<div class="item"><div class="q">هـ =</div><div class="row"><input type="text" id="q7"><span class="mark" id="m-q7"></span></div></div>
+<div class="tools"><button class="p" onclick="chk7()">✓ تحقّق</button><button onclick="tog('a7')">الإجابة</button></div>
+<div class="reveal" id="a7">هـ=٤/٣</div></section>
+<section class="card" style="background:#F3E8F0"><h2><span class="num" style="background:#7A3E6D">٨</span> محيط القطاع → نق</h2>
+<p class="note">هـ=٢٫٣ ، المحيط=٣٠</p>
+<div class="item"><div class="q">م أ ≈</div><div class="row"><input type="text" id="q8"><span class="mark" id="m-q8"></span></div></div>
+<div class="tools"><button class="p" onclick="chk8()">✓ تحقّق</button><button onclick="tog('a8')">الإجابة</button></div>
+<div class="reveal" id="a8">٦٫٩٨ سم</div></section>
+<section class="card" style="background:#F8E6DE"><h2><span class="num" style="background:#D9531E">٩</span> محيط القطعة الصغرى</h2>
+<p class="note">نق=٢٥ ، الوتر=١٤</p>
+<div class="fig"><svg class="diag" viewBox="0 0 320 300"><circle cx="155" cy="155" r="115" fill="#fff" stroke="#2B6B7A" stroke-width="3"/><line x1="155" y1="155" x2="255" y2="200" stroke="#2B6B7A" stroke-width="2.5"/><line x1="155" y1="155" x2="215" y2="250" stroke="#2B6B7A" stroke-width="2.5"/><line x1="255" y1="200" x2="215" y2="250" stroke="#2B6B7A" stroke-width="3"/><circle cx="155" cy="155" r="5" fill="#111"/><circle cx="255" cy="200" r="6" fill="#111"/><circle cx="215" cy="250" r="6" fill="#111"/><text x="140" y="148" font-size="16" font-family="Cairo">م</text><text x="268" y="198" font-size="16" font-family="Cairo">ب</text><text x="208" y="272" font-size="16" font-family="Cairo">أ</text><text x="185" y="168" font-size="14" font-family="Cairo">٢٥ سم</text><text x="155" y="215" font-size="14" font-family="Cairo">٢٥ سم</text><text x="248" y="238" font-size="14" font-family="Cairo">١٤ سم</text></svg></div>
+<div class="item"><div class="q">المحيط ≈</div><div class="row"><input type="text" id="q9"><span class="mark" id="m-q9"></span></div></div>
+<div class="tools"><button class="p" onclick="chk9()">✓ تحقّق</button><button onclick="tog('a9')">الإجابة</button></div>
+<div class="reveal" id="a9">٢٨٫٢ سم</div></section>
+</main><footer>تمارين ١-٢ طول القوس</footer>
+<script>
+const AR='٠١٢٣٤٥٦٧٨٩';
+function west(s){return String(s||'').replace(/[٠-٩]/g,d=>String(AR.indexOf(d)));}
+function arn(n){return String(n).replace(/\d/g,d=>AR[d]);}
+function tog(id){document.getElementById(id).classList.toggle('show')}
+function norm(s){return west(s).toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/باي|pi|π/g,'π').replace(/÷/g,'/').replace(/×/g,'*').replace(/[−–—]/g,'-').replace(/درجة|درجات|°|سم²|سم2|سم|راديان|راد/g,'').replace(/٫/g,'.').replace(/\s+/g,'').replace(/[()]/g,'');}
+function joined(id){const n=(document.getElementById(id+'n')||{}).value||'';const d=(document.getElementById(id+'d')||{}).value||'';const w=(document.getElementById(id)||{}).value||'';if(n&&d)return n+'/'+d;if(n&&!d)return n;return w;}
+function closeEnough(v,t,rel=0.015){const n=parseFloat(west(String(v)).replace(/[^\d.\-]/g,''));const x=parseFloat(t);if(Number.isNaN(n)||Number.isNaN(x))return false;return Math.abs(n-x)<=Math.max(rel,Math.abs(x)*rel);}
+function ok(id,acc,numeric=null){const v=norm(joined(id));let good=acc.some(a=>v===norm(a)||(norm(a).length>=2&&v.includes(norm(a))));if(!good&&numeric!=null)good=closeEnough(v,numeric);const e=document.getElementById('m-'+id);e.textContent=good?'✅':'❌';e.style.color=good?'#2E8B57':'#C0392B';}
+function score(){let c=0,t=0;document.querySelectorAll('[id^=m-]').forEach(e=>{t++;if(e.textContent==='✅')c++});document.getElementById('sc').textContent=arn(c)+' / '+arn(t);}
+function frac(n,d){return '<span class="expr"><span class="n">'+n+'</span><span class="d">'+d+'</span></span>'}
+function field(id,label){return '<div class="item"><div class="q">'+label+'</div><div class="row"><div class="fin"><input type="text" id="'+id+'n" placeholder="بسط"><div class="line"></div><input type="text" id="'+id+'d" placeholder="مقام"></div><span class="mark" id="m-'+id+'"></span></div></div>';}
+function piForms(num,den){if(den===1)return [num+'π','π'+num,num+'*π'];if(num===1)return ['π/'+den];return [num+'π/'+den,'π'+num+'/'+den];}
+function resetAll(){document.querySelectorAll('input').forEach(i=>i.value='');document.querySelectorAll('[id^=m-]').forEach(e=>e.textContent='');document.querySelectorAll('.reveal').forEach(e=>e.classList.remove('show'));score();}
+document.getElementById('g3').innerHTML=[['q3a','أ) نق=٤ ، هـ='+frac('π','٢')],['q3b','ب) نق=٣ ، هـ='+frac('π٣','٤')],['q3c','ج) نق=١٠ ، هـ='+frac('π٣','٥')],['q3d','د) نق=١٢ ، هـ='+frac('π٥','٦')]].map(([id,l])=>field(id,l)).join('');
+document.getElementById('g6').innerHTML=[['q6a','أ) ن ، نق=٩ ، هـ='+frac('π٣','٥')],['q6b','ب) نق ، ن=١٤٫٩ ، هـ=٢٫٩٨'],['q6c','ج) هـ ، ن='+frac('π٤٩','٩')+' ، نق=٧']].map(([id,l])=>field(id,l)).join('');
+function chk1(){ok('q1a',['0.938','٠.938'],0.938);ok('q1b',['53.7','٥٣.7'],53.7);score()}
+function chk2(){ok('q2',['7.5','٧.5','15/2'],7.5);score()}
+function chk3(){ok('q3a',piForms(2,1).concat(['2π']));ok('q3b',piForms(9,4));ok('q3c',piForms(6,1).concat(['6π']));ok('q3d',piForms(10,1).concat(['10π']));score()}
+function chk4(){ok('q4a',['14.4'],14.4);ok('q4b',['2.48'],2.48);score()}
+function chk5(){ok('q5a',['0.25','1/4'],0.25);ok('q5b',['0.556'],0.556);score()}
+function chk6(){ok('q6a',piForms(27,5));ok('q6b',['5'],5);ok('q6c',piForms(7,9));score()}
+function chk7(){ok('q7',['4/3','1.33'],1.333);score()}
+function chk8(){ok('q8',['6.98'],6.98);score()}
+function chk9(){ok('q9',['28.2'],28.2);score()}
+score();
+</script></body></html>
