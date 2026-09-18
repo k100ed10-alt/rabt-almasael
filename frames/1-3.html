@@ -26,13 +26,14 @@ input[type=text]{width:88px;height:30px;border:1.5px solid rgba(43,35,32,.22);ba
 .fcard{background:#FBF6EC;border:1.5px solid rgba(43,35,32,.16);border-radius:10px;padding:8px}.eq{font-family:Cairo;font-weight:800;direction:rtl;display:block;margin-top:4px}
 .mark{font-weight:800}.fig{display:flex;justify-content:center;margin:6px 0}
 svg.diag{max-width:260px;width:100%;height:auto;background:#fff;border-radius:10px;border:1.5px solid rgba(43,35,32,.15)}
+img.photo{max-width:280px;width:100%;height:auto;background:#fff;border-radius:10px;border:1.5px solid rgba(43,35,32,.15);display:block}
 footer{text-align:center;color:#8a7f70;padding:8px}.sec-title{font-family:Cairo;font-weight:800;color:var(--navy);margin:16px 4px 8px}
 </style></head><body>
 <div class="hero"><div class="kicker">الوحدة الأولى • القياس الدائري</div>
 <h1>١-٣ مساحة القطاع</h1>
 <p class="note">أ = ½ نق² هـ ، والقطعة = قطاع − مثلث.</p></div>
 <div class="scoreboard"><div>نتيجتك: <span class="value" id="sc">٠ / ٠</span></div>
-<button onclick="resetAll()">↺ إعادة تعيين</button></div>
+<button onclick="resetAll()">↻ إعادة تعيين</button></div>
 <main>
 <section class="formulas"><h2><span class="num" style="background:#2B4570">π</span> القوانين</h2>
 <div class="grid">
@@ -48,7 +49,7 @@ footer{text-align:center;color:#8a7f70;padding:8px}.sec-title{font-family:Cairo;
 <div class="reveal" id="as1">نق≈٩٫٤٩ سم</div></section>
 <section class="card" style="background:#FBEEDA"><h2><span class="num" style="background:#E0932B">٢</span> من المحيط إلى المساحة</h2>
 <p class="note">المحيط=٢٨ ، هـ=١٫٦</p>
-<div class="fig"><svg class="diag" viewBox="0 0 280 240"><path d="M60 120 L210 40 A150 150 0 0 1 220 200 Z" fill="#fff" stroke="#2B6B7A" stroke-width="3"/><path d="M90 112 A40 40 0 0 1 96 140" fill="none" stroke="#111" stroke-width="1.6"/><text x="108" y="132" font-size="14" font-family="Cairo">١٫٦</text><text x="38" y="126" font-size="16" font-family="Cairo">م</text><text x="214" y="32" font-size="16" font-family="Cairo">ن</text><text x="224" y="220" font-size="16" font-family="Cairo">ل</text></svg></div>
+<div class="fig"><img class="photo" id="img-s2" alt="قطاع زاويته ١٫٦"></div>
 <div class="item"><div class="q">المساحة ≈</div><div class="row"><input type="text" id="s2"><span class="mark" id="m-s2"></span></div></div>
 <div class="tools"><button class="p" onclick="chks2()">✓ تحقّق</button><button onclick="tog('as2')">الإجابة</button></div>
 <div class="reveal" id="as2">أ≈٤٨٫٤ سم²</div></section>
@@ -59,7 +60,7 @@ footer{text-align:center;color:#8a7f70;padding:8px}.sec-title{font-family:Cairo;
 <div class="reveal" id="as3">نق≈١١٫٣ سم</div></section>
 <section class="card" style="background:#F3E8F0"><h2><span class="num" style="background:#7A3E6D">٤</span> المنطقة المظللة</h2>
 <p class="note">٤٥° ونق=٦</p>
-<div class="fig"><svg class="diag" viewBox="0 0 300 210"><path d="M20 180 L260 180 A170 170 0 0 0 140 28 Z" fill="#D7ECF3" stroke="#2B6B7A" stroke-width="2.5"/><line x1="20" y1="180" x2="260" y2="180" stroke="#2B6B7A" stroke-width="2.5"/><line x1="20" y1="180" x2="140" y2="28" stroke="#2B6B7A" stroke-width="2.5"/><line x1="140" y1="28" x2="260" y2="180" stroke="#2B6B7A" stroke-width="2" stroke-dasharray="6 4"/><path d="M52 180 A32 32 0 0 1 44 154" fill="none" stroke="#111" stroke-width="1.5"/><text x="58" y="168" font-size="13" font-family="Cairo">٤٥°</text><text x="86" y="88" font-size="13" font-family="Cairo">٦ سم</text><text x="148" y="120" font-size="13" font-family="Cairo">٤ سم</text></svg></div>
+<div class="fig"><img class="photo" id="img-s4" alt="المنطقة المظللة ٤٥ درجة"></div>
 <div class="item"><div class="q">المساحة</div><div class="row"><input type="text" id="s4"><span class="mark" id="m-s4"></span></div></div>
 <div class="tools"><button class="p" onclick="chks4()">✓ تحقّق</button><button onclick="tog('as4')">الإجابة</button></div>
 <div class="reveal" id="as4">٩π/٢ أو ١٤٫١ سم²</div></section>
@@ -70,7 +71,7 @@ footer{text-align:center;color:#8a7f70;padding:8px}.sec-title{font-family:Cairo;
 <div class="reveal" id="as5">٢٫٥٤ راد</div></section>
 <section class="card" style="background:#E5EAF2"><h2><span class="num" style="background:#2B4570">٦</span> مساحة القطعة</h2>
 <p class="note">نق=١٣ ، الوتر=١٠</p>
-<div class="fig"><svg class="diag" viewBox="0 0 280 280"><circle cx="140" cy="150" r="105" fill="#fff" stroke="#2B6B7A" stroke-width="3"/><path d="M140 48 A105 105 0 0 1 232 98 L140 150 Z" fill="#D7ECF3" stroke="#2B6B7A" stroke-width="2.5"/><line x1="140" y1="150" x2="140" y2="48" stroke="#2B6B7A" stroke-width="2.5"/><line x1="140" y1="150" x2="232" y2="98" stroke="#2B6B7A" stroke-width="2.5"/><circle cx="140" cy="150" r="4" fill="#111"/><circle cx="140" cy="48" r="5" fill="#111"/><circle cx="232" cy="98" r="5" fill="#111"/><text x="128" y="172" font-size="15" font-family="Cairo">م</text><text x="132" y="38" font-size="15" font-family="Cairo">ب</text><text x="244" y="96" font-size="15" font-family="Cairo">أ</text><text x="108" y="100" font-size="13" font-family="Cairo">١٣ سم</text><text x="178" y="140" font-size="13" font-family="Cairo">١٣ سم</text><text x="178" y="68" font-size="13" font-family="Cairo">١٠ سم</text></svg></div>
+<div class="fig"><img class="photo" id="img-s6" alt="قطعة دائرية وتر ١٠"></div>
 <div class="item"><div class="q">المساحة ≈</div><div class="row"><input type="text" id="s6"><span class="mark" id="m-s6"></span></div></div>
 <div class="tools"><button class="p" onclick="chks6()">✓ تحقّق</button><button onclick="tog('as6')">الإجابة</button></div>
 <div class="reveal" id="as6">٧٫٢٣ سم²</div></section>
@@ -81,14 +82,14 @@ footer{text-align:center;color:#8a7f70;padding:8px}.sec-title{font-family:Cairo;
 <div class="reveal" id="as7">أ) π/٢ &nbsp; ب) ٢٫٣١ راد</div></section>
 <section class="card" style="background:#E8F3EA"><h2><span class="num" style="background:#2E8B57">٨</span> قطاع ونصف دائرة</h2>
 <p class="note">نق=١٠ ، نصف الدائرة = ضعف القطاع</p>
-<div class="fig"><svg class="diag" viewBox="0 0 300 230"><path d="M40 110 L230 30 A120 120 0 0 1 250 110 A105 105 0 0 1 40 110 Z" fill="#fff" stroke="#2B6B7A" stroke-width="3"/><line x1="40" y1="110" x2="250" y2="110" stroke="#2B6B7A" stroke-width="2" stroke-dasharray="6 4"/><line x1="40" y1="110" x2="230" y2="30" stroke="#2B6B7A" stroke-width="2.5"/><text x="24" y="116" font-size="15" font-family="Cairo">أ</text><text x="236" y="24" font-size="15" font-family="Cairo">ب</text><text x="258" y="116" font-size="15" font-family="Cairo">ع</text><text x="110" y="62" font-size="13" font-family="Cairo">١٠ سم</text><text x="120" y="102" font-size="13" font-family="Cairo">هـ</text><text x="120" y="132" font-size="13" font-family="Cairo">١٠ سم</text></svg></div>
+<div class="fig"><img class="photo" id="img-s8" alt="قطاع ونصف دائرة"></div>
 <div class="grid"><div class="item"><div class="q">أ) هـ</div><div class="row"><input type="text" id="s8a" placeholder="π/٨"><span class="mark" id="m-s8a"></span></div></div>
 <div class="item"><div class="q">ب) المحيط</div><div class="row"><input type="text" id="s8b" placeholder="١٠+٢٥π/٤"><span class="mark" id="m-s8b"></span></div></div></div>
 <div class="tools"><button class="p" onclick="chks8()">✓ تحقّق</button><button onclick="tog('as8')">الإجابة</button></div>
 <div class="reveal" id="as8">أ) π/٨ &nbsp; ب) ١٠+٢٥π/٤</div></section>
 <section class="card" style="background:#F3E8F0"><h2><span class="num" style="background:#7A3E6D">٩</span> مثلث رولو</h2>
 <p class="note">مثلث متساوي الأضلاع ضلعه ٢ سم</p>
-<div class="fig"><svg class="diag" viewBox="0 0 280 250"><path d="M140 36 A120 120 0 0 1 236 198 A120 120 0 0 1 44 198 A120 120 0 0 1 140 36 Z" fill="#fff" stroke="#2B6B7A" stroke-width="3"/><polygon points="140,50 228,190 52,190" fill="none" stroke="#111" stroke-width="1.6" stroke-dasharray="6 4"/><text x="136" y="28" font-size="16" font-family="Cairo">أ</text><text x="28" y="210" font-size="16" font-family="Cairo">ب</text><text x="236" y="214" font-size="16" font-family="Cairo">ع</text></svg></div>
+<div class="fig"><img class="photo" id="img-s9" alt="مثلث رولو"></div>
 <div class="grid"><div class="item"><div class="q">المحيط</div><div class="row"><input type="text" id="s9a" placeholder="٢π"><span class="mark" id="m-s9a"></span></div></div>
 <div class="item"><div class="q">المساحة</div><div class="row"><input type="text" id="s9b" placeholder="٢(π−√٣)"><span class="mark" id="m-s9b"></span></div></div></div>
 <div class="tools"><button class="p" onclick="chks9()">✓ تحقّق</button><button onclick="tog('as9')">الإجابة</button></div>
@@ -124,4 +125,10 @@ function chks8(){ok('s8a',piForms(1,8).concat(['π/8']));ok('s8b',['10+25π/4','
 function chks9(){ok('s9a',piForms(2,1).concat(['2π']));ok('s9b',['2(π-√3)','2π-2√3']);score()}
 function chks10(){ok('s10a',['3r-r^2','3نق-نق^2','3نق-نق²']);ok('s10b',['3/2','1.5'],1.5);ok('s10c',['2'],2);score()}
 score();
-</script></body></html>
+</script>
+<script src="../js/img-s2.js"></script>
+<script src="../js/img-s4.js"></script>
+<script src="../js/img-s6.js"></script>
+<script src="../js/img-s8.js"></script>
+<script src="../js/img-s9.js"></script>
+</body></html>
