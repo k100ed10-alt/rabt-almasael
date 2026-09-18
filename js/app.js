@@ -7,13 +7,18 @@ let IMG='', IS_TEACHER=false;
 const ADMIN_EMAILS=['k100ed10@gmail.com'];
 const FB_CFG=Object.assign({apiKey:"",authDomain:"grade12platform.firebaseapp.com",projectId:"grade12platform",storageBucket:"grade12platform.firebasestorage.app",messagingSenderId:"",appId:""}, window.FIREBASE_CONFIG||{});
 let fbDb=null, fbAuth=null;
-function initFb(){try{if(!window.firebase)return;if(!FB_CFG.apiKey)return;if(!firebase.apps.length)firebase.initializeApp(FB_CFG);fbDb=firebase.firestore();fbAuth=firebase.auth();fbAuth.onAuthStateChanged(async u=>{if(u){await applyUser(u);}else{showLogin();}});}catch(e){console.warn(e)}}
-function deviceId(){let id=localStorage.getItem('rabt-device');if(!id){id='d-'+Math.random().toString(36).slice(2)+Date.now().toString(36);localStorage.setItem('rabt-device',id);}return id;}
+function initFb(){try{if(!window.firebase)return;if(!FB_CFG.apiKey)return;if(!firebase.apps.length)firebase.initializeApp(FB_CFG);fbDb=firebase.firestore();fbAuth=firebase.auth();fbAuth.onAuthStateChanged(u=>{if(u) applyUser(u); else showLogin();});}catch(e){console.warn(e)}}
 function showErr(msg){const e=$('#err');if(!e)return;e.textContent=msg;e.style.display='block';}
 let PENDING_NAME='';
 function isTeacherAccount(email,data){const e=(email||'').toLowerCase();if(ADMIN_EMAILS.includes(e))return true;const role=String((data&&(data.role||data.type))||'').toLowerCase();return ['teacher','admin','معلم','مدير'].includes(role)||(data&&data.isTeacher===true);}
-async function findUserDoc(u){const email=(u.email||'').toLowerCase();let ref=fbDb.collection('users').doc(u.uid);let snap=await ref.get();if(snap.exists) return {ref,data:snap.data()||{}};const q=await fbDb.collection('users').where('email','==',email).limit(1).get();if(!q.empty) return {ref:q.docs[0].ref,data:q.docs[0].data()||{}};return {ref,data:null};}
-async function applyUser(u){IS_TEACHER=false;try{if(!fbDb){enterApp();return;}const found=await findUserDoc(u);let data=found.data||{};const email=(u.email||'').toLowerCase();IS_TEACHER=isTeacherAccount(email,data);const nm=PENDING_NAME||localStorage.getItem('rabt-name')||data.name||'';try{await found.ref.set({email:email,name:nm,role:IS_TEACHER?'teacher':'student',updated:Date.now()},{merge:true});}catch(err){console.warn(err);}enterApp();}catch(e){console.warn(e);enterApp();}}
+function applyUser(u){
+  const email=(u&&u.email||'').toLowerCase();
+  IS_TEACHER=isTeacherAccount(email,null);
+  enterApp();
+  if(!fbDb||!u) return;
+  const nm=PENDING_NAME||localStorage.getItem('rabt-name')||'';
+  fbDb.collection('users').doc(u.uid).set({email:email,name:nm,role:IS_TEACHER?'teacher':'student',updated:Date.now()},{merge:true}).catch(()=>{});
+}
 function showLogin(){IS_TEACHER=false;const app=$('#app'),login=$('#login');if(app) app.classList.add('hidden');if(login) login.classList.remove('hidden');}
 function authErr(c){const m={'auth/invalid-email':'البريد غير صالح','auth/user-not-found':'هذا البريد غير مسجّل','auth/wrong-password':'كلمة المرور غير صحيحة','auth/invalid-credential':'البريد أو كلمة المرور غير صحيحة','auth/too-many-requests':'محاولات كثيرة','auth/unauthorized-domain':'النطاق غير مصرح'};return m[c]||'تعذر الدخول';}
 const UNIT={title:'الوحدة الأولى: القياس الدائري', lessons:[{id:'1-1',title:'١-١ الراديان',page:'١١'},{id:'1-2',title:'١-٢ طول القوس',page:'١٥'},{id:'1-3',title:'١-٣ مساحة القطاع الدائري',page:'١٨'}]};
@@ -30,7 +35,21 @@ function showView(name){$$('.view').forEach(v=>v.classList.remove('on'));const v
 function enterApp(){const login=$('#login'),app=$('#app');if(login) login.classList.add('hidden');if(app) app.classList.remove('hidden');const shown=localStorage.getItem('rabt-name')||'';const add=$('#btnAdd'),who=$('#who');if(IS_TEACHER){if(add) add.classList.remove('hidden');if(who) who.textContent=shown||'حساب المعلم'}else{if(add) add.classList.add('hidden');if(who) who.textContent=shown||'حساب الطالب'}showView('home');try{render()}catch(e){console.warn(e)}}
 function render(){const items=load();stats(items);const cards=$('#homeCards');if(!cards)return;let html='<details class="acc" open><summary><span>'+UNIT.title+'</span><span class="badge">'+toAr(items.length)+'</span></summary>';UNIT.lessons.forEach((ls,i)=>{const arr=items.filter(p=>(p.lesson||'1-1')===ls.id);html+='<details class="acc ls"'+(i===0?' open':'')+'><summary><span>'+ls.title+'</span><small>ص '+ls.page+'</small></summary>';if(!arr.length) html+='<div class="empty">لا توجد أفكار بعد</div>';else{const ideas=new Map();arr.forEach(p=>{const k=p.idea||'بدون فكرة';if(!ideas.has(k))ideas.set(k,[]);ideas.get(k).push(p)});ideas.forEach((qs,idea)=>{html+='<details class="acc id"><summary><span>'+fracify(idea)+'</span><span class="badge">'+toAr(qs.length)+'</span></summary><div class="qlist">';qs.forEach(p=>{html+='<button type="button" class="qnum" data-id="'+p.id+'">سؤال '+p.ex+' — '+(p.letter||'—')+'</button>';});html+='</div></details>';});}html+='</details>';});html+='</details>';cards.innerHTML=html;$$('#homeCards .qnum').forEach(b=>b.onclick=()=>{const p=load().find(x=>String(x.id)===b.dataset.id);if(p)showQ(p)});}
 function showQ(p){const neu=p.type==='idea';const card=$('#popCard');if(!card)return;card.className='qcard'+(neu?' gold':'');card.innerHTML='<div class="qhead"><span class="kindtag '+(neu?'n':'t')+'">'+(neu?'★ فكرة جديدة':'تنويع')+'</span><div style="display:flex;gap:8px;align-items:center"><small>سؤال '+p.ex+' — '+p.letter+'</small><button class="x" id="popX">×</button></div></div>'+(p.img?'<img class="qimg" src="'+p.img+'">':'')+'<div class="qtxt">'+fracify(p.text)+'</div><div class="slots"><button type="button" class="slot s-idea" data-k="idea">الفكرة</button><button type="button" class="slot s-given" data-k="given">المعطيات</button><button type="button" class="slot s-steps" data-k="steps">الخطوات</button><button type="button" class="slot s-req" data-k="req">المطلوب</button></div><div class="slotbox hidden" id="slotBox"></div>';const map={idea:[fracify(p.idea||'—'),'idea'],given:[fracify(givenOf(p)),'given'],steps:[fracify(p.steps||'—'),'steps'],req:[fracify(p.required||'—'),'req']};const titles={idea:'الفكرة',given:'المعطيات',steps:'الخطوات',req:'المطلوب'};const box=$('#slotBox');card.querySelectorAll('.slot').forEach(s=>s.onclick=()=>{const on=s.classList.contains('on');card.querySelectorAll('.slot').forEach(x=>x.classList.remove('on'));if(on){box.classList.add('hidden');return}s.classList.add('on');box.classList.remove('hidden');const k=s.dataset.k;box.className='slotbox '+map[k][1];box.innerHTML='<b>'+titles[k]+'</b><br>'+map[k][0];});const x=$('#popX'),pop=$('#pop');if(x) x.onclick=()=>pop.classList.add('hidden');if(pop) pop.classList.remove('hidden');}
-const loginBtn=$('#loginBtn');if(loginBtn) loginBtn.onclick=async()=>{const email=$('#email').value.trim(),pass=$('#pass').value,name=$('#sname').value.trim();const err=$('#err');if(err) err.style.display='none';if(!name||!email||!pass){showErr('أدخل الاسم والبريد وكلمة المرور');return}PENDING_NAME=name;localStorage.setItem('rabt-name',name);if(!fbAuth)initFb();if(!fbAuth){showErr('Firebase غير جاهز');return}try{await fbAuth.signInWithEmailAndPassword(email,pass);}catch(e){showErr(authErr(e.code));}};
+const loginBtn=$('#loginBtn');
+if(loginBtn) loginBtn.onclick=async()=>{
+  const email=$('#email').value.trim(),pass=$('#pass').value,name=$('#sname').value.trim();
+  const err=$('#err');if(err) err.style.display='none';
+  if(!name||!email||!pass){showErr('أدخل الاسم والبريد وكلمة المرور');return}
+  PENDING_NAME=name;localStorage.setItem('rabt-name',name);
+  if(!fbAuth)initFb();
+  if(!fbAuth){showErr('Firebase غير جاهز');return}
+  loginBtn.disabled=true;loginBtn.textContent='...';
+  try{
+    const cred=await fbAuth.signInWithEmailAndPassword(email,pass);
+    applyUser(cred.user||{email:email});
+  }catch(e){showErr(authErr(e.code));}
+  finally{loginBtn.disabled=false;loginBtn.textContent='دخول';}
+};
 const passEl=$('#pass');if(passEl) passEl.addEventListener('keydown',e=>{if(e.key==='Enter' && loginBtn) loginBtn.click()});
 $$('nav [data-view]').forEach(b=>b.onclick=()=>showView(b.dataset.view));
 const out=$('#out');if(out) out.onclick=()=>{if(fbAuth)fbAuth.signOut();else showLogin();};
