@@ -20,13 +20,13 @@ main{max-width:1040px;margin:0 auto;padding:16px 12px}
 .rules,.card,.formulas{background:#fff;border:2px solid var(--ink);border-radius:18px;padding:16px 14px;margin-bottom:16px}
 .card h2,.formulas h2{font-family:Cairo;font-size:1.05rem;margin:0 0 10px;display:flex;gap:8px;align-items:center}
 .num{width:30px;height:30px;border-radius:50%;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800;flex:none}
-.item{background:#FBF6EC;border:1.5px solid rgba(43,35,32,.18);border-radius:12px;padding:10px;margin:8px 0}
-.q{font-weight:700;line-height:1.8;margin:0 0 8px}
-.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
-input[type=text]{flex:1 1 160px;border:1.5px solid rgba(43,35,32,.22);background:#fff;font:1.05rem Cairo;text-align:center;padding:8px 10px;border-radius:10px;direction:ltr;unicode-bidi:isolate}
-.fin{display:inline-flex;flex-direction:column;align-items:center;width:min(100%,220px);background:#fff;border:1.5px solid rgba(43,35,32,.22);border-radius:12px;padding:4px 8px}
-.fin input{width:100%;border:none;background:transparent;text-align:center;padding:4px}
-.fin .line{width:100%;height:2px;background:var(--ink)}
+.item{background:#FBF6EC;border:1.5px solid rgba(43,35,32,.18);border-radius:12px;padding:8px;margin:6px 0}
+.q{font-weight:700;line-height:1.7;margin:0 0 6px;font-size:.95rem}
+.row{display:flex;flex-wrap:nowrap;gap:6px;align-items:center;margin:4px 0}
+input[type=text]{flex:0 0 auto;width:72px;height:30px;border:1.5px solid rgba(43,35,32,.22);background:#fff;font:13px Cairo;text-align:center;padding:3px 4px;border-radius:8px;direction:ltr;unicode-bidi:isolate}
+.fin{display:inline-flex;flex-direction:column;align-items:center;width:78px;background:#fff;border:1.5px solid rgba(43,35,32,.22);border-radius:8px;padding:1px 4px}
+.fin input{width:100%;height:24px;font-size:13px;border:none;background:transparent;text-align:center;padding:1px 2px}
+.fin .line{width:100%;height:1.5px;background:var(--ink)}
 .rad{display:inline-block;transform:scaleX(-1);font-weight:800}
 .radex{font-family:Cairo;font-weight:800;direction:ltr;unicode-bidi:isolate}
 .tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
@@ -40,7 +40,7 @@ input[type=text]{flex:1 1 160px;border:1.5px solid rgba(43,35,32,.22);background
 .expr .d{padding:1px 7px 0}
 .pic{direction:ltr;unicode-bidi:isolate;font-family:Cairo;font-weight:800}
 .note{color:#5b5148;line-height:1.75}
-.grid{display:grid;grid-template-columns:1fr;gap:8px}
+.grid{display:grid;grid-template-columns:1fr;gap:6px}
 @media(min-width:760px){.grid{grid-template-columns:1fr 1fr}}
 .formulas .box{display:grid;gap:8px}
 @media(min-width:760px){.formulas .box{grid-template-columns:1fr 1fr}}
@@ -153,8 +153,7 @@ function closeEnough(v,target,rel=0.012){const n=parseFloat(west(String(v)).repl
 function ok(id,acc,numeric=null){const v=norm(joined(id));let good=acc.some(a=>v===norm(a));if(!good&&numeric!=null)good=closeEnough(v,numeric);const e=document.getElementById('m-'+id);e.textContent=good?'✅':'❌';e.style.color=good?'#2E8B57':'#C0392B';}
 function score(){let c=0,t=0;document.querySelectorAll('[id^=m-]').forEach(e=>{t++;if(e.textContent==='✅')c++});document.getElementById('sc').textContent=arn(c)+' / '+arn(t);}
 function frac(n,d){return '<span class="expr"><span class="n">'+n+'</span><span class="d">'+d+'</span></span>'}
-function field(id,label){return '<div class="item"><div class="q">'+label+'</div><div class="row"><div class="fin"><input type="text" id="'+id+'n" placeholder="البسط" autocomplete="off"><div class="line"></div><input type="text" id="'+id+'d" placeholder="المقام أو اتركه فارغًا" autocomplete="off"></div><input type="hidden" id="'+id+'"><span class="mark" id="m-'+id+'"></span></div></div>';}
-function q2(id,label){return field(id,label);}
+function field(id,label){return '<div class="item"><div class="q">'+label+'</div><div class="row"><div class="fin"><input type="text" id="'+id+'n" placeholder="بسط" autocomplete="off"><div class="line"></div><input type="text" id="'+id+'d" placeholder="مقام" autocomplete="off"></div><input type="hidden" id="'+id+'"><span class="mark" id="m-'+id+'"></span></div></div>';}
 document.getElementById('g1').innerHTML=[['q1a','أ) ٩٠°'],['q1b','ب) ١٤٠°'],['q1c','ج) ٤٥°'],['q1d','د) ٣٠°'],['q1e','هـ) ٧٢°'],['q1f','و) ١٨°'],['q1g','ز) ١٢٠°'],['q1h','ح) ٢٢½°'],['q1i','ط) ٧٢٠°'],['q1j','ي) ٤٢٠°'],['q1k','ك) ٢٧٠°'],['q1l','ل) ١°']].map(([id,l])=>field(id,l)).join('');
 document.getElementById('g2').innerHTML=[['q2a','أ) '+frac('π','١٨')],['q2b','ب) '+frac('π','٢٠')],['q2c','ج) '+frac('π','٥')],['q2d','د) '+frac('π','٨')],['q2e','هـ) '+frac('π','٩')],['q2f','و) '+frac('π٢','٣')],['q2g','ز) '+frac('π٥','٨')],['q2h','ح) '+frac('π٣','٥')],['q2i','ط) '+frac('π','٤٥')],['q2j','ي) <span class="pic">π٦</span>'],['q2k','ك) −'+frac('π','٢')],['q2l','ل) '+frac('π٥','١٨')]].map(([id,l])=>field(id,l)).join('');
 document.getElementById('g3').innerHTML=[['q3a','أ) جا '+frac('π','٣')],['q3b','ب) جتا '+frac('π','٤')],['q3c','ج) ظا '+frac('π','٦')],['q3d','د) جتا '+frac('π٣','٢')],['q3e','هـ) جا '+frac('π٧','٤')],['q3f','و) جتا '+frac('π٧','٦')],['q3g','ز) ظا '+frac('π٥','٣')],['q3h','ح) جا '+frac('π٢','٣')]].map(([id,l])=>field(id,l)).join('');
