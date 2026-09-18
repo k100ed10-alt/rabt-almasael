@@ -1,1 +1,177 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تمارين ١-١ • القياس الدائري</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FBF6EC;--ink:#2B2320;--navy:#2B4570;--flame:#D9531E;--paper:#E7DFCF;--teal:#1F6F6A;--gold:#C48A2A}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);background-image:linear-gradient(var(--paper) 1px,transparent 1px);background-size:100% 2.4em;font-family:Tajawal,sans-serif;color:var(--ink);padding-bottom:80px}
+.hero{padding:28px 16px 18px;text-align:center;border-bottom:3px dashed #D8CBB0;background:linear-gradient(180deg,#fff8ea,transparent)}
+.kicker{font-family:Cairo;font-weight:700;color:var(--navy)}
+h1{font-family:Cairo;font-weight:800;font-size:clamp(1.25rem,3vw,1.7rem);margin:.25em 0}
+.hero p{max-width:820px;margin:.45em auto 0;color:#5b5148;line-height:1.85}
+.scoreboard{max-width:1040px;margin:14px auto 0;display:flex;justify-content:space-between;align-items:center;gap:10px;background:#fff;border:2px solid var(--ink);border-radius:16px;padding:10px 14px;font-family:Cairo;flex-wrap:wrap}
+.value{font-weight:800;color:var(--flame);font-size:1.2rem}
+.scoreboard button{font-family:Cairo;font-weight:700;background:var(--ink);color:#fff;border:none;border-radius:10px;padding:8px 12px;cursor:pointer}
+main{max-width:1040px;margin:0 auto;padding:16px 12px}
+.rules,.card,.formulas{background:#fff;border:2px solid var(--ink);border-radius:18px;padding:16px 14px;margin-bottom:16px}
+.card h2,.formulas h2{font-family:Cairo;font-size:1.05rem;margin:0 0 10px;display:flex;gap:8px;align-items:center}
+.num{width:30px;height:30px;border-radius:50%;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800;flex:none}
+.item{background:#FBF6EC;border:1.5px solid rgba(43,35,32,.18);border-radius:12px;padding:10px;margin:8px 0}
+.q{font-weight:700;line-height:1.8;margin:0 0 8px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+input[type=text]{flex:1 1 160px;border:1.5px solid rgba(43,35,32,.22);background:#fff;font:1.05rem Cairo;text-align:center;padding:8px 10px;border-radius:10px;direction:ltr;unicode-bidi:isolate}
+.fin{display:inline-flex;flex-direction:column;align-items:center;width:min(100%,220px);background:#fff;border:1.5px solid rgba(43,35,32,.22);border-radius:12px;padding:4px 8px}
+.fin input{width:100%;border:none;background:transparent;text-align:center;padding:4px}
+.fin .line{width:100%;height:2px;background:var(--ink)}
+.rad{display:inline-block;transform:scaleX(-1);font-weight:800}
+.radex{font-family:Cairo;font-weight:800;direction:ltr;unicode-bidi:isolate}
+.tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tools button,.pad button{font-family:Cairo;font-weight:700;font-size:.82rem;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:7px 10px;cursor:pointer}
+.tools .p{background:var(--ink);color:#fff}
+.reveal{display:none;margin-top:8px;padding:10px;border-radius:10px;border:1.5px solid rgba(43,35,32,.28);line-height:1.85;font-size:.92rem}
+.reveal.show{display:block}
+.steps{font-size:.85rem;color:#5b5148;margin:2px 0 4px;line-height:1.7}
+.expr{display:inline-flex;flex-direction:column;align-items:center;font-family:Cairo;font-weight:800;margin:0 6px;direction:ltr;unicode-bidi:isolate;line-height:1.05}
+.expr .n{border-bottom:2px solid currentColor;padding:0 7px 1px}
+.expr .d{padding:1px 7px 0}
+.pic{direction:ltr;unicode-bidi:isolate;font-family:Cairo;font-weight:800}
+.note{color:#5b5148;line-height:1.75}
+.grid{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:760px){.grid{grid-template-columns:1fr 1fr}}
+.formulas .box{display:grid;gap:8px}
+@media(min-width:760px){.formulas .box{grid-template-columns:1fr 1fr}}
+.fcard{background:#FBF6EC;border:1.5px solid rgba(43,35,32,.16);border-radius:12px;padding:10px 12px}
+.eq{font-family:Cairo;font-weight:800;direction:ltr;unicode-bidi:isolate;display:block;margin-top:4px}
+.outcomes{padding:0 18px 0 0}.outcomes li{line-height:1.8}
+.mark{font-weight:800;min-width:1.4em}
+.pad{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 2px}
+.fig{display:flex;justify-content:center;margin:8px 0 4px}
+svg.diag{max-width:320px;width:100%;height:auto;background:#fff;border-radius:12px;border:1.5px solid rgba(43,35,32,.15);display:block}
+footer{text-align:center;color:#8a7f70;padding:8px}
+.chip{display:inline-block;background:#E5EAF2;border-radius:999px;padding:2px 8px;font-size:.78rem;font-family:Cairo;font-weight:700}
+</style></head><body>
+<div class="hero"><div class="kicker">الوحدة الأولى • القياس الدائري</div>
+<h1>١-١ الراديان • تمارين تفاعلية</h1>
+<p>حوّل بين الدرجة والراديان، استخدم القيم المثلثية الدقيقة، ثم طبّق قانون الجيب التمام على مثلث وسلم مائل.</p></div>
+<div class="scoreboard"><div>نتيجتك: <span class="value" id="sc">٠ / ٠</span></div>
+<button onclick="resetAll()">↺ إعادة تعيين</button></div>
+<main>
+<section class="rules"><h2 style="font-family:Cairo;margin:0 0 8px">ستتعلّم في هذا الدرس</h2>
+<ol class="outcomes">
+<li>١-١ تحويل القياس بين الراديان والدرجة.</li>
+<li>استخدام الصيغة θ(راديان) = θ(درجة) × π ÷ ١٨٠ وعكسها.</li>
+<li>إيجاد القيم الدقيقة لـ جا، جتا، ظا عند الزوايا الخاصة.</li>
+<li>التقريب إلى ٣ أرقام معنوية، مع الانتباه لوضع الآلة الحاسبة.</li>
+</ol></section>
+<section class="formulas"><h2><span class="num" style="background:#2B4570">π</span> التذكير السريع</h2>
+<div class="box">
+<div class="fcard"><b>درجة → راديان</b><span class="eq" style="direction:rtl">θ<sub>راد</sub> = θ<sub>درجة</sub> × <span class="expr"><span class="n">π</span><span class="d">١٨٠</span></span></span></div>
+<div class="fcard"><b>راديان → درجة</b><span class="eq" style="direction:rtl">θ<sub>درجة</sub> = θ<sub>راد</sub> × <span class="expr"><span class="n">١٨٠</span><span class="d">π</span></span></span></div>
+<div class="fcard"><b>دورة كاملة</b><span class="eq">360° = 2π rad , 180° = π rad</span></div>
+<div class="fcard"><b>قانون الجيب التمام</b><span class="eq">a² = b² + c² − 2bc cos A</span></div>
+</div>
+<p class="note">اكتب الكسر في خانتين: البسط فوق والمقام تحت. π يسار الرقم مثل <span class="pic">π٣</span>. الجذر يمين الرقم مثل <span class="radex">٣<span class="rad">√</span></span>.</p>
+<div class="pad"><button type="button" onclick="insertAt('π')">π</button>
+<button type="button" onclick="insertRad()">جذر يمين √</button>
+<button type="button" onclick="insertAt('-')">−</button></div></section>
+<section class="card" style="background:#E5EAF2"><h2><span class="num" style="background:#2B4570">١</span> حوّل من الدرجات إلى الراديان <span class="chip">بدلالة π</span></h2>
+<p class="note">القانون: θ<sub>راد</sub> = θ<sub>درجة</sub> × π/١٨٠ ثم اختصر.</p>
+<div class="grid" id="g1"></div>
+<div class="tools"><button class="p" onclick="chk1()">✓ تحقّق</button><button onclick="tog('h1')">تلميح</button><button onclick="tog('a1')">الإجابة</button></div>
+<div class="reveal" id="h1">اضرب في π/١٨٠ ثم اختصر. ٩٠° = π/٢.</div>
+<div class="reveal" id="a1"><ol>
+<li>أ) π/٢</li><li>ب) ٧π/٩</li><li>ج) π/٤</li><li>د) π/٦</li><li>هـ) ٢π/٥</li><li>و) π/١٠</li>
+<li>ز) ٢π/٣</li><li>ح) π/٨</li><li>ط) ٤π</li><li>ي) ٧π/٣</li><li>ك) ٣π/٢</li><li>ل) π/١٨٠</li>
+</ol></div></section>
+<section class="card" style="background:#FBEEDA"><h2><span class="num" style="background:#E0932B">٢</span> حوّل من الراديان إلى الدرجات</h2>
+<p class="note">القانون: θ° = θ<sub>راد</sub> × ١٨٠/π</p>
+<div class="grid" id="g2"></div>
+<div class="tools"><button class="p" onclick="chk2()">✓ تحقّق</button><button onclick="tog('h2')">تلميح</button><button onclick="tog('a2')">الإجابة</button></div>
+<div class="reveal" id="h2">يُلغى π بعد الضرب في ١٨٠/π.</div>
+<div class="reveal" id="a2"><ol>
+<li>أ) ١٠°</li><li>ب) ٩°</li><li>ج) ٣٦°</li><li>د) ٢٢٫٥°</li><li>هـ) ٢٠°</li><li>و) ١٢٠°</li>
+<li>ز) ١١٢٫٥°</li><li>ح) ١٠٨°</li><li>ط) ٤°</li><li>ي) ١٠٨٠°</li><li>ك) −٩٠°</li><li>ل) ٥٠°</li>
+</ol></div></section>
+<section class="card" style="background:#E8F3EA"><h2><span class="num" style="background:#2E8B57">٣</span> القيم المثلثية الدقيقة</h2>
+<p class="note">حوّل إلى درجة ثم استخدم القيم الخاصة مع إشارة الربع.</p>
+<div class="grid" id="g3"></div>
+<div class="tools"><button class="p" onclick="chk3()">✓ تحقّق</button><button onclick="tog('h3')">تلميح</button><button onclick="tog('a3')">الإجابة</button></div>
+<div class="reveal" id="h3">π/٣=٦٠° ، ٢π/٣=١٢٠° ، ٧π/٦=٢١٠° ، ٣π/٢=٢٧٠° ، ٧π/٤=٣١٥° ، ٥π/٣=٣٠٠°.</div>
+<div class="reveal" id="a3"><ol>
+<li>أ) √٣/٢</li><li>ب) √٢/٢</li><li>ج) ١/√٣</li><li>د) ٠</li><li>هـ) −√٢/٢</li><li>و) −√٣/٢</li><li>ز) −√٣</li><li>ح) √٣/٢</li>
+</ol></div></section>
+<section class="card" style="background:#F3E8F0"><h2><span class="num" style="background:#7A3E6D">٤</span> إلى الراديان • ٣ أرقام معنوية</h2>
+<p class="note">θ_راد = θ° × π ÷ ١٨٠ ، π≈٣٫١٤١٦</p>
+<div class="grid" id="g4"></div>
+<div class="tools"><button class="p" onclick="chk4()">✓ تحقّق</button><button onclick="tog('h4')">تلميح</button><button onclick="tog('a4')">الإجابة</button></div>
+<div class="reveal" id="h4">ثلاثة أرقام معنوية مثل ٥٫٠٣ و ٠٫٣٤٩.</div>
+<div class="reveal" id="a4"><ol><li>أ-١) ٥٫٠٣</li><li>أ-٢) ٠٫٣٤٩</li><li>ب-١) ٤٫٧١</li><li>ب-٢) ١٫٥٧</li></ol></div></section>
+<section class="card" style="background:#E5EAF2"><h2><span class="num" style="background:#2B4570">٦</span> إلى الدرجات • ٣ أرقام معنوية</h2>
+<p class="note">θ° = θ_راد × ١٨٠ ÷ π</p>
+<div class="grid" id="g6"></div>
+<div class="tools"><button class="p" onclick="chk6()">✓ تحقّق</button><button onclick="tog('h6')">تلميح</button><button onclick="tog('a6')">الإجابة</button></div>
+<div class="reveal" id="h6">١٫٥ × ١٨٠/π ≈ ٨٥٫٩°</div>
+<div class="reveal" id="a6"><ol><li>أ) ٨٥٫٩°</li><li>ب) ١٢٦°</li><li>ج) ٦٠٫٧°</li><li>د) ١١١°</li><li>هـ) ٣٩٫٠°</li></ol></div></section>
+<section class="card" style="background:#FBEEDA"><h2><span class="num" style="background:#E0932B">٧</span> آلة حاسبة • ٣ أرقام معنوية</h2>
+<p class="note">الآلة على وضع الراديان للأعداد العشرية.</p>
+<div class="grid" id="g7"></div>
+<div class="tools"><button class="p" onclick="chk7()">✓ تحقّق</button><button onclick="tog('h7')">تلميح</button><button onclick="tog('a7')">الإجابة</button></div>
+<div class="reveal" id="h7">π/١٠=١٨° ، π/٥=٣٦° ، ٣π/٤=١٣٥° ، ظا١٣٥°=−١.</div>
+<div class="reveal" id="a7"><ol><li>أ) ٠٫٩٣٢</li><li>ب) ٠٫٦٩٧</li><li>ج) ٢٫٥٧</li><li>د) ٠٫٣٠٩</li><li>هـ) ٠٫٨٠٩</li><li>و) −١</li></ol></div></section>
+<section class="card" style="background:#E8F3EA"><h2><span class="num" style="background:#2E8B57">٨</span> مثلث • قانون الجيب التمام</h2>
+<p class="note">أ² = ٧² + ١٠² − ٢×٧×١٠×جتا(٥π/١٣) والآلة على الراديان.</p>
+<div class="fig"><svg class="diag" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg"><polygon points="40,190 280,190 210,40" fill="#FBF6EC" stroke="#2B2320" stroke-width="2"/><text x="150" y="208" text-anchor="middle" font-size="16" font-weight="800">٧</text><text x="268" y="120" font-size="16" font-weight="800">١٠</text><text x="100" y="100" font-size="16" font-weight="800">أ</text><text x="218" y="36" font-size="14" font-weight="800">٥π/١٣</text></svg></div>
+<div class="grid" id="g8"></div>
+<div class="tools"><button class="p" onclick="chk8()">✓ تحقّق</button><button onclick="tog('h8')">تلميح</button><button onclick="tog('a8')">الإجابة</button></div>
+<div class="reveal" id="h8">الزاوية محصورة بين ٧ و١٠.</div>
+<div class="reveal" id="a8">جتا(١٫٢٠٨)≈٠٫٣٥٤٦ ثم أ=√٩٩٫٣٥٦≈٩٫٩٧</div></section>
+<section class="card" style="background:#F8E6DE"><h2><span class="num" style="background:#D9531E">٩</span> السلّم والجدار</h2>
+<p class="note">جتا س = ٢٫٢٥/٦ = ٠٫٣٧٥ ثم س = قوس جتا. آمن إذا س ≥ ١٫٢</p>
+<div class="fig"><svg class="diag" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg"><line x1="40" y1="20" x2="40" y2="210" stroke="#2B4570" stroke-width="8"/><line x1="40" y1="210" x2="300" y2="210" stroke="#2B2320" stroke-width="3"/><line x1="40" y1="40" x2="200" y2="210" stroke="#D9531E" stroke-width="5"/><text x="128" y="110" font-size="16" font-weight="800" fill="#D9531E">٦ م</text><text x="110" y="228" font-size="15" font-weight="800">٢٫٢٥ م</text><text x="168" y="198" font-size="16" font-weight="800">س</text></svg></div>
+<div class="grid" id="g9"></div>
+<div class="tools"><button class="p" onclick="chk9()">✓ تحقّق</button><button onclick="tog('h9')">تلميح</button><button onclick="tog('a9')">الإجابة</button></div>
+<div class="reveal" id="h9">س = cos⁻¹(٠٫٣٧٥) بالراديان.</div>
+<div class="reveal" id="a9">س ≈ ١٫١٩ راد وهي أصغر من ١٫٢٠ لذلك السلّم غير آمن.</div></section>
+</main>
+<footer>الوحدة الأولى • القياس الدائري • تمارين ١-١</footer>
+<script>
+const AR='٠١٢٣٤٥٦٧٨٩';
+function west(s){return String(s||'').replace(/[٠-٩]/g,d=>String(AR.indexOf(d)));}
+function arn(n){return String(n).replace(/\d/g,d=>AR[d]);}
+function tog(id){document.getElementById(id).classList.toggle('show')}
+let lastInput=null;
+document.addEventListener('focusin',e=>{if(e.target.matches('input[type=text]')) lastInput=e.target});
+function insertAt(ch){const el=lastInput||document.querySelector('input[type=text]');if(!el)return;const s=el.selectionStart??el.value.length,e=el.selectionEnd??el.value.length;el.value=el.value.slice(0,s)+ch+el.value.slice(e);el.focus();}
+function insertRad(){const el=lastInput||document.querySelector('input[type=text]');if(!el)return;el.value=(el.value||'')+'√';el.focus();}
+function norm(s){let t=west(s).toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/باي|pi|π/g,'π').replace(/جذر/g,'√').replace(/sqrt/g,'√').replace(/÷/g,'/').replace(/×/g,'*').replace(/−|–|—/g,'-').replace(/درجة|درجات|°/g,'').replace(/راديان|راد/g,'').replace(/٫/g,'.').replace(/\s+/g,'').replace(/[()（）]/g,'');t=t.replace(/√(\d+)/g,'$1√');return t;}
+function joined(id){const n=(document.getElementById(id+'n')||{}).value||'';const d=(document.getElementById(id+'d')||{}).value||'';const w=(document.getElementById(id)||{}).value||'';if(n&&d)return n+'/'+d;if(n&&!d)return n;return w;}
+function closeEnough(v,target,rel=0.012){const n=parseFloat(west(String(v)).replace(/[^\d.\-]/g,''));const t=parseFloat(target);if(Number.isNaN(n)||Number.isNaN(t))return false;return Math.abs(n-t)<=Math.max(rel,Math.abs(t)*rel);}
+function ok(id,acc,numeric=null){const v=norm(joined(id));let good=acc.some(a=>v===norm(a));if(!good&&numeric!=null)good=closeEnough(v,numeric);const e=document.getElementById('m-'+id);e.textContent=good?'✅':'❌';e.style.color=good?'#2E8B57':'#C0392B';}
+function score(){let c=0,t=0;document.querySelectorAll('[id^=m-]').forEach(e=>{t++;if(e.textContent==='✅')c++});document.getElementById('sc').textContent=arn(c)+' / '+arn(t);}
+function frac(n,d){return '<span class="expr"><span class="n">'+n+'</span><span class="d">'+d+'</span></span>'}
+function field(id,label){return '<div class="item"><div class="q">'+label+'</div><div class="row"><div class="fin"><input type="text" id="'+id+'n" placeholder="البسط" autocomplete="off"><div class="line"></div><input type="text" id="'+id+'d" placeholder="المقام أو اتركه فارغًا" autocomplete="off"></div><input type="hidden" id="'+id+'"><span class="mark" id="m-'+id+'"></span></div></div>';}
+function q2(id,label){return field(id,label);}
+document.getElementById('g1').innerHTML=[['q1a','أ) ٩٠°'],['q1b','ب) ١٤٠°'],['q1c','ج) ٤٥°'],['q1d','د) ٣٠°'],['q1e','هـ) ٧٢°'],['q1f','و) ١٨°'],['q1g','ز) ١٢٠°'],['q1h','ح) ٢٢½°'],['q1i','ط) ٧٢٠°'],['q1j','ي) ٤٢٠°'],['q1k','ك) ٢٧٠°'],['q1l','ل) ١°']].map(([id,l])=>field(id,l)).join('');
+document.getElementById('g2').innerHTML=[['q2a','أ) '+frac('π','١٨')],['q2b','ب) '+frac('π','٢٠')],['q2c','ج) '+frac('π','٥')],['q2d','د) '+frac('π','٨')],['q2e','هـ) '+frac('π','٩')],['q2f','و) '+frac('π٢','٣')],['q2g','ز) '+frac('π٥','٨')],['q2h','ح) '+frac('π٣','٥')],['q2i','ط) '+frac('π','٤٥')],['q2j','ي) <span class="pic">π٦</span>'],['q2k','ك) −'+frac('π','٢')],['q2l','ل) '+frac('π٥','١٨')]].map(([id,l])=>field(id,l)).join('');
+document.getElementById('g3').innerHTML=[['q3a','أ) جا '+frac('π','٣')],['q3b','ب) جتا '+frac('π','٤')],['q3c','ج) ظا '+frac('π','٦')],['q3d','د) جتا '+frac('π٣','٢')],['q3e','هـ) جا '+frac('π٧','٤')],['q3f','و) جتا '+frac('π٧','٦')],['q3g','ز) ظا '+frac('π٥','٣')],['q3h','ح) جا '+frac('π٢','٣')]].map(([id,l])=>field(id,l)).join('');
+document.getElementById('g4').innerHTML=[['q4a1','أ-١) ٢٨٨°'],['q4a2','أ-٢) ٢٠°'],['q4b1','ب-١) ٢٧٠°'],['q4b2','ب-٢) ٩٠°']].map(([id,l])=>field(id,l)).join('');
+document.getElementById('g6').innerHTML=[['q6a','أ) ١٫٥ راد'],['q6b','ب) ٢٫٢ راد'],['q6c','ج) ١٫٠٦ راد'],['q6d','د) ١٫٩٣ راد'],['q6e','هـ) ٠٫٦٨ راد']].map(([id,l])=>field(id,l)).join('');
+document.getElementById('g7').innerHTML=[['q7a','أ) جا ١٫٢'],['q7b','ب) جتا ٠٫٨'],['q7c','ج) ظا ١٫٢'],['q7d','د) جا '+frac('π','١٠')],['q7e','هـ) جتا '+frac('π','٥')],['q7f','و) ظا '+frac('π٣','٤')]].map(([id,l])=>field(id,l)).join('');
+document.getElementById('g8').innerHTML=field('q8','قيمة أ ≈');
+document.getElementById('g9').innerHTML=field('q9s','قيمة س بالراديان ≈')+field('q9ok','هل السلّم آمن؟ (نعم / لا)');
+function piForms(num,den){const arr=[];if(den===1){if(num===1)arr.push('π','1π','π/1');else arr.push(num+'π',num+'*π','π'+num);}else if(num===1){arr.push('π/'+den,'π÷'+den);}else{arr.push(num+'π/'+den,num+'*π/'+den,'('+num+'π)/'+den);}return arr;}
+function chk1(){ok('q1a',piForms(1,2).concat(['0.5π']));ok('q1b',piForms(7,9));ok('q1c',piForms(1,4));ok('q1d',piForms(1,6));ok('q1e',piForms(2,5));ok('q1f',piForms(1,10));ok('q1g',piForms(2,3));ok('q1h',piForms(1,8));ok('q1i',piForms(4,1).concat(['4π','π4']));ok('q1j',piForms(7,3));ok('q1k',piForms(3,2));ok('q1l',piForms(1,180));score();}
+function chk2(){ok('q2a',['10','١٠']);ok('q2b',['9','٩']);ok('q2c',['36','٣٦']);ok('q2d',['22.5','٢٢.٥','45/2']);ok('q2e',['20','٢٠']);ok('q2f',['120','١٢٠']);ok('q2g',['112.5','١١٢.٥','225/2']);ok('q2h',['108','١٠٨']);ok('q2i',['4','٤']);ok('q2j',['1080','١٠٨٠']);ok('q2k',['-90','−90','-٩٠']);ok('q2l',['50','٥٠']);score();}
+function chk3(){ok('q3a',['3√/2','√3/2']);ok('q3b',['2√/2','√2/2','1/2√']);ok('q3c',['1/3√','3√/3']);ok('q3d',['0','٠']);ok('q3e',['-2√/2','-√2/2','-1/2√']);ok('q3f',['-3√/2','-√3/2']);ok('q3g',['-3√','-√3']);ok('q3h',['3√/2','√3/2']);score();}
+function chk4(){ok('q4a1',['5.03','٥.٠٣'],5.03);ok('q4a2',['0.349','٠.٣٤٩'],0.349);ok('q4b1',['4.71','٤.٧١'],4.71);ok('q4b2',['1.57','١.٥٧'],1.57);score();}
+function chk6(){ok('q6a',['85.9','٨٥.٩'],85.9);ok('q6b',['126','١٢٦'],126);ok('q6c',['60.7','٦٠.٧'],60.7);ok('q6d',['111','١١١'],111);ok('q6e',['39.0','39','٣٩','٣٩.٠'],39.0);score();}
+function chk7(){ok('q7a',['0.932','٠.٩٣٢'],0.932);ok('q7b',['0.697','٠.٦٩٧'],0.697);ok('q7c',['2.57','٢.٥٧'],2.57);ok('q7d',['0.309','٠.٣٠٩'],0.309);ok('q7e',['0.809','٠.٨٠٩'],0.809);ok('q7f',['-1','−1','-١']);score();}
+function chk8(){ok('q8',['9.97','٩.٩٧'],9.97);score();}
+function chk9(){ok('q9s',['1.19','١.١٩'],1.19);const v=norm(joined('q9ok'));const good=['لا','غيرامن','غيرآمن','موامن','notsafe','no','false'].some(a=>v.includes(norm(a)));const e=document.getElementById('m-q9ok');e.textContent=good?'✅':'❌';e.style.color=good?'#2E8B57':'#C0392B';score();}
+function resetAll(){document.querySelectorAll('input').forEach(i=>i.value='');document.querySelectorAll('[id^=m-]').forEach(e=>e.textContent='');document.querySelectorAll('.reveal').forEach(e=>e.classList.remove('show'));score();}
+score();
+</script></body></html>
