@@ -1,0 +1,1 @@
+document.getElementById('img-s2').src='data:image/jpeg;base64,'+document.getElementById('img-s2').getAttribute('data-b64');
