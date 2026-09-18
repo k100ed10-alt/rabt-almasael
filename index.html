@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="ar" dir="rtl"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>رابط المسائل</title>
+<title>الرياضيات المتقدمة — الثاني عشر</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f3eee4;--navy:#163056;--line:#e6dcc8}
@@ -9,12 +9,13 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 .login{min-height:100dvh;display:grid;place-items:center;padding:20px}
 .box{width:min(420px,100%);background:#fffcf6;border:1px solid var(--line);border-radius:24px;padding:28px 22px;text-align:center}
 .logo{width:56px;height:56px;margin:0 auto 12px;border-radius:14px;background:#123047;color:#7ad7c7;display:grid;place-items:center}
-.box h1{font-size:28px;color:var(--navy)}.field{text-align:right;margin-bottom:10px}.field label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}
+.box h1{font-size:24px;color:var(--navy);line-height:1.4}.brandline{font-size:13px;color:#5b6a80;font-weight:800;margin-top:2px}.brandweb{font-size:12px;color:#2f8a5b;font-weight:800;margin:4px 0 12px;direction:ltr}
+.field{text-align:right;margin-bottom:10px}.field label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}
 .field input,.field select,.area{width:100%;height:44px;border:1px solid #e2d7bf;border-radius:12px;padding:0 12px;font-size:15px;background:#fff}.area{height:auto;min-height:88px;padding:10px}
 .go{width:100%;height:50px;border:0;border-radius:12px;background:var(--navy);color:#fff;font-weight:800;font-size:17px}
 .hint{margin-top:12px;background:#f7f1e4;border-radius:10px;padding:10px;font-size:13px;color:#5b6a80}.err{display:none;color:#b42318;font-weight:800;margin-top:8px}
 .app{min-height:100dvh;padding:12px 12px 150px}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.brand{display:flex;gap:8px;align-items:center}.brand .logo{width:40px;height:40px;margin:0}.brand h2{font-size:18px}.brand small{display:block;font-size:11px;color:#5b6a80}
+.brand{display:flex;gap:8px;align-items:center}.brand .logo{width:40px;height:40px;margin:0}.brand h2{font-size:16px;line-height:1.25}.brand small{display:block;font-size:11px;color:#5b6a80}
 .actions button{height:34px;border:0;border-radius:999px;padding:0 12px;font-weight:800}.b1{background:#fff;border:1px solid var(--line)!important}.b2{background:var(--navy);color:#fff}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
 .stat{background:#fff;border:1px solid #eee4d0;border-radius:16px;padding:12px;display:flex;justify-content:space-between;align-items:center;min-height:72px}
@@ -62,7 +63,11 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 .foot{display:flex;justify-content:space-between;margin-top:12px}.foot button{height:42px;padding:0 18px;border:0;border-radius:12px;font-weight:800}.gray{background:#ece9e1}
 .toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 16px;border-radius:999px;z-index:60;font-weight:800}.view{display:none}.view.on{display:block}
 </style></head><body>
-<section class="login" id="login"><div class="box"><div class="logo">⟩</div><h1>رابط المسائل</h1>
+<section class="login" id="login"><div class="box"><div class="logo">∑</div>
+<h1>الرياضيات المتقدمة</h1>
+<div class="brandline">الثاني عشر</div>
+<div class="brandline">أ. قحطان الرحبي</div>
+<div class="brandweb">Smartmathbook.com</div>
 <div class="field"><label>الاسم</label><input id="sname" autocomplete="name" placeholder="اكتب اسمك"></div>
 <div class="field"><label>البريد الإلكتروني</label><input id="email" type="email" dir="ltr"></div>
 <div class="field"><label>كلمة المرور</label><input id="pass" type="password"></div>
@@ -70,7 +75,7 @@ button,input,textarea,select{font-family:inherit}.hidden{display:none!important}
 <div class="hint">الاسم + البريد + كلمة المرور • مسموح جهازان فقط</div></div></section>
 <section class="app hidden" id="app">
 <nav class="nav"><button class="on" data-view="home">الرئيسية</button><button data-view="book">كتاب النشاط</button><button id="out">خروج</button></nav>
-<div class="top" id="topBar"><div class="brand"><div class="logo">⟩</div><div><h2>رابط المسائل</h2><small id="who">القياس الدائري</small></div></div>
+<div class="top" id="topBar"><div class="brand"><div class="logo">∑</div><div><h2>الرياضيات المتقدمة</h2><small>الثاني عشر — أ. قحطان الرحبي</small><small id="who">Smartmathbook.com</small></div></div>
 <div class="actions"><button class="b1" id="btnSearch">بحث</button><button class="b2 hidden" id="btnAdd">إضافة</button></div></div>
 <div id="view-home" class="view on"><div class="stats">
 <div class="stat"><div><b id="nTan">٠</b><span>تنويع</span></div><div class="ico g">▤</div></div>
